@@ -19,9 +19,12 @@
 		Rentrez la date sous la forme YYY-MM-DD</br>
 		Date1: <input id= date1 name=date1 type=text /></br>
 		Date2: <input id= date2 name=date2 type= text /></br>
+		
+		
 		<input id= valider type=button value=Valider onclick="update()" />
+		<div id=curseur></div>
 		<div id=resultat></div>
-	
+		<script type="text/javascript" src="selection.js"></script>
 		<script>
 			var data;
 			var charge = 0;
@@ -65,8 +68,8 @@
 				 var ratio = d3.min(data2)/d3.max(data2);
 				
 				 charge = 1;
-				 var chart = d3.select("div").append("svg") //création du svg
-						    	     .attr("class", "chart")//ajout à la classe chart
+				 var chart =  d3.select("#resultat").append("svg") //création du svg
+						    	     .attr("class", "chart");//ajout à la classe chart
 						     	     /*.attr("width", 420)//réglage de la longueur du svg
 						     	     .attr("height", 420);*///réglage de la largeur, 20px par bande * data.length pour connaitre le nombre de data donc de bande
 				if(ratio > 0,4)

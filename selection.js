@@ -6,12 +6,28 @@
 	
 	diff = diffdate(jsDate1, jsDate2);
 	
+	var curseur= d3.select("#curseur").append("svg")
+					  .attr("class", "chart");
 	
+	curseur.append("line")
+	       .attr("x1", 10)
+	       .attr("x2", 400)
+	       .attr("y1", 30)
+	       .attr("y2", 30)
+	       .style("stroke", "black")
+	       .style("stroke-width", 4);
+	curseur.append("rect")
+	       .attr("width", 10)
+	       .attr("height", 20)
+	       .attr("x", 10)
+	       .attr("y",10)
+	       .style("fill","grey" )
+	       .on("mousedown", animate);
 	
-	
-	
-	
-	function titre (d1, d2)
+	function animate(){
+		d3.select(this).attr("x",event.clientX);
+		
+	} 
 	
 	function diffdate(d1, d2) {
 		var WNbJours = d2.getTime() - d1.getTime();
