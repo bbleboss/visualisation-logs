@@ -57,18 +57,11 @@
 			{
 				d3.select(id).attr("x", 390);
 			}
-			color(id);
+			
 		}
 		
 	} 
-	function color(id)
-	{
-		//alert(id);
-		if(id === x1Date)
-		{
-			alert('cool');
-		}
-	}
+	
 	
 	function diffdate(d1, d2) {
 		var WNbJours = d2.getTime() - d1.getTime();
