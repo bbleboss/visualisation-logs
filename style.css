@@ -72,6 +72,17 @@ a.menu1:hover
 	text-decoration:none;
 	color: rgb(182, 57, 125);
 }
+a.menu11
+{
+	display:block;
+	text-decoration:none;
+	color: #000000;
+}
+a.menu11:hover
+{
+	text-decoration:none;
+	color: rgb(182, 57, 125);
+}
 li.menu2
 {
 	position: relative;
@@ -102,6 +113,18 @@ a.menu2:hover
 	text-decoration:none;
 	color: rgb(120, 169, 60);
 }
+a.menu22
+{
+	display:block;
+	text-decoration:none;
+	color: #000000;
+}
+a.menu22:hover
+{
+	text-decoration:none;
+	color: rgb(120, 169, 60);
+}
+
 li.menu3
 {
 	position: relative;
@@ -128,6 +151,17 @@ a.menu3
 	padding-top: 4%;
 }
 a.menu3:hover
+{
+	text-decoration:none;
+	color: rgb(153, 205, 255);
+}
+a.menu33
+{
+	display:block;
+	text-decoration:none;
+	color: #000000;
+}
+a.menu33:hover
 {
 	text-decoration:none;
 	color: rgb(153, 205, 255);
@@ -162,6 +196,17 @@ a.menu4:hover
 	text-decoration:none;
 	color: rgb(149, 113, 178);
 }
+a.menu44
+{
+	display:block;
+	text-decoration:none;
+	color: #000000;
+}
+a.menu44:hover
+{
+	text-decoration:none;
+	color: rgb(149, 113, 178);
+}
 li.menu5
 {
 	position: relative;
@@ -188,6 +233,17 @@ a.menu5
 	padding-top: 4%;
 }
 a.menu5:hover
+{
+	text-decoration:none;
+	color: rgb(91, 161, 218);
+}
+a.menu55
+{
+	display:block;
+	text-decoration:none;
+	color: #000000;
+}
+a.menu55:hover
 {
 	text-decoration:none;
 	color: rgb(91, 161, 218);
@@ -288,10 +344,17 @@ form
 	margin:auto;
 	width:73%;
 }
-
+label
+{
+	cursor:pointer;
+}
 input
 {
 	margin-top:0.7%;
+}
+input[type=text]
+{
+	width: 125px;
 }
 #curseur
 {
@@ -305,4 +368,3 @@ input
 	margin-top:2%;
 	width: 76%;
 }
-
