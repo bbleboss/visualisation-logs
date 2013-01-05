@@ -45,10 +45,11 @@ function graph() {
 	 var ratio = d3.min(data2)/d3.max(data2);
 			
 	 charge = 1;
-	 var chart =  d3.select("#resultat").append("svg") //création du svg
-				    	    .attr("class", "chart");//ajout à la classe chart
-				  	     /*.attr("width", 420)//réglage de la longueur du svg
-				  	     .attr("height", 420);*///réglage de la largeur, 20px par bande * data.length pour connaitre le nombre de data donc de bande
+
+	var chart =  d3.select("#resultat").append("svg") //création du svg
+                                            .attr("class", "chart")//ajout à la classe chart
+                                            .attr("height", 200);//réglage de la largeur, 20px par bande * data.length pour connaitre le nombre de data donc de bande
+
 	if(ratio > 0,4)
 	{
 		var x = d3.scale.linear()
@@ -67,7 +68,8 @@ function graph() {
    	 	       	         .enter().append("circle")
     					 .attr("cx", function(d,i) {return 50+(i* 105); })
     					 .attr("cy", 50)
-     					 .attr("r", x);
+     					 .attr("r", x)
+     					 .attr("class", "cercle");
      					       	       
      	if(ratio > 0,4)
      	{
@@ -99,8 +101,10 @@ function affiche(){
 
 	var diff = diffdate(jsDate1, jsDate2);
 	
-	var curseur= d3.select("#curseur").append("svg")
-					  .attr("class", "chart");
+	 var curseur= d3.select("#curseur").append("svg")
+                                          .attr("class", "chart")
+                                          .attr("height", 60)
+                                          .attr("width", 400);
 		
 	curseur.append("line")
 	       .attr("x1", 10)
@@ -116,7 +120,7 @@ function affiche(){
 	       .attr("y",8)
 	       .attr("id","x1Date")
 	       .style("fill","grey" )
-	       .on("mousedown", function (){id=this; animation = true; animate();});
+	       .on("mousedown", function (){id=this; animation = true; animate;});
 	curseur.append("rect")
 	       .attr("width", 10)
 	       .attr("height", 20)
@@ -124,7 +128,7 @@ function affiche(){
 	       .attr("y",8)
 	       .style("fill","grey" )
 	       .attr("id","x2Date")
-	       .on("mousedown", function (){id=this; animation = true; animate();});
+	       .on("mousedown", function (){id=this; animation = true; animate;});
 
 	curseur.append("rect")
        	       .attr("width",ecartDate())
@@ -160,8 +164,7 @@ function animate(){
 			
 	if(animation)
 	{	
-			
-		var posX = event.clientX-7;
+		var posX = event.clientX-parseInt(d3.select("#curseur").style("margin-left"))-7;
 		if(posX > 10 && posX < 390)
 		{
 			d3.select(id).attr("x", posX);

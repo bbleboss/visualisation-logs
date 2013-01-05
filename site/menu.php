@@ -7,7 +7,7 @@
 				<a class="menu0" href="index.php"><img class="menu0" src="accueil.png" alt="accueil"></a>
 			</li>
 			<li class="menu1">
-				<a class="menu1" href="/Inscription.php">Erreurs</a>
+				<a class="menu1" href="error.php">Erreurs</a>
 				<ul class="menuniveau2">
 					<li class="menuniveau2"> Humour</li>
 					<li class="menuniveau2"> Action</li>
