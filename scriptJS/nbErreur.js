@@ -134,10 +134,10 @@ function graph() {
 }
                         
 function affiche(){
-
+	//alert(date1);
         var jsDate1 = parse_date(date1);
         var jsDate2 = parse_date(date2);
-
+	//alert(jsDate1);
         var diff = diffdate(jsDate1, jsDate2);
         
          var curseur= d3.select("#curseur").append("svg")
@@ -191,6 +191,10 @@ function ecartDate(){
                 d3.select("#tmp").attr("id","x1Date");
         }
         ecart = parseInt(d3.select("#x2Date").attr("x")) - (parseInt(d3.select("#x1Date").attr("x"))+10);
+        if(ecart < 0)
+        {
+        	return 0;
+        }
         
         return ecart;
                 
