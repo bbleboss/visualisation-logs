@@ -4,7 +4,7 @@
 	<head>
 		<title>Nombre d'erreurs en fonction d'une période</title>
 		<meta http-equiv="content-type" content="text/html" charset=utf-8" />
-		<script type="text/javascript" src="d3/d3.js"></script>
+		<script type="text/javascript" src="/d3/d3.js"></script>
 	</head>
 	
 	<body>
@@ -35,7 +35,7 @@
 				date1 =encodeURIComponent(date1);
 				date2 = encodeURIComponent(date2);
 			
-				xhr.open('GET', 'http://projettuteure.fr/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+				xhr.open('GET', 'http://projettuteure.fr/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
 				xhr.send(null);//envoi de la requete
 				
 				xhr.onreadystatechange = function() {

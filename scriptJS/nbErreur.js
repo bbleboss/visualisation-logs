@@ -14,7 +14,7 @@ function update()//fonction appelée lors du click sur valider
 	date1 =encodeURIComponent(date1);
 	date2 = encodeURIComponent(date2);
 	
-	xhr.open('GET', 'http://projettuteure.fr/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+	xhr.open('GET', 'http://projettuteure.fr/visualisation-logs/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
 	xhr.send(null);//envoi de la requete
 		
 	xhr.onreadystatechange = function() {
@@ -49,7 +49,6 @@ function graph() {
 	var chart =  d3.select("#resultat").append("svg") //création du svg
                                             .attr("class", "chart")//ajout à la classe chart
                                             .attr("height", 200);//réglage de la largeur, 20px par bande * data.length pour connaitre le nombre de data donc de bande
-
 	if(ratio > 0,4)
 	{
 		var x = d3.scale.linear()
@@ -68,8 +67,8 @@ function graph() {
    	 	       	         .enter().append("circle")
     					 .attr("cx", function(d,i) {return 50+(i* 105); })
     					 .attr("cy", 50)
-     					 .attr("r", x)
-     					 .attr("class", "cercle");
+     					 .attr("r", x);
+     					 
      					       	       
      	if(ratio > 0,4)
      	{

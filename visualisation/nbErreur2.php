@@ -5,6 +5,8 @@
 		<title>Nombre d'erreurs en fonction d'une période</title>
 		<meta http-equiv="content-type" content="text/html" charset=utf-8" />
 		<script type="text/javascript" src="/d3/d3.js"></script>
+		<script  type="text/javascript">document.addEventListener("mousemove","GetMousePos",true);</script>
+
 	</head>
 	
 	<body>
