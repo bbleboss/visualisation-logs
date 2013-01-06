@@ -58,7 +58,7 @@ function graph() {
 							
 		var stop1 = degrade.append("stop")
 				   .attr("offset", "0%")
-				   .attr("style", "stop-color:rgb(153, 205, 255);stop-opacity:0");
+				   .attr("style", "stop-color:rgb(153, 205, 255);stop-opacity:1");
 							
 		var stop2 = degrade.append("stop")
 				   .attr("offset", "100%")
