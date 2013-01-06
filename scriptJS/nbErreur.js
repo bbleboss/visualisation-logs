@@ -118,13 +118,13 @@ function graph() {
                      	chart.selectAll("text").transition()
     		     			       .delay(100)
    		     			       .duration(1100)
-                     			       .attr("y", function(d) {return x(d)+60;})
+                     			       .attr("y", function(d) {return x(d)+70;})
                      			       .attr("text-anchor", "middle")
                      			       .text(function(d, i) { return data3[i]+':'+' '+d; });
                	     }
                	     else
                	     {
-               	     	chart.selectAll("text").attr("y", function(d) {return x(d)+60;})
+               	     	chart.selectAll("text").attr("y", function(d) {return x(d)+70;})
                      			       .attr("text-anchor", "middle")
                      			       .text(function(d, i) { return data3[i]+':'+' '+d; });
                	     }
@@ -134,13 +134,12 @@ function graph() {
 }
                         
 function affiche(){
-	//alert(date1);
+
         var jsDate1 = parse_date(date1);
         var jsDate2 = parse_date(date2);
-	//alert(jsDate1);
         var diff = diffdate(jsDate1, jsDate2);
-        
-         var curseur= d3.select("#curseur").append("svg")
+        	
+        var curseur= d3.select("#curseur").append("svg")
                                           .attr("class", "chart")
                                           .attr("height", 60)
                                           .attr("width", 400);
@@ -245,16 +244,29 @@ function diffdate(d1, d2) {
                 
         
         
-function parse_date(string) {  
+function parse_date(str) {  
         var date = new Date();  
-        var parts = String(string).split(/[- :]/);  
+        var tiret = 0;
+        while(tiret == 0)
+        {
+        	var anc = str;
+        	str = str.replace("%3A",':');
+        	str = str.replace("%20",':');
+        	if(anc == str)
+        	{
+        		tiret = 1;
+        	}
+        }
 
-        date.setFullYear(parts[0]);  
-        date.setMonth(parts[1] - 1);  
-        date.setDate(parts[2]);  
-        date.setHours(parts[3]);  
-        date.setMinutes(parts[4]);  
-        date.setSeconds(parts[5]);  
+        var parts = str.split(/[- :]/);  
+
+        date.setFullYear(parts[0] || 0);  
+        date.setMonth(parts[1] || 0);  
+        date.setDate(parts[2] || 0);  
+        date.setHours(parts[3] || 0);  
+        date.setMinutes(parts[4] || 0);  
+        date.setSeconds(parts[5] || 0);  
         date.setMilliseconds(0);  
+        
         return date;  
 }  
