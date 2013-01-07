@@ -15,5 +15,5 @@
 	$r = mysql_query($query);
 	$a = mysql_fetch_object($r);
 	$res = $a->reqoptions;
-	echo "{\"title\":\"options\",\"value\":$res},";
+  echo "{\"title\":\"options\",\"value\":$res}]";
 ?>
