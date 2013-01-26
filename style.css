@@ -312,6 +312,7 @@ footer
 	font-style: normal;
 	font-variant: normal;
 	border-top:solid 9px rgb(91, 161, 218);
+  text-align:center;
 }
 
 img.footer
@@ -321,10 +322,7 @@ img.footer
 	width: 30%;
 	height:30%;  
 }
-p.footer
-{
-	text-align:center;
-}
+
 
 /*------------------------------------------------*/
 
