@@ -14,9 +14,9 @@
 				</ul>
 			</li>
 			<li class="menu2">
-				<a class="menu2" href="/Inscription.php">Accès</a>
+				<a class="menu2" href="acces.php">Accès</a>
 				<ul class="menuniveau2">
-              <li class="menuniveau2"> <a class="menu22" href="error.php">Periode d'accès</a></li>
+              <li class="menuniveau2"> <a class="menu22" href="acces.php">Periode d'accès</a></li>
               <li class="menuniveau2"> <a class="menu22" href="error.php">Durée d'accès</a></li>
 				</ul>
 			</li>
