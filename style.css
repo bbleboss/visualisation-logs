@@ -312,6 +312,7 @@ footer
 	font-style: normal;
 	font-variant: normal;
 	border-top:solid 9px rgb(91, 161, 218);
+    text-align:center;
 }
 
 img.footer
@@ -321,10 +322,7 @@ img.footer
 	width: 30%;
 	height:30%;  
 }
-p.footer
-{
-	text-align:center;
-}
+
 
 /*------------------------------------------------*/
 
@@ -367,4 +365,23 @@ input[type=text]
 	margin:auto;
 	margin-top:2%;
 	width: 76%;
+}
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
+}
+
+.x.axis path {
+  display: none;
 }
