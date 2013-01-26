@@ -312,7 +312,6 @@ footer
 	font-style: normal;
 	font-variant: normal;
 	border-top:solid 9px rgb(91, 161, 218);
-    text-align:center;
 }
 
 img.footer
@@ -322,7 +321,10 @@ img.footer
 	width: 30%;
 	height:30%;  
 }
-
+p.footer
+{
+	text-align:center;
+}
 
 /*------------------------------------------------*/
 
@@ -366,6 +368,7 @@ input[type=text]
 	margin-top:2%;
 	width: 76%;
 }
+
 .axis text {
   font: 10px sans-serif;
 }
