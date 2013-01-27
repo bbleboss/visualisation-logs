@@ -14,7 +14,7 @@ function update()//fonction appelée lors du click sur valider
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
-        xhr.open('GET', 'http://projettuteure.fr/visualisation-logs/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+        xhr.open('GET', 'http://localhost/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
         xhr.send(null);//envoi de la requete
                 
         xhr.onreadystatechange = function() {
