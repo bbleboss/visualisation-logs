@@ -2,7 +2,7 @@
 <div class="nav">
 <![endif]-->
 <nav>
-	<ul class="menu">
+	<ul class="menu" id="menu">
 			<li class="menu0">
 				<a class="menu0" href="index.php"><img class="menu0" src="accueil.png" alt="accueil"></a>
 			</li>

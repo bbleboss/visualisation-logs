@@ -1,5 +1,5 @@
 <?php
-	require 'http://projettuteure.fr/params.php';
+	require '../params.php';
 	
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
