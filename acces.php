@@ -8,7 +8,7 @@
 	<meta charset= "UTF-8" />
 	<meta name="author" content="Amblard Clément, Boulay Baptiste, Play Jonathan"/>
 	<meta name="description" content="Visualisation des erreurs du fichiers logs"/>
-	<script type="text/javascript" src="/d3/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/d3/d3.js"></script>
 </head>
 <style>
 
@@ -59,6 +59,7 @@
 		 	</form>
 		<div id=resultat></div>
 		<script src="scriptJS/nbGet.js"></script>
+		<script src="scriptJS/modifUrl.js"></script>
 	
 	</section>
 	<!--[if lt IE 9]>

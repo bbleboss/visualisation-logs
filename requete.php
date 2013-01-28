@@ -32,6 +32,7 @@
 		<div id=curseur></div>
 		<div id=resultat></div>
 		<script src="scriptJS/nbRequete.js"></script>
+		<script src="scriptJS/modifUrl.js"></script>
 	
 	</section>
 	<!--[if lt IE 9]>

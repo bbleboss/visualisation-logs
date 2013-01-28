@@ -1,4 +1,4 @@
-<<<<<<< local
+
 /*--------------------MENU-----------------*/ 
 nav
 {
@@ -12,7 +12,7 @@ nav
 	font-variant: normal;
 	font-weight: bold;
 }
-ul.menu
+#menu ul
 {	
 	margin:auto;
 	padding-left: 0%;

@@ -9,7 +9,7 @@
 	<meta charset= "UTF-8" />
 	<meta name="author" content="Amblard Clément, Boulay Baptiste, Play Jonathan"/>
 	<meta name="description" content="Visualisation des erreurs du fichiers logs"/>
-	<script type="text/javascript" src="/d3/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/d3/d3.js"></script>
 </head>
 
 <body>

@@ -10,11 +10,12 @@ function update()//fonction appelée lors du click sur valider
         var xhr = new XMLHttpRequest();//création de la requête
         date1 = document.getElementById('date1').value;
         date2 = document.getElementById('date2').value;
+  
         var resultat = document.getElementById('resultat');
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
-        xhr.open('GET', 'http://localhost/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+        xhr.open('GET', 'http://localhost:8888/scriptPhp/basePhp.php?date1='+date1+'&date2='+date2);//parametrage de la requête
         xhr.send(null);//envoi de la requete
                 
         xhr.onreadystatechange = function() {
