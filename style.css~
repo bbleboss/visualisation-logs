@@ -12,7 +12,7 @@ nav
 	font-variant: normal;
 	font-weight: bold;
 }
-#menu ul
+ul.menu
 {	
 	margin:auto;
 	padding-left: 0%;
