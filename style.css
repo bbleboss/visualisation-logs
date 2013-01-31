@@ -360,6 +360,11 @@ input[type=text]
 	margin:auto;
 	margin-top:3%;
 	width: 76%;
+	
+}
+#updateForm
+{
+	float:right;
 }
 #resultat
 {
