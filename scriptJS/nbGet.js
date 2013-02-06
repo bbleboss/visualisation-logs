@@ -174,10 +174,10 @@ function graph() {
     	.tickFormat(formatPercent);               
 
     var svg = d3.select("#resultat").append("svg") //création du svg
-    	.attr("width", width + margin.left + margin.right) //largeur du svg
+    	.attr("width", 1090) //largeur du svg
     	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
   	.append("g")
-   		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");    
+   		.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
    			
    	x.domain(tranches_horaires.map(function(d) { return d; })); //Determine toutes les valeurs qui seront présentes en abscisse sur notre graphique
   	y.domain([0, d3.max(acces)]); //Determine toutes les valeurs qui seront présentes en ordonnées sur notre graphique
@@ -204,7 +204,11 @@ function graph() {
      	.attr("x", function(tranches_horaires, d) { return x(d); })
      	.attr("width", x.rangeBand())
       	.attr("y", function(d) { return y(d); })
-      	.attr("height", function(d) { return height - y(d); });
+      	.attr("height", function(d) { return height - y(d); })
+      	      	.attr("fill", function(d) {
+    		return "rgb(0, 0, " + (d * 1000) + ")";
+		});
+      	
       	
       	 
     //Rajoute le pourcentage dans chacune des barres 	
