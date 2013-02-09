@@ -7,13 +7,36 @@ var date1, date2;
 var acces = new Array;
 var tranches_horaires = new Array;
 
+var id;
+var animation = false;
+
+//----variable pour l'échelle----------
+
+var curseurX1=0, curseurX2=parseInt(d3.select('nav').style("width"));
+var jsDate1;
+var jsDate2;
+var millisecD1;
+var millisecD2;
+
 function update()//fonction appelée lors du click sur valider
 {
+		var source = event.target.id;//quel objet a appelé
+		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton
 		initTranches(); //Initialisation du tableau de tranches horaires, nécessaire pour le svg en graphique
 		
         var xhr = new XMLHttpRequest();//création de la requête
-        date1 = document.getElementById('date1').value;
-        date2 = document.getElementById('date2').value;
+        if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        {
+        	date1 = document.getElementById('date1').value;
+        	date2 = document.getElementById('date2').value;
+        }
+        else //cas où on bouge le curseur
+        {
+        	date1 = document.getElementById('curDate1').value;
+        	date2 = document.getElementById('curDate2').value;
+        }
+        
+        
         var resultat = document.getElementById('resultat');
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
@@ -24,31 +47,171 @@ function update()//fonction appelée lors du click sur valider
                                         		if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
                                                 	data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 	
-                                                	//alert('1ère étape de test - premiere date enregistrée  : ' + data[0].ltime); // TEST
-                                                	//alert('2ème étape de test - Taille de data : ' + data.length); // TEST
-                                                	
                                                 	parse_tab();
-                                                	
-                                                	//alert('3ème étape de test - acces entre 6h et 7h : ' + acces[6]); // TEST
-                                                	//alert('4eme étape de test - taille de acces = ' + acces.length); // TEST
-                                                	
+
                                                 	percentage();
                                                 	
-                                                	/* TEST	
                                                 	
-                                                	for(var i=0 ; i < 24 ; i++)
-														{
-															alert(acces[i]);
-														}
-													*/
                                                 	
-                                                	//alert('5ème étape de test - valeur de acces[6] = ' + acces[6]); // TEST
-                                                	
-                                                	graph();
+                                                	graph(source, type);
+                                                	if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+                                                	{
+                                                		affiche();
+                                                	}
                                         		}
                                         	};
 }
 
+
+
+// Affichage du graphique                       
+function graph(source, type) {
+                         
+	if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+	{
+        d3.selectAll("svg").remove();
+    }
+	else //sinon que les cercles
+    {
+    	d3.select('#barre').remove();
+	}
+    
+              
+                  
+    var margin = {top: 20, right: 20, bottom: 30, left: 100},
+   		width = 1200 - margin.left - margin.right,
+    	height = 500 - margin.top - margin.bottom;
+
+	var formatPercent = d3.format(".0%");
+
+	var x = d3.scale.ordinal()
+    	.rangeRoundBands([0, width], .1);
+
+	var y = d3.scale.linear()
+    	.range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+    	.scale(x)
+    	.orient("bottom");
+
+	var yAxis = d3.svg.axis()
+    	.scale(y)
+    	.orient("left")
+    	.tickFormat(formatPercent);               
+
+    var svg = d3.select("#resultat").append("svg") //création du svg
+    	.attr("width", 1090) //largeur du svg
+    	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
+    	.attr("id", "barre")
+  	.append("g")
+   		.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
+   			
+   	x.domain(tranches_horaires.map(function(d) { return d; })); //Determine toutes les valeurs qui seront présentes en abscisse sur notre graphique
+  	y.domain([0, d3.max(acces)]); //Determine toutes les valeurs qui seront présentes en ordonnées sur notre graphique
+
+  	svg.append("g")
+    	.attr("class", "x axis")
+      	.attr("transform", "translate(0," + height + ")")
+     	.call(xAxis); // On ajoute l'axe des abscisses au svg
+
+  	svg.append("g")
+      	.attr("class", "y axis")
+      	.call(yAxis) // On ajoute l'axe des ordonnées au svg
+    .append("text") // On ajoute une légende à l'axe des ordonnées
+    	.attr("transform", "rotate(-90)")
+      	.attr("y", 6)
+      	.attr("dy", ".71em")
+      	.style("text-anchor", "end")
+      	.text("Frequency");
+     	
+  	svg.selectAll(".bar")
+    	.data(acces)
+    .enter().append("rect")
+      	.attr("class", "bar")
+     	.attr("x", function(tranches_horaires, d) { return x(d); })
+     	.attr("width", x.rangeBand())
+      	.attr("y", function(d) { return y(d); })
+      	.attr("height", function(d) { return height - y(d); })
+      	      	.attr("fill", function(d) {
+    		return "rgb(0, 0, " + (d * 1000) + ")";
+		});
+      	
+    charge = 1;
+}
+
+function affiche(){ //affichage du curseur
+
+        
+        jsDate1 = parse_date(date1);
+        jsDate2 = parse_date(date2);
+        millisecD1 = Date.parse(jsDate1);
+        millisecD2 = Date.parse(jsDate2);
+        
+        document.getElementById('curseur').innerHTML = "<button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        document.getElementById('updateForm').onclick = function(){
+        								d1 = document.getElementById('date1');
+                        						d2 = document.getElementById('date2');
+                        						d1.value = document.getElementById('curDate1').value;
+                        						d2.value = document.getElementById('curDate2').value;
+                        						update();
+                        					  }
+        
+        var curseur= d3.select("#curseur").append("svg")
+                                          .attr("class", "chart")
+                                          .attr("height", 60)
+                                          .attr("width", curseurX2);
+      
+        curseur.append("line")
+               .attr("x1", curseurX1)
+               .attr("x2", curseurX2)
+               .attr("y1", 30)
+               .attr("y2", 30)
+               .style("stroke", "black")
+               .style("stroke-width", 4);
+        curseur.append("rect")
+               .attr("width", 10)
+               .attr("height", 20)
+               .attr("x", curseurX1)   
+               .attr("y",8)
+               .attr("id","x1Date")
+               .style("fill","grey" )
+               .on("mousedown", function (){
+               					id=this; 
+               					animation = true;
+               					updateCurseur();
+               				   });
+        curseur.append("rect")
+               .attr("width", 10)
+               .attr("height", 20)
+               .attr("x", (curseurX2-10))
+               .attr("y",8)
+               .style("fill","grey" )
+               .attr("id","x2Date")
+               .on("mousedown", function (){
+               					id=this;
+               				    	animation = true;
+               				    	updateCurseur();
+               				    });
+
+        curseur.append("rect")
+               .attr("width",ecartDate())
+               .attr("height",18)
+               .attr("x", posX1Date()+10)
+               .attr("y", 10)
+               .attr("id","zoneDate")
+               .style("opacity", 0.7);
+               
+       d3.select("body").on("mousemove", updateCurseur);
+       d3.select("body").on("mouseup", function(){
+                        				update();
+                        				animation = false;
+                        				d1 = document.getElementById('date1');
+                        				d2 = document.getElementById('date2');
+                        				updateUrl(d1, d2);
+                        				
+                        			 });
+
+}
 
 function initTranches()
 {
@@ -140,92 +303,96 @@ function parse_date(str)
         date.setSeconds(parts[5] || 0);  
         date.setMilliseconds(0);  
         
-        return date;  
-}  
+        return date; 
+} 
 
 
-                       
-function graph() {
-                         
-    if(charge == 1)
-    {
-        d3.selectAll("svg").remove();
-    }
-                  
-    var margin = {top: 20, right: 20, bottom: 30, left: 100},
-   		width = 1200 - margin.left - margin.right,
-    	height = 500 - margin.top - margin.bottom;
+function ecartDate(){ //calcul de la longueur de la zone séléctionnée
+        var ecart = parseInt(d3.select("#x2Date").attr("x")) - (parseInt(d3.select("#x1Date").attr("x"))+10);
+        if(ecart < 0)//si l'écart est négatif cela veut dire que le rectangle xDate2 est à gauche de xDate1 on échange les id pour les remettre dans le bon ordre
+        {
+                d3.select("#x2Date").attr("id","tmp");
+                d3.select("#x1Date").attr("id","x2Date");
+                d3.select("#tmp").attr("id","x1Date");
+        }
+        ecart = parseInt(d3.select("#x2Date").attr("x")) - (parseInt(d3.select("#x1Date").attr("x"))+10);
+        if(ecart < 0)
+        {
+        	return 0;
+        }
+        
+        return ecart;
+                
+}
+                
+function posX1Date(){
+   return parseInt(d3.select("#x1Date").attr("x"));
+}
+                
+function animate(){ //animation du curseur
+        
+       if(animation)
+        {       
+               var posX = window.event.clientX-parseInt(d3.select("#curseur").style("margin-left"))-10;
+               if(posX > curseurX1 && posX < curseurX2-10)
+               {
+                        d3.select(id).attr("x", posX);
+               }
+               else if(posX < curseurX1)
+               {
+                        d3.select(id).attr("x", curseurX1);
+               } 
+               else
+               {
+                        d3.select(id).attr("x", curseurX2-10);
+               }
+               color(id);
+        }
+} 
 
-	var formatPercent = d3.format(".0%");
+function color(id) // coloration de la zone séléctionnée du curseur 
+{
+        xClick = parseInt(d3.select(id).attr("x"));
+        x1Date = parseInt(d3.select("#x1Date").attr("x"));
+        x2Date = parseInt(d3.select("#x2Date").attr("x"));
+        if(xClick == x1Date || xClick == x2Date)
+        {
+                d3.select("#zoneDate").attr("x", posX1Date()+10)
+                                      .attr("width", ecartDate());
+        }
+}
+        
+function diffdate(d1, d2) { //différence entre deux dates en nombre de jours
+        var WNbJours = d2.getTime() - d1.getTime();
+        return Math.ceil(WNbJours/(1000*60*60*24));
+}
 
-	var x = d3.scale.ordinal()
-    	.rangeRoundBands([0, width], .1);
+function echelleTemps(nb)//echelle du curseur
+{
+	var echelle = d3.scale.linear()
+                        .domain([curseurX1, curseurX2])
+                        .range([millisecD1, millisecD2]);
+        
+        return echelle(nb);
+}
 
-	var y = d3.scale.linear()
-    	.range([height, 0]);
+function updateCurseur()//mise à jour des dates
+{
+	animate();
+	var x2 = parseInt(d3.select("#x2Date").attr("x")) +10;
+	x2 = echelleTemps(x2);
+        var x1 = parseInt(d3.select("#x1Date").attr("x"));
+        x1 =echelleTemps(x1);
+        var dateX1 = new Date(x1);
+        var dateX2 = new Date(x2);
+        
+        dateX1 = dateX1.getFullYear()+'-'+dateX1.getMonth()+'-'+dateX1.getDate()+' '+dateX1.getHours()+':'+dateX1.getMinutes()+':'+dateX1.getSeconds();
+        dateX2 = dateX2.getFullYear()+'-'+dateX2.getMonth()+'-'+dateX2.getDate()+' '+dateX2.getHours()+':'+dateX2.getMinutes()+':'+dateX2.getSeconds();
+        
+       
+        document.getElementById("curDate1").value = dateX1;
+        document.getElementById("curDate2").value = dateX2;
 
-	var xAxis = d3.svg.axis()
-    	.scale(x)
-    	.orient("bottom");
-
-	var yAxis = d3.svg.axis()
-    	.scale(y)
-    	.orient("left")
-    	.tickFormat(formatPercent);               
-
-    var svg = d3.select("#resultat").append("svg") //création du svg
-    	.attr("width", 1090) //largeur du svg
-    	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
-  	.append("g")
-   		.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
-   			
-   	x.domain(tranches_horaires.map(function(d) { return d; })); //Determine toutes les valeurs qui seront présentes en abscisse sur notre graphique
-  	y.domain([0, d3.max(acces)]); //Determine toutes les valeurs qui seront présentes en ordonnées sur notre graphique
-
-  	svg.append("g")
-    	.attr("class", "x axis")
-      	.attr("transform", "translate(0," + height + ")")
-     	.call(xAxis); // On ajoute l'axe des abscisses au svg
-
-  	svg.append("g")
-      	.attr("class", "y axis")
-      	.call(yAxis) // On ajoute l'axe des ordonnées au svg
-    .append("text") // On ajoute une légende à l'axe des ordonnées
-    	.attr("transform", "rotate(-90)")
-      	.attr("y", 6)
-      	.attr("dy", ".71em")
-      	.style("text-anchor", "end")
-      	.text("Frequency");
-     	
-  	svg.selectAll(".bar")
-    	.data(acces)
-    .enter().append("rect")
-      	.attr("class", "bar")
-     	.attr("x", function(tranches_horaires, d) { return x(d); })
-     	.attr("width", x.rangeBand())
-      	.attr("y", function(d) { return y(d); })
-      	.attr("height", function(d) { return height - y(d); })
-      	      	.attr("fill", function(d) {
-    		return "rgb(0, 0, " + (d * 1000) + ")";
-		});
-      	
-      	
-      	 
-    //Rajoute le pourcentage dans chacune des barres 	
-    /* NE FONCTIONNE PAS
- 	svg.selectAll("text")
-  		.data(acces)
-  	.enter().append("text")
-  		.attr("x", function(tranches_horaires, d) { return x(d); })
-  		.attr("y", function(d) { return y(d); })
-  		.attr("dx", -3)
-  		.attr("dy", "1.2em")
-  		.attr("text-anchor", "middle")
-  		.text(function(d) { return d;})
-  		.attr("fill", "black");
-	*/
-      	
-    charge = 1;
 }
 
 
