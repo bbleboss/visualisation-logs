@@ -31,6 +31,7 @@
 		 	</form>
 		<div id=curseur></div>
 		<div id=resultat></div>
+		<script src="scriptJS/curseur.js"></script>
 		<script src="scriptJS/nbRequete.js"></script>
 		<script src="scriptJS/modifUrl.js"></script>
 	

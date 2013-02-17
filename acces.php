@@ -57,7 +57,9 @@
 				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
+		<div id=curseur></div>
 		<div id=resultat></div>
+		<script src="scriptJS/curseur.js"></script>
 		<script src="scriptJS/nbGet.js"></script>
 		<script src="scriptJS/modifUrl.js"></script>
 	
