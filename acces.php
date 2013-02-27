@@ -10,36 +10,7 @@
 	<meta name="description" content="Visualisation des erreurs du fichiers logs"/>
 	<script type="text/javascript" src="/d3/d3.js"></script>
 </head>
-<style>
 
-	#resultat
-	{
-		padding-left:8%;
-		padding-top:2%;
-	}
-
-
-	.axis text {
-  		font: 10px sans-serif;
-	}
-
-	.axis path,
-	.axis line {
-  		fill: none;
-  		stroke: #000;
-  		shape-rendering: crispEdges;
-	}
-
-	.bar {
-  		fill: steelblue;
-  		fill-opacity: .9;
-	}
-
-	.x.axis path {
-  		display: none;
-	}
-	
-</style>
 <body>
 
 	<?php include("menu.php");?>

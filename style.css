@@ -383,12 +383,3 @@ input[type=text]
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
-.bar {
-  fill: steelblue;
-  fill-opacity: .9;
-}
-
-.x.axis path {
-  display: none;
-}
