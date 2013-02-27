@@ -12,9 +12,30 @@ var animation = false;
 
 function update()//fonction appelée lors du click sur valider
 {
+		var scriptPhp = "nbGet.php";
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton
 		initTranches(); //Initialisation du tableau de tranches horaires, nécessaire pour le svg en graphique
+		
+	if(source == "get" || source == "post" || source == "options" || source == "head")
+	{
+		if(source == "get")
+		{
+			scriptPhp = "nbGet.php";
+		}
+		else if(source == "post")
+		{
+			scriptPhp = "nbPost.php";
+		}
+		else if(source = "options" )
+		{
+			scriptPhp = "nbOptions.php";
+		}
+		else if(source = "head" )
+		{
+			scriptPhp = "nbHead.php";
+		}
+	} 
 		
         var xhr = new XMLHttpRequest();//création de la requête
         if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
@@ -33,7 +54,7 @@ function update()//fonction appelée lors du click sur valider
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
-        xhr.open('GET', 'http://localhost:8888/scriptPhp/nbGet.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+        xhr.open('GET', 'http://localhost:8888/scriptPhp/'+scriptPhp+'?date1='+date1+'&date2='+date2);//parametrage de la requête
         xhr.send(null);//envoi de la requete
         xhr.onreadystatechange = function() {
                                         		if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
@@ -114,7 +135,7 @@ function graph(source, type) {
       	.attr("y", 6)
       	.attr("dy", ".71em")
       	.style("text-anchor", "end")
-      	.text("Frequency");
+      	.text("Frequence");
      	
   	svg.selectAll(".bar")
     	.data(acces)
@@ -124,9 +145,8 @@ function graph(source, type) {
      	.attr("width", x.rangeBand())
       	.attr("y", function(d) { return y(d); })
       	.attr("height", function(d) { return height - y(d); })
-      	      	.attr("fill", function(d) {
-    		return "rgb(0, 0, " + (d * 1000) + ")";
-		});
+      	.attr("fill", "rgb(51, 153, 193)");
+
       	
     charge = 1;
 }

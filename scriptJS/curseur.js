@@ -7,15 +7,31 @@ var jsDate2;
 var millisecD1;
 var millisecD2;
 
+
 function affiche(){ //affichage du curseur
  
+
         jsDate1 = parse_date(date1);
         jsDate2 = parse_date(date2);
         millisecD1 = Date.parse(jsDate1);
         millisecD2 = Date.parse(jsDate2);
         var tmp = new Date(millisecD1);
         
-        document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"apache\" name=\"serveur\" onclick=\"update()\" checked>Apache <input type=\"radio\" id=\"zope\" name=\"serveur\" onclick=\"update()\">Zope<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        var currentLocation = document.location.href; //Permet d'obtenir l'URL actuel de la page
+ 		currentLocation = currentLocation.substring( currentLocation.lastIndexOf("/")+1 ,currentLocation.lastIndexOf( "#" ));
+ 		//Cette variable contient maintenant une chaîne du type 'error.php', 'acces.php', ...
+        
+        
+        //Ajout du curseur et des boutons radio en fonction de la page dans laquelle on se trouve
+        if(currentLocation == "error.php")
+        {
+        	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"apache\" name=\"serveur\" onclick=\"update()\" checked>Apache <input type=\"radio\" id=\"zope\" name=\"serveur\" onclick=\"update()\">Zope<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        }
+        else if(currentLocation == "acces.php")
+        {
+        	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"get\" name=\"serveur\" onclick=\"update()\" checked>Get (Accès externe)  <input type=\"radio\" id=\"post\" name=\"serveur\" onclick=\"update()\">Post <input type=\"radio\" id=\"head\" name=\"serveur\" onclick=\"update()\">Head  <input type=\"radio\" id=\"options\" name=\"serveur\" onclick=\"update()\">Options<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        }
+        
         document.getElementById('updateForm').onclick = function(){
         								d1 = document.getElementById('date1');
                         						d2 = document.getElementById('date2');
