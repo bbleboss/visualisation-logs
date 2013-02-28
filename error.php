@@ -30,6 +30,8 @@
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		<div id=curseur></div>
+		</br>
+		<div id=chargement></div>
 		<div id=resultat></div>
 		<script src="scriptJS/nbErreur.js"></script>
 		<script src="scriptJS/curseur.js"></script>

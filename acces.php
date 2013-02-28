@@ -19,7 +19,7 @@
 	<div class="page">
 	<![endif]-->
 	<section class="page">
-		<h1>Pourcentage d'accès externes par tranches horaires</h1>
+		<h1>Pourcentage de requêtes par tranches horaires</h1>
 			<form>
 				<p>Rentrez la date sous la forme YYYY-MM-DD</p>
 				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text />
@@ -29,6 +29,8 @@
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		<div id=curseur></div>
+		</br>
+		<div id=chargement></div>
 		<div id=resultat></div>
 		<script src="scriptJS/curseur.js"></script>
 		<script src="scriptJS/nbGet.js"></script>
