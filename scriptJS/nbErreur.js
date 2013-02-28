@@ -40,6 +40,10 @@ function update()//fonction appelée lors du click sur valider
         }
         
   
+  
+  		//Affichage de l'animation de chargement
+        document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
+        
         var resultat = document.getElementById('resultat');
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
@@ -51,6 +55,10 @@ function update()//fonction appelée lors du click sur valider
                                         if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
                                                 data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 graph(source, type);
+                                                
+                                                //On supprime l'animation de chargement
+                                                document.getElementById('chargement').innerHTML= "";
+                                                
                                                 if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
                                                 {
                                                 	affiche();

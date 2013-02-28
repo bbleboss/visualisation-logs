@@ -343,18 +343,22 @@ form
 	margin:auto;
 	width:73%;
 }
+
 label
 {
 	cursor:pointer;
 }
+
 input
 {
 	margin-top:0.7%;
 }
+
 input[type=text]
 {
 	width: 125px;
 }
+
 #curseur
 {
 	margin:auto;
@@ -362,10 +366,12 @@ input[type=text]
 	width: 76%;
 	
 }
+
 #updateForm
 {
 	float:right;
 }
+
 #resultat
 {
 	margin:auto;
@@ -382,4 +388,11 @@ input[type=text]
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+}
+
+#chargement
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
 }

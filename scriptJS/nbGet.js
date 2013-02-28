@@ -49,6 +49,8 @@ function update()//fonction appelée lors du click sur valider
         	date2 = document.getElementById('curDate2').value;
         }
         
+        //Affichage de l'animation de chargement
+        document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
         
         var resultat = document.getElementById('resultat');
         date1 =encodeURIComponent(date1);
@@ -64,17 +66,18 @@ function update()//fonction appelée lors du click sur valider
 
                                                 	percentage();
                                                 	
+                                                	graph(source, type); //Affichage du graphique
+													
+													//On supprime l'animation de chargement
+                                                	document.getElementById('chargement').innerHTML = "";
                                                 	
-                                                	
-                                                	graph(source, type);
                                                 	if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
                                                 	{
-                                                		affiche();
+                                                		affiche(); //Affichage du curseur
                                                 	}
                                         		}
                                         	};
 }
-
 
 
 // Affichage du graphique                       
