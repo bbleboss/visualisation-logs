@@ -163,10 +163,10 @@ function graph(source, type) {
     		       .data(acces)
     		       .enter().append("svg")
     	    	       .attr("class", "group")
-    	    	       .attr("x", function(tranches_horaires, d) {return x(d); })
-    	    	       .attr("y", function(d, i) { return y(d3.max(d));})
+    	    	       .attr("x", function(d, i) {return x(i); })
+    	    	       .attr("y", 0)
     	    	       .attr("width", x.rangeBand())
-    	    	       .attr("height", function(d, i) { return height - y(d3.max(d)); });
+    	    	       .attr("height", height);
     	
     	group.selectAll("rect") //on met les rect, 2 par svg
     	     .data(function (d){return d;})
