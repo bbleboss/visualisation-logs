@@ -7,10 +7,21 @@ var charge = 0;
 
 function update()//fonction appelée lors du click sur valider
 {
+		var source = event.target.id;//quel objet a appelé
+		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
+		
         var xhr = new XMLHttpRequest();//création de la requête
         
+        	 if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        {
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
+        }
+        else //cas où on bouge le curseur
+        {
+        	date1 = document.getElementById('curDate1').value;
+        	date2 = document.getElementById('curDate2').value;
+        }
         	nbvisite = document.getElementById('nbvisite').value;
         
   
@@ -26,7 +37,11 @@ function update()//fonction appelée lors du click sur valider
                                                 	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 	graph();
                                                 	//alert('2ème étape de test - premiere date enregistrée') ;
-                                        		}
+                                        			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+                                                	{
+                                                		affiche();
+                                                	}
+                                                }
                                         	};
 }
 
@@ -42,7 +57,8 @@ function graph() {
 	     
     if(charge == 1)
     {
-        d3.selectAll("svg").remove();
+        d3.select("#camembert").remove();
+       // d3.select("#legende").remove();
     }
 	
 	// -------------creation du cercle ---------//
@@ -62,6 +78,7 @@ function graph() {
 	 var svg = d3.select("#resultat").append("svg") //création du svg
     	.attr("width", width) //largeur du svg
     	.attr("height", height) //hauteur du svg
+    	.attr("id", "camembert")
     	.append("g")
     	.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
     	
@@ -85,6 +102,7 @@ function graph() {
 			var svglegende = d3.select("#legende").append("svg") //création du svg
     		.attr("width", 1200) //largeur du svg
     		.attr("height", 1200) //hauteur du svg
+    		.attr("id", "legende")
   			
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
