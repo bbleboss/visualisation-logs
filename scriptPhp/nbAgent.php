@@ -19,6 +19,6 @@
   		$valeur=$a->nb;
   		echo "{\"agent\":\"$agent\",\"value\":$valeur},";
   	}
-  	 echo "{\"agent\":\"  \",\"value\":0}]";
+  	 echo "{\"agent\":\" \",\"value\": 0}]";
   	
 ?>
