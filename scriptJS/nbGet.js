@@ -3,8 +3,8 @@
 */
 var data;
 var charge = 0;
-var date1, date2;
-var acces = new Array;
+var date1, date2, oldD1, oldD2;
+var acces = new Array();
 var tranches_horaires = new Array;
 
 var id;
@@ -40,11 +40,22 @@ function update()//fonction appelée lors du click sur valider
         var xhr = new XMLHttpRequest();//création de la requête
         if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
         {
+        	if(charge == 1)
+        	{
+        		oldD1 = date1;
+        		oldD2 = date2;
+       		}
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
+        	
         }
         else //cas où on bouge le curseur
-        {
+        {	
+        	if(charge == 1)
+        	{
+        		oldD1 = date1;
+        		oldD2 = date2;
+       		}
         	date1 = document.getElementById('curDate1').value;
         	date2 = document.getElementById('curDate2').value;
         }
@@ -60,6 +71,7 @@ function update()//fonction appelée lors du click sur valider
         xhr.send(null);//envoi de la requete
         xhr.onreadystatechange = function() {
                                         		if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
+                                                	
                                                 	data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 	
                                                 	parse_tab();
@@ -86,15 +98,16 @@ function graph(source, type) {
 	if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
 	{
         d3.selectAll("svg").remove();
-    }
+   	 }
 	else //sinon que les cercles
-    {
-    	d3.select('#barre').remove();
+    	{
+    		
+		d3.select('#barre').remove();
 	}
     
               
                   
-    var margin = {top: 20, right: 20, bottom: 30, left: 100},
+    var margin = {top: 50, right: 20, bottom: 30, left: 100},
    		width = 1200 - margin.left - margin.right,
     	height = 500 - margin.top - margin.bottom;
 
@@ -120,10 +133,15 @@ function graph(source, type) {
     	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
     	.attr("id", "barre")
   	.append("g")
-   		.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
-   			
+   	.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
+   		
    	x.domain(tranches_horaires.map(function(d) { return d; })); //Determine toutes les valeurs qui seront présentes en abscisse sur notre graphique
-  	y.domain([0, d3.max(acces)]); //Determine toutes les valeurs qui seront présentes en ordonnées sur notre graphique
+   	var arrayMax = new Array();
+   	for(var i = 0; i < acces.length; i++)
+   	{
+   		arrayMax[i] = d3.max(acces[i]);
+   	}	
+  	y.domain([0, d3.max(arrayMax)]); //Determine toutes les valeurs qui seront présentes en ordonnées sur notre graphique
 
   	svg.append("g")
     	.attr("class", "x axis")
@@ -140,15 +158,53 @@ function graph(source, type) {
       	.style("text-anchor", "end")
       	.text("Frequence");
      	
-  	svg.selectAll(".bar")
-    	.data(acces)
-    .enter().append("rect")
-      	.attr("class", "bar")
-     	.attr("x", function(tranches_horaires, d) { return x(d); })
-     	.attr("width", x.rangeBand())
-      	.attr("y", function(d) { return y(d); })
-      	.attr("height", function(d) { return height - y(d); })
-      	.attr("fill", "rgb(51, 153, 193)");
+     	
+  	var group = svg.selectAll("group") //création de svg dans lesquels on mettra les rect
+    		       .data(acces)
+    		       .enter().append("svg")
+    	    	       .attr("class", "group")
+    	    	       .attr("x", function(tranches_horaires, d) {return x(d); })
+    	    	       .attr("y", function(d, i) { return y(d3.max(d));})
+    	    	       .attr("width", x.rangeBand())
+    	    	       .attr("height", function(d, i) { return height - y(d3.max(d)); });
+    	
+    	group.selectAll("rect") //on met les rect, 2 par svg
+    	     .data(function (d){return d;})
+    	     .enter().append("rect")
+    	     .attr("class", "bar")
+     	     .attr("width", x.rangeBand()/2)
+     	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
+      	     .attr("y", function(d, i) { return y(d); })
+      	     .attr("height", function(d, i) { return height - y(d); })
+      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}});
+      	
+      	//legende
+      	svg.append("rect")
+           .attr("x",0)
+           .attr("y",-50)
+           .attr("width", 20)
+           .attr("height", 20)
+           .attr("fill", "rgb(51, 153, 193)");
+       
+       svg.append("text")
+           .attr("x",25)
+           .attr("y",-35)
+           .text("Du "+parse_date(date1, true)+" au "+parse_date(date2, true));
+           
+       if(charge == 1)//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
+       {
+	       svg.append("rect")
+		   .attr("x",0)
+		   .attr("y",-25)
+		   .attr("width", 20)
+		   .attr("height", 20)
+		   .attr("fill", "rgb(51, 15, 193)");
+		
+	       svg.append("text")
+           	  .attr("x",25)
+           	  .attr("y", -10)
+           	  .text("Du "+parse_date(oldD1, true)+" au "+parse_date(oldD2, true));	
+      	}
 
       	
     charge = 1;
@@ -186,20 +242,31 @@ function initTranches()
 //Cette Fonction permet de répartir les accès répertoriés dans un tableau de tranches horaires
 function parse_tab()
 {
-
-	var comp;
-
-	for(var i=0 ; i < 24 ; i++)
-	{
-		acces[i] = 0;
-	}
 	
-	for(var i in data)
+	var comp;
+	if(acces.length == 0)//On initialise le tableau à deux dimensions
+	{
+		for(var i = 0; i < 24; i++)
+		{
+			acces[i] = new Array();
+		}
+		for(var i=0 ; i < 24 ; i++)
+		{
+		acces[i][1] = 0;
+		acces[i][0] = 0;
+		}
+	}
+	for(var i=0 ; i < 24 ; i++)//on sauvegarde les anciennes valeurs
+	{
+		acces[i][1] = acces[i][0];
+		acces[i][0] = 0;
+	}
+	for(var i in data)//on update les nouvelles
 	{
 		comp = parse_date(data[i].ltime)
 
 		var hour = comp.getHours()
-		acces[hour] += 1; 
+		acces[hour][0] += 1; 
 	}
 }
 
@@ -208,14 +275,15 @@ function parse_tab()
 function percentage()
 {
 	var total = data.length;
-	
 	for(var i=0; i<acces.length ; i++)
 	{	
-		acces[i] = Math.round(((acces[i]*100)/total)*10)/1000;
-		/*
-		/exemple : si la totalité des accès ont lieu entre 6h et 7h, acces[6] vaudra 1 (100%)
-		*/
+		acces[i][0] = Math.round(((acces[i][0]*100)/total)*10)/1000;
+	
+		//exemple : si la totalité des accès ont lieu entre 6h et 7h, acces[6] vaudra 1 (100%)
+		
+		
 	}
+	
 }
 
 

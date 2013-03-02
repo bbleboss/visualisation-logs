@@ -31,6 +31,10 @@ function affiche(){ //affichage du curseur
         {
         	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"get\" name=\"serveur\" onclick=\"update()\" checked>Get (Accès externe)  <input type=\"radio\" id=\"post\" name=\"serveur\" onclick=\"update()\">Post <input type=\"radio\" id=\"head\" name=\"serveur\" onclick=\"update()\">Head  <input type=\"radio\" id=\"options\" name=\"serveur\" onclick=\"update()\">Options<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
         }
+        else if(currentLocation == "requete.php")
+        {
+        	document.getElementById('curseur').innerHTML = "<button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+       	}
         
         document.getElementById('updateForm').onclick = function(){
         								d1 = document.getElementById('date1');
@@ -87,6 +91,7 @@ function affiche(){ //affichage du curseur
                
        d3.select("body").on("mousemove", updateCurseur);
        d3.select("body").on("mouseup", function(){
+       							if(animation == true)
                         				update();
                         				animation = false;
                         				d1 = document.getElementById('date1');
@@ -159,19 +164,21 @@ function diffdate(d1, d2) { //différence entre deux dates en nombre de jours
                 
         
         
-function parse_date(str) {  //transformation date mySql en date js
+function parse_date(str, strBool) {  //transformation date mySql en date js
         var date = new Date();  
         var tiret = 0;
         while(tiret == 0)
         {
         	var anc = str;
         	str = str.replace("%3A",':');
-        	str = str.replace("%20",':');
+        	str = str.replace("%20",' ');
         	if(anc == str)
         	{
         		tiret = 1;
         	}
         }
+        if(strBool == true)//pour recupérer la date sous forme de string et non d'objet
+        return str;
 
         var parts = str.split(/[- :]/);  
         date.setFullYear(parts[0] || 0);  
