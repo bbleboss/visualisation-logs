@@ -6,7 +6,7 @@
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
 	$nbvisite = $_GET['nbvisite'];
-	echo "[";
+	$message = "[";
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 
@@ -17,8 +17,9 @@
   	{
   		$agent=$a->agent;
   		$valeur=$a->nb;
-  		echo "{\"agent\":\"$agent\",\"value\":$valeur},";
+  		$message = "$message {\"agent\":\"$agent\",\"value\":$valeur},";
   	}
-  	 echo "{\"agent\":\" \",\"value\": 0}]";
+  	$message=preg_replace('#,$#', ']', $message);
+  	 echo $message;
   	
 ?>
