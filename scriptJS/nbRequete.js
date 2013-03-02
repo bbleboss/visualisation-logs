@@ -43,7 +43,7 @@ function update()//fonction appelée lors du click sur valider
                                                 graph(source, type);
                                                 
                                                 //On supprime l'animation de chargement
-                                            	document.getElementById('chargement').innerHTML = "";
+                                        	document.getElementById('chargement').innerHTML = "";
                                             	
                                                 if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
                                                 {
@@ -55,14 +55,14 @@ function update()//fonction appelée lors du click sur valider
                         
 function graph(source, type) {
                    
-         if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+       /*  if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
          {
                 d3.selectAll("svg").remove();
          }
          else //sinon que les cercles
          {
          	d3.select('#cercle').remove();
-         }
+         }*/
                                  
 
          var data2 = [];
