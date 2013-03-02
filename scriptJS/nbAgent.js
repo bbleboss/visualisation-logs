@@ -25,7 +25,7 @@ function update()//fonction appelée lors du click sur valider
                                        			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
                                                 	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 	graph();
-                                                	alert('2ème étape de test - premiere date enregistrée') ;
+                                                	//alert('2ème étape de test - premiere date enregistrée') ;
                                         		}
                                         	};
 }
@@ -38,6 +38,7 @@ function graph() {
 	var width = 960;
     var height = 500;
     var radius = Math.min(width, height) / 2;
+    var ylegende= 15;
 	     
     if(charge == 1)
     {
@@ -86,16 +87,33 @@ function graph() {
       		.attr("d", arc)
       		.style("fill", function(d) { return color(d.value); });
       		
+      		g.append("text") // le texte ne fonctionne pas encore
+      		 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      		.attr("dy", ".35em")
+      		.style("text-anchor", "middle")
+      		.text(function(d) { return d.value; }); 
+      		
 // -------------creation de la legende---------//
 
 			var svglegende = d3.select("#legende").append("svg") //création du svg
-    		.attr("width", width) //largeur du svg
+    		.attr("width", 1200) //largeur du svg
     		.attr("height", height) //hauteur du svg
   			
-  			g.append("text") // le texte ne fonctionne pas encore
-      		.attr("dy", ".35em")
-      		.style("text-anchor", "middle")
-      		.text(function(d) { return d.agent; }); 
+  			var g2 = svglegende.selectAll(".agent")
+      		.data(dataj)
+    		.enter().append("g")
+      		.attr("class", "agent");
+      		
+      		g2.append("text")
+				.attr("x","30") 
+				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
+      		.text(function(d) { return d.agent; });
+      		var ylegende=0;
+      		g2.append("rect")
+      		.attr("width", "20") //largeur du svg
+    	.attr("height", "20")
+    	.attr("y",function(){ ylegende= ylegende +15; return ylegende})
+  			.style("fill", function(d) { return color(d.value); });
       		
       		
 charge =1;
