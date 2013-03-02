@@ -44,19 +44,6 @@ function graph() {
     {
         d3.selectAll("svg").remove();
     }
-    //alert('2ère étape de test - premiere date enregistrée') ;
-
-	/*for(var i in dataj)
-	{
-		dataAgent.push(dataj[i].agent);
-		//dataValue.push(dataj[i].value);
-	}
-	
-	for(var i in dataAgent)
-	{
-		alert('agent '+i+' : ' +dataAgent[i]);
-		alert('valeur '+i+' : ' +dataValue[i]);
-	}*/ 
 	
 	// -------------creation du cercle ---------//
 	
@@ -97,7 +84,7 @@ function graph() {
 
 			var svglegende = d3.select("#legende").append("svg") //création du svg
     		.attr("width", 1200) //largeur du svg
-    		.attr("height", height) //hauteur du svg
+    		.attr("height", 1200) //hauteur du svg
   			
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
@@ -111,7 +98,7 @@ function graph() {
       		var ylegende=0;
       		g2.append("rect")
       		.attr("width", "20") //largeur du svg
-    	.attr("height", "20")
+    	.attr("height", "15")
     	.attr("y",function(){ ylegende= ylegende +15; return ylegende})
   			.style("fill", function(d) { return color(d.value); });
       		
