@@ -28,9 +28,9 @@
 				</ul>
 			</li>
 			<li class="menu4">
-				<a class="menu4" href="/Inscription.php">Agents</a>
+				<a class="menu4" href="agent.php">Agents</a>
 				<ul class="menuniveau2">
-              <li class="menuniveau2"><a class="menu44" href="requete.php"> Nombre d'agents</a></li>
+              <li class="menuniveau2"><a class="menu44" href="agent.php"> Nombre d'agents</a></li>
 				</ul>
 			</li>
 			<li class="menu5">
