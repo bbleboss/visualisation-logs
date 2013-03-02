@@ -159,25 +159,26 @@ function graph(source, type) {
       	.text("Frequence");
      	
      	
-  	var group = svg.selectAll("group")
+  	var group = svg.selectAll("group") //création de svg dans lesquels on mettra les rect
     		       .data(acces)
     		       .enter().append("svg")
     	    	       .attr("class", "group")
-    	    	       .attr("x", function(tranches_horaires, d) {return x(d); })
-    	    	       .attr("y", function(d, i) { return y(d3.max(d));})
+    	    	       .attr("x", function(d, i) {return x(i); })
+    	    	       .attr("y", function(d, i) { alert(d3.max(d)); return y(d3.max(d));})
     	    	       .attr("width", x.rangeBand())
-    	    	       .attr("height", function(d, i) { return height - y(d3.max(d)); });
+    	    	       .attr("height", height);
     	
-    	group.selectAll("rect")
+    	group.selectAll("rect") //on met les rect, 2 par svg
     	     .data(function (d){return d;})
     	     .enter().append("rect")
     	     .attr("class", "bar")
      	     .attr("width", x.rangeBand()/2)
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
-      	     .attr("y", function(d, i) { return y(d); })
+      	     .attr("y", function(d, i) { return 0; })
       	     .attr("height", function(d, i) { return height - y(d); })
       	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}});
       	
+      	//legende
       	svg.append("rect")
            .attr("x",0)
            .attr("y",-50)
@@ -190,7 +191,7 @@ function graph(source, type) {
            .attr("y",-35)
            .text("Du "+parse_date(date1, true)+" au "+parse_date(date2, true));
            
-       if(charge == 1)
+       if(charge == 1)//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
        {
 	       svg.append("rect")
 		   .attr("x",0)
@@ -255,21 +256,18 @@ function parse_tab()
 		acces[i][0] = 0;
 		}
 	}
-	for(var i=0 ; i < 24 ; i++)
+	for(var i=0 ; i < 24 ; i++)//on sauvegarde les anciennes valeurs
 	{
 		acces[i][1] = acces[i][0];
 		acces[i][0] = 0;
 	}
-	for(var i in data)
+	for(var i in data)//on update les nouvelles
 	{
 		comp = parse_date(data[i].ltime)
 
 		var hour = comp.getHours()
 		acces[hour][0] += 1; 
 	}
-	
-	//for(var i = 0; i < 24; i++)
-	//alert(acces[i]);
 }
 
 
@@ -280,11 +278,10 @@ function percentage()
 	for(var i=0; i<acces.length ; i++)
 	{	
 		acces[i][0] = Math.round(((acces[i][0]*100)/total)*10)/1000;
-		//acces[i][1] = Math.round(((acces[i][1]*100)/total[1])*10)/1000;
-		/*
-		/exemple : si la totalité des accès ont lieu entre 6h et 7h, acces[6] vaudra 1 (100%)
-		*/
-		//alert(acces[i]);
+	
+		//exemple : si la totalité des accès ont lieu entre 6h et 7h, acces[6] vaudra 1 (100%)
+		
+		
 	}
 	
 }
