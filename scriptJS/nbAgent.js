@@ -58,7 +58,7 @@ function graph() {
     if(charge == 1)
     {
         d3.select("#camembert").remove();
-       // d3.select("#legende").remove();
+        d3.select("#svglegende").remove();
     }
 	
 	// -------------creation du cercle ---------//
@@ -102,7 +102,7 @@ function graph() {
 			var svglegende = d3.select("#legende").append("svg") //création du svg
     		.attr("width", 1200) //largeur du svg
     		.attr("height", 1200) //hauteur du svg
-    		.attr("id", "legende")
+    		.attr("id", "svglegende")
   			
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
