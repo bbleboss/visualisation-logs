@@ -7,13 +7,15 @@ var date1, date2, oldD1, oldD2;
 var acces = new Array();
 var tranches_horaires = new Array;
 
+var source;
+
 var id;
 var animation = false;
 
 function update()//fonction appelée lors du click sur valider
 {
 		var scriptPhp = "nbGet.php";
-		var source = event.target.id;//quel objet a appelé
+		source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton
 		initTranches(); //Initialisation du tableau de tranches horaires, nécessaire pour le svg en graphique
 		
@@ -188,10 +190,10 @@ function graph(source, type) {
        
        svg.append("text")
            .attr("x",25)
-           .attr("y",-35)
+           .attr("y",-35) 
            .text("Du "+parse_date(date1, true)+" au "+parse_date(date2, true));
            
-       if(charge == 1)//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
+       if(charge == 1 && source != "get" && source != "post" && source != "options" && source != "head")//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
        {
 	       svg.append("rect")
 		   .attr("x",0)
@@ -244,7 +246,8 @@ function parse_tab()
 {
 	
 	var comp;
-	if(acces.length == 0)//On initialise le tableau à deux dimensions
+
+	if(acces.length == 0 || source == "get" || source == "post" || source == "options" || source == "head" )//On initialise le tableau à deux dimensions
 	{
 		for(var i = 0; i < 24; i++)
 		{
