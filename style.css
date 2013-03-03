@@ -379,6 +379,12 @@ input[type=text]
 	width: 76%;
 }
 
+#legende
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
+}
 .axis text {
   font: 10px sans-serif;
 }

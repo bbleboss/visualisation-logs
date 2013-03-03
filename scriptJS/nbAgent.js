@@ -1,15 +1,24 @@
 var date1, date2, nbvisite, dataj;
 var charge = 0;
+var table = "apache_access_log";
 
-  var width = 960,
-    height = 500,
-    radius = Math.min(width, height) / 2;
 
 function update()//fonction appelée lors du click sur valider
 {
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		
+		 if(source == "apache" || source == "zope")
+		{
+			if(source == "apache")
+			{
+			table = "apache_access_log";
+			}
+			else
+			{
+			table = "zope_instance_z2_log";
+			}
+		}
         var xhr = new XMLHttpRequest();//création de la requête
         
         	 if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
@@ -23,6 +32,7 @@ function update()//fonction appelée lors du click sur valider
         	date2 = document.getElementById('curDate2').value;
         }
         	nbvisite = document.getElementById('nbvisite').value;
+        	nbvisite = document.getElementById('nbvisite').value;
         
   
         var resultat = document.getElementById('resultat');
@@ -30,7 +40,7 @@ function update()//fonction appelée lors du click sur valider
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
-        xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite);//parametrage de la requête
+        xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite+'&table='+table);//parametrage de la requête
         xhr.send(null);//envoi de la requete          
         xhr.onreadystatechange = function() {
                                        			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
