@@ -32,7 +32,6 @@ function update()//fonction appelée lors du click sur valider
         	date2 = document.getElementById('curDate2').value;
         }
         	nbvisite = document.getElementById('nbvisite').value;
-        	nbvisite = document.getElementById('nbvisite').value;
         
   
         var resultat = document.getElementById('resultat');
@@ -62,6 +61,7 @@ function graph() {
 	//var dataValue = []; 
 	var width = 960;
     var height = 500;
+    var heightLegende = 50;
     var radius = Math.min(width, height) / 2;
     var ylegende= 15;
 	     
@@ -111,7 +111,6 @@ function graph() {
 
 			var svglegende = d3.select("#legende").append("svg") //création du svg
     		.attr("width", 1200) //largeur du svg
-    		.attr("height", 1200) //hauteur du svg
     		.attr("id", "svglegende")
   			
   			var g2 = svglegende.selectAll(".agent")
@@ -130,6 +129,7 @@ function graph() {
     	.attr("y",function(){ ylegende= ylegende +15; return ylegende})
   			.style("fill", function(d) { return color(d.value); });
       		
+      		svglegende.attr("height", function(){ heightLegende= heightLegende + ylegende ; return heightLegende}) ; // longueur du svg
       		
 charge =1;
 }
