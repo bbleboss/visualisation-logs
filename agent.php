@@ -35,8 +35,8 @@
 		<div id=resultat></div>
 		<div id=legende></div>
 		<script src="scriptJS/nbAgent.js"></script>
-		<script src="scriptJS/modifUrl.js"></script>
 		<script src="scriptJS/curseur.js"></script>
+		<script src="scriptJS/modifUrl.js"></script>
 		
 	
 	</section>
