@@ -1,7 +1,7 @@
-var date1, date2, nbvisite, dataj;
+var date1, date2, nbvisite, dataj, oldD1, oldD2;
 var charge = 0;
 var table = "apache_access_log";
-
+var animation = false;
 
 function update()//fonction appelée lors du click sur valider
 {
@@ -20,14 +20,25 @@ function update()//fonction appelée lors du click sur valider
 			}
 		}
         var xhr = new XMLHttpRequest();//création de la requête
-        
-        	 if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
         {
+        	if(charge == 1)
+        	{
+        		oldD1 = date1;
+        		oldD2 = date2;
+       		}
+       		
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
+        	
         }
         else //cas où on bouge le curseur
-        {
+        {	
+        	if(charge == 1)
+        	{
+        		oldD1 = date1;
+        		oldD2 = date2;
+       		}
         	date1 = document.getElementById('curDate1').value;
         	date2 = document.getElementById('curDate2').value;
         }
