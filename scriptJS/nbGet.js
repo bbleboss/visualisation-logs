@@ -176,9 +176,13 @@ function graph(source, type) {
     	     .attr("class", "bar")
      	     .attr("width", x.rangeBand()/2)
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
-      	     .attr("y", function(d, i) { return y(d); })
-      	     .attr("height", function(d, i) { return height - y(d); })
-      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}});
+      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}})
+     	     .transition()
+    	     .delay(100)
+   	     .duration(1000)
+   	     .attr("height", function(d, i) { return height - y(d); })
+      	     .attr("y", function(d, i) { return y(d); });
+      	     
       	
       	//legende
       	svg.append("rect")
