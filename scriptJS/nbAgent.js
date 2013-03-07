@@ -76,7 +76,7 @@ function graph() {
     var height = 500;
     var heightLegende = 50;
     var radius = Math.min(width, height) / 2;
-    var ylegende= 15;
+    var ylegende= 20;
 	     
     if(charge == 1)
     {
@@ -147,7 +147,7 @@ function graph() {
 				.attr("x","120") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
       		.text(function(d) { return d.agent; });
-      		var ylegende=0;
+      		var ylegende=6;
       		
       		// rectangles des legendes
       		g2.append("rect")
@@ -156,7 +156,7 @@ function graph() {
     	.attr("y",function(){ ylegende= ylegende +15; return ylegende})
   			.style("fill", function(d) { return color(d.value); });
   			
-  			var ylegende=15;
+  			var ylegende=20;
   			
   			// nombre d'agents
   			
