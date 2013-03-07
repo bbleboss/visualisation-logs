@@ -44,18 +44,20 @@ function update()//fonction appelée lors du click sur valider
         }
         	nbvisite = document.getElementById('nbvisite').value;
         
-  
         var resultat = document.getElementById('resultat');
         var legende = document.getElementById('legende');
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
+        document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
         xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite+'&table='+table);//parametrage de la requête
         xhr.send(null);//envoi de la requete          
         xhr.onreadystatechange = function() {
                                        			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
                                                 	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
                                                 	graph();
+                                                	//On supprime l'animation de chargement
+                                                	document.getElementById('chargement').innerHTML = "";
                                                 	//alert('2ème étape de test - premiere date enregistrée') ;
                                         			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
                                                 	{
@@ -106,39 +108,62 @@ function graph() {
 			var g = svg.selectAll(".arc")
       		.data(pie(dataj))
     		.enter().append("g")
-      		.attr("class", "arc");
+      		.attr("class", "arc")
 
   			g.append("path")
       		.attr("d", arc)
       		.style("fill", function(d) { return color(d.value); });
       		
-      		g.append("text") // le texte ne fonctionne pas encore
+      		/*g.append("text") // le texte ne fonctionne pas encore
       		 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       		.attr("dy", ".35em")
       		.style("text-anchor", "middle")
-      		.text(function(d) { return d.value; }); 
+      		.text(function(d) { return d.value; }); */
       		
 // -------------creation de la legende---------//
 
 			var svglegende = d3.select("#legende").append("svg") //création du svg
     		.attr("width", 1200) //largeur du svg
     		.attr("id", "svglegende")
+    		
+    		var nomColonne = svglegende.append("g")
+      		.attr("class", "nom");
+      		nomColonne.append("text")
+				.attr("x","35") 
+				.attr("y","15")
+      		.text("Nb Visite");
+      		
+      		nomColonne.append("text")
+				.attr("x","120") 
+				.attr("y","15")
+      		.text("Nom des Agents");
   			
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
     		.enter().append("g")
       		.attr("class", "agent");
-      		
+      		// nom des agents
       		g2.append("text")
-				.attr("x","30") 
+				.attr("x","120") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
       		.text(function(d) { return d.agent; });
       		var ylegende=0;
+      		
+      		// rectangles des legendes
       		g2.append("rect")
       		.attr("width", "20") //largeur du svg
     	.attr("height", "15")
     	.attr("y",function(){ ylegende= ylegende +15; return ylegende})
   			.style("fill", function(d) { return color(d.value); });
+  			
+  			var ylegende=15;
+  			
+  			// nombre d'agents
+  			
+  			g2.append("text")
+				.attr("x","35") 
+				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
+      		.text(function(d) { return d.value; });
       		
       		svglegende.attr("height", function(){ heightLegende= heightLegende + ylegende ; return heightLegende}) ; // longueur du svg
       		

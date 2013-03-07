@@ -32,6 +32,7 @@
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		<div id=curseur></div>
+		<div id=chargement></div>
 		<div id=resultat></div>
 		<div id=legende></div>
 		<script src="scriptJS/nbAgent.js"></script>
