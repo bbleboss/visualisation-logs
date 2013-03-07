@@ -108,11 +108,15 @@ function graph() {
 			var g = svg.selectAll(".arc")
       		.data(pie(dataj))
     		.enter().append("g")
-      		.attr("class", "arc")
+      		.attr("class", "arc");
 
   			g.append("path")
+  			.attr("d", 0)
+  			.transition()
+   	     .duration(4000)
       		.attr("d", arc)
       		.style("fill", function(d) { return color(d.value); });
+      		
       		
       		/*g.append("text") // le texte ne fonctionne pas encore
       		 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
