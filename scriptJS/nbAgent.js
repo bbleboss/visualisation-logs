@@ -112,8 +112,9 @@ function graph() {
 
   			g.append("path")
   			.attr("d", 0)
+  			.style("fill", "white")
   			.transition()
-   	     .duration(4000)
+   	     .duration(2500)
       		.attr("d", arc)
       		.style("fill", function(d) { return color(d.value); });
       		
