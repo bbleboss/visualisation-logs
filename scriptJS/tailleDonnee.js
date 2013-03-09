@@ -158,6 +158,11 @@ function graph() {
       		nomColonne.append("text")
 				.attr("x","170") 
 				.attr("y","15")
+      		.text("Nb requetes");
+      		
+      		nomColonne.append("text")
+				.attr("x","300") 
+				.attr("y","15")
       		.text("Nom des serveurs");
   			
   			var g2 = svglegende.selectAll(".host")
@@ -165,9 +170,16 @@ function graph() {
     		.enter().append("g")
       		.attr("class", "host");
       		
-      		// nom des serveurs
+      		// nb requete
       		g2.append("text")
 				.attr("x","170") 
+				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
+      		.text(function(d) { return d.nbrequete; });
+      		var ylegende=20;
+      		
+      		// nom des serveurs
+      		g2.append("text")
+				.attr("x","300") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
       		.text(function(d) { return d.host; });
       		var ylegende=6;
@@ -197,7 +209,7 @@ function info(id)
 {
 	var nb =id-1;
 	var info = document.getElementById('information');
-	info.innerHTML="Serveur: " +dataj[nb].host + "<br> Taille totale des données: "+ dataj[nb].value;      
+	info.innerHTML="Serveur: " +dataj[nb].host +  "<br> Nombre de requêtes: "+ dataj[nb].nbrequete+"<br> Taille totale des données: "+ dataj[nb].value;      
 }
 
 function infovide()
