@@ -391,6 +391,7 @@ input[type=text]
 	margin:auto;
 	margin-top:2%;
 	width: 76%;
+	height:60px;
 }
 .axis text {
   font: 10px sans-serif;
