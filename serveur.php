@@ -20,7 +20,7 @@
 	<div class="page">
 	<![endif]-->
 	<section class="page">
-		<h1>Récupération des types d'erreurs</h1>
+		<h1>Tailles des données par serveur</h1>
 			<form>
 				<p>Rentrez la date sous la forme YYYY-MM-DD</p>
 				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text />
