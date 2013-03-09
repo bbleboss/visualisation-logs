@@ -17,6 +17,8 @@
 	while($a = mysql_fetch_object($r))
   	{
   		$agent=$a->agent;
+  		$agent=preg_replace('#\"#', ' ', $agent);
+  		$agent= str_replace("\\", " ", $agent); 
   		$valeur=$a->nb;
   		$message = "$message {\"agent\":\"$agent\",\"value\":$valeur},";
   	}
