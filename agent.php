@@ -27,7 +27,7 @@
 				</br>
 				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text />
 				</br>
-				<label for="nbvisite">Nombre de visite minimum de l'agent </label>: <input id= nbvisite name=nbvisite type=text value="0" />
+				<label for="nbvisite">Nombre de visite minimum de l'agent </label>: <input id= nbvisite name=nbvisite type=text value="1" />
 				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>

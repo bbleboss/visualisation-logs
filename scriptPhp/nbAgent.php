@@ -11,7 +11,7 @@
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 
-	$query = "select agent, count(id) as nb from $table where ltime >='$date1' and ltime <='$date2' group by agent having nb > $nbvisite order by nb desc";
+	$query = "select agent, count(id) as nb from $table where ltime >='$date1' and ltime <='$date2' group by agent having nb >= $nbvisite order by nb desc";
 	$r = mysql_query($query);
 
 	while($a = mysql_fetch_object($r))
