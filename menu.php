@@ -10,7 +10,7 @@
 				<a class="menu1" href="error.php">Erreurs</a>
 				<ul class="menuniveau2">
 					<li class="menuniveau2"><a class="menu11" href="error.php">Nombre d'erreurs</a></li>
-					<li class="menuniveau2"> type d'erreurs</li>
+					<li class="menuniveau2"><a class="menu11" href="typerror.php">Type d'erreurs</a></li>
 				</ul>
 			</li>
 			<li class="menu2">

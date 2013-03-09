@@ -1,4 +1,4 @@
-var date1, date2, nbvisite, dataj;
+var date1, date2, nbvisite, dataj,oldD1 ,oldD2;
 var charge = 0;
 var table = "apache_access_log";
 var animation = false;

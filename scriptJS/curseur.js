@@ -35,6 +35,10 @@ function affiche(){ //affichage du curseur
         {
         	document.getElementById('curseur').innerHTML = "<button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
        	}
+       	else if(currentLocation == "typerror.php")
+       	{
+       		document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"apache\" name=\"serveur\" onclick=\"update()\" checked>Apache <input type=\"radio\" id=\"zope\" name=\"serveur\" onclick=\"update()\">Zope<br> <input type=\"radio\" id=\"error\" name=\"typeS\" onclick=\"update()\" checked>Error  <input type=\"radio\" id=\"warning\" name=\"typeS\" onclick=\"update()\">Warning <input type=\"radio\" id=\"notice\" name=\"typeS\" onclick=\"update()\">Notice/Info </br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+       	}
         
         document.getElementById('updateForm').onclick = function(){
         								d1 = document.getElementById('date1');
