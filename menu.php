@@ -34,10 +34,10 @@
 				</ul>
 			</li>
 			<li class="menu5">
-				<a class="menu5" href="/Inscription.php">Serveur</a>
+				<a class="menu5" href="serveur.php">Serveur</a>
 				<ul class="menuniveau2">
-              <li class="menuniveau2"><a class="menu55" href="requete.php">Statuts</a></li>
-              <li class="menuniveau2"> <a class="menu55" href="requete.php">Taille des données</a></li>
+              <li class="menuniveau2"> <a class="menu55" href="serveur.php">Taille des données</a></li>
+               <li class="menuniveau2"><a class="menu55" href="requete.php">Statuts</a></li>
 				</ul>
 			</li>
 		</ul>
