@@ -385,6 +385,13 @@ input[type=text]
 	margin-top:2%;
 	width: 76%;
 }
+
+#information
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
+}
 .axis text {
   font: 10px sans-serif;
 }

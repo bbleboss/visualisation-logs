@@ -1,8 +1,8 @@
-var date1, date2, nbvisite, dataj, oldD1, oldD2;
+var date1, date2, nbvisite, dataj;
 var charge = 0;
 var table = "apache_access_log";
 var animation = false;
-
+ 
 function update()//fonction appelée lors du click sur valider
 {
 		var source = event.target.id;//quel objet a appelé
@@ -46,6 +46,7 @@ function update()//fonction appelée lors du click sur valider
         
         var resultat = document.getElementById('resultat');
         var legende = document.getElementById('legende');
+        document.getElementById('information').innerHTML="<br><br>";
         date1 =encodeURIComponent(date1);
         date2 = encodeURIComponent(date2);
         
@@ -67,16 +68,17 @@ function update()//fonction appelée lors du click sur valider
                                         	};
 }
 
-
 function graph() {
      
     //var dataAgent = [];
-	//var dataValue = []; 
+	//var dataValue = [];
 	var width = 960;
     var height = 500;
     var heightLegende = 50;
     var radius = Math.min(width, height) / 2;
     var ylegende= 20;
+    var nb =0;
+   var text;
 	     
     if(charge == 1)
     {
@@ -108,17 +110,32 @@ function graph() {
 			var g = svg.selectAll(".arc")
       		.data(pie(dataj))
     		.enter().append("g")
-      		.attr("class", "arc");
+      		.attr("class", "arc")
+      		.attr("id", function(){ nb++; text = "info("+nb+")";return nb;})
+      		.attr("onmouseout", "infovide()");// fonctionne pas encore 
+      		
+      		var i;
+      		var nbmax =nb;
+      		nb=0;
+      		while (nb< nbmax)
+      		{
+      			nb++; 
+      			text = "info("+nb+")";
+      			i = document.getElementById(nb);
+      			i.setAttribute("onmouseover",text);
+      		}
 
   			g.append("path")
-  			.attr("d", 0)
+  			.attr("d", 0) 
   			.style("fill", "white")
   			.transition()
    	     .duration(2500)
       		.attr("d", arc)
-      		.style("fill", function(d) { return color(d.value); });
+      		.style("fill", function(d) { return color(d.value); })
       		
       		
+      		
+ 
       		/*g.append("text") // le texte ne fonctionne pas encore
       		 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       		.attr("dy", ".35em")
@@ -147,6 +164,7 @@ function graph() {
       		.data(dataj)
     		.enter().append("g")
       		.attr("class", "agent");
+      		
       		// nom des agents
       		g2.append("text")
 				.attr("x","120") 
@@ -173,4 +191,18 @@ function graph() {
       		svglegende.attr("height", function(){ heightLegende= heightLegende + ylegende ; return heightLegende}) ; // longueur du svg
       		
 charge =1;
+}
+
+function info(id)
+{
+	var nb =id-1;
+	var info = document.getElementById('information');
+	info.innerHTML="Agent: " +dataj[nb].agent + "<br> Nombre de visite: "+ dataj[nb].value;      
+}
+
+function infovide()
+{
+
+	var info = document.getElementById('information');
+	info.innerHTML="<br><br>";
 }
