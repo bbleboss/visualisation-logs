@@ -6,12 +6,20 @@
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
 	$taillesum = $_GET['taillesum'];
+	$trie = $_GET['trie'];
 	$table = $_GET['table'];
 	$message = "[";
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 
-	$query = "select host, count(id) as nb, sum(size) as taille from $table where ltime >='$date1' and ltime <='$date2' group by host having taille >= $taillesum order by taille desc";
+	if ($trie == taille)
+	{
+		$query = "select host, count(id) as nb, sum(size) as taille from $table where ltime >='$date1' and ltime <='$date2' group by host having taille >= $taillesum order by taille desc";
+	}
+	else
+	{
+		$query = "select host, count(id) as nb, sum(size) as taille from $table where ltime >='$date1' and ltime <='$date2' group by host having taille >= $taillesum order by nb desc";
+	}
 	$r = mysql_query($query);
 
 	while($a = mysql_fetch_object($r))

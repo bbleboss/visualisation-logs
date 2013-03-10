@@ -29,6 +29,10 @@
 				</br>
 				<label for="nberror">Minimum du total de la taille des données </label>: <input id= taillesum name=taillesum type=text value="1" />
 				</br>
+				<label for ="trie"> Trier par</label> :<select name="trie" id="trie">
+  																	<option value="taille">Taille</option>
+  																	<option value="requete">Nb requêtes</option>
+																</select><br/>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		<div id=curseur></div>

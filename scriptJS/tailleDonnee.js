@@ -1,4 +1,4 @@
-var date1, date2, taillesum, dataj,oldD1 ,oldD2;
+var date1, date2, taillesum,trie, dataj,oldD1 ,oldD2;
 var charge = 0;
 var table = "apache_access_log";
 var animation = false;
@@ -43,6 +43,7 @@ function update()//fonction appelée lors du click sur valider
         	date2 = document.getElementById('curDate2').value;
         }
         	taillesum = document.getElementById('taillesum').value;
+        	trie = document.getElementById('trie').value;
         
         var resultat = document.getElementById('resultat');
         var legende = document.getElementById('legende');
@@ -51,7 +52,7 @@ function update()//fonction appelée lors du click sur valider
         date2 = encodeURIComponent(date2);
         
         document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-        xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&table='+table);//parametrage de la requête
+        xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&trie='+trie+'&table='+table);//parametrage de la requête
         xhr.send(null);//envoi de la requete          
         xhr.onreadystatechange = function() {
                                        			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
