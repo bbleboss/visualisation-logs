@@ -1,7 +1,8 @@
-var date1, date2, taillesum,trie, dataj,oldD1 ,oldD2;
+var date1, date2, taillesum,trie, dataj;
 var charge = 0;
 var table = "apache_access_log";
 var animation = false;
+var dateTrue;
  
 function update()//fonction appelée lors du click sur valider
 {
@@ -22,51 +23,60 @@ function update()//fonction appelée lors du click sur valider
         var xhr = new XMLHttpRequest();//création de la requête
         if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
         {
-        	if(charge == 1)
-        	{
-        		oldD1 = date1;
-        		oldD2 = date2;
-       		}
-       		
+        	dateTrue = true;
+        	var verifDate = /^[0-9]{4}-(0[1-9]|1[0-2])-[0-3][0-9][ ]*($|[ ]+([0-1][0-9]|2[0-3])[ ]*($|:[0-5][0-9]($|:[0-5][0-9]$)))/; 
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
+        	if(!verifDate.exec(date1) || !verifDate.exec(date2))
+        	{
+        		alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		dateTrue = false;
+        	}
         	
         }
         else //cas où on bouge le curseur
         {	
-        	if(charge == 1)
-        	{
-        		oldD1 = date1;
-        		oldD2 = date2;
-       		}
+
         	date1 = document.getElementById('curDate1').value;
         	date2 = document.getElementById('curDate2').value;
         }
-        	taillesum = document.getElementById('taillesum').value;
-        	trie = document.getElementById('trie').value;
         
-        var resultat = document.getElementById('resultat');
-        var legende = document.getElementById('legende');
-        document.getElementById('information').innerHTML="<br><br>";
-        date1 =encodeURIComponent(date1);
-        date2 = encodeURIComponent(date2);
-        
-        document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-        xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&trie='+trie+'&table='+table);//parametrage de la requête
-        xhr.send(null);//envoi de la requete          
-        xhr.onreadystatechange = function() {
-                                       			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
-                                                	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-                                                	graph();
-                                                	//On supprime l'animation de chargement
-                                                	document.getElementById('chargement').innerHTML = "";
-                                                	//alert('2ème étape de test - premiere date enregistrée') ;
-                                        			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
-                                                	{
-                                                		affiche();
-                                                	}
-                                                }
-                                        	};
+        if(dateTrue == true)
+  	{
+  		if(date1 > date2)
+  		{
+  			var tmp = date1;
+  			date1 = date2;
+  			date2 = tmp;
+  			document.getElementById('date1').value = date1;
+  			document.getElementById('date2').value =date2;
+  		}
+		taillesum = document.getElementById('taillesum').value;
+		trie = document.getElementById('trie').value;
+		
+		var resultat = document.getElementById('resultat');
+		var legende = document.getElementById('legende');
+		document.getElementById('information').innerHTML="<br><br>";
+		date1 =encodeURIComponent(date1);
+		date2 = encodeURIComponent(date2);
+		
+		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&trie='+trie+'&table='+table);//parametrage de la requête
+		xhr.send(null);//envoi de la requete          
+		xhr.onreadystatechange = function() {
+		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
+		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
+		                                        	graph();
+		                                        	//On supprime l'animation de chargement
+		                                        	document.getElementById('chargement').innerHTML = "";
+		                                        	//alert('2ème étape de test - premiere date enregistrée') ;
+		                                			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+		                                        	{
+		                                        		affiche();
+		                                        	}
+		                                        }
+		                                	};
+	}
 }
 
 function graph() {

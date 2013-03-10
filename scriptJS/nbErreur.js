@@ -8,6 +8,7 @@ var scriptPhp = "basePhp.php";
 var id;
 var animation = false;
 var moitie = parseInt(d3.select('nav').style("width"))/2;
+var dateTrue;
 
 
 function update()//fonction appelée lors du click sur valider
@@ -30,8 +31,16 @@ function update()//fonction appelée lors du click sur valider
         var xhr = new XMLHttpRequest();//création de la requête
         if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
         {
+        	dateTrue = true;
+        	var verifDate = /^[0-9]{4}-(0[1-9]|1[0-2])-[0-3][0-9][ ]*($|[ ]+([0-1][0-9]|2[0-3])[ ]*($|:[0-5][0-9]($|:[0-5][0-9]$)))/; 
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
+        	if(!verifDate.exec(date1) || !verifDate.exec(date2))
+        	{
+        		alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		dateTrue = false;
+        	}
+        	
         }
         else //cas où on bouge le curseur
         {
@@ -40,31 +49,42 @@ function update()//fonction appelée lors du click sur valider
         }
         
   
-  
-  		//Affichage de l'animation de chargement
-        document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-        
-        var resultat = document.getElementById('resultat');
-        date1 =encodeURIComponent(date1);
-        date2 = encodeURIComponent(date2);
-       	
-        xhr.open('GET', 'http://localhost:8888/scriptPhp/'+scriptPhp+'?date1='+date1+'&date2='+date2);//parametrage de la requête
-        xhr.send(null);//envoi de la requete
-                
-        xhr.onreadystatechange = function() {
-                                        if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
-                                                data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-                                                graph(source, type);
-                                                
-                                                //On supprime l'animation de chargement
-                                                document.getElementById('chargement').innerHTML= "";
-                                                
-                                                if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
-                                                {
-                                                	affiche();
-                                                }
-                                        }
-                                        };
+  	if(dateTrue == true)
+  	{
+  		if(date1 > date2)
+  		{
+  			var tmp = date1;
+  			date1 = date2;
+  			date2 = tmp;
+  			document.getElementById('date1').value = date1;
+  			document.getElementById('date2').value =date2;
+  		}
+  			
+	  	//Affichage de l'animation de chargement
+		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
+		
+		var resultat = document.getElementById('resultat');
+		date1 =encodeURIComponent(date1);
+		date2 = encodeURIComponent(date2);
+	       	
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/'+scriptPhp+'?date1='+date1+'&date2='+date2);//parametrage de la requête
+		xhr.send(null);//envoi de la requete
+		        
+		xhr.onreadystatechange = function() {
+		                                if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
+		                                        data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
+		                                        graph(source, type);
+		                                        
+		                                        //On supprime l'animation de chargement
+		                                        document.getElementById('chargement').innerHTML= "";
+		                                        
+		                                        if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+		                                        {
+		                                        	affiche();
+		                                        }
+		                                }
+		                                };
+	}
 }
                         
 function graph(source, type) {
