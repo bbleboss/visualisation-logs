@@ -55,14 +55,14 @@ function update()//fonction appelée lors du click sur valider
                         
 function graph(source, type) {
                    
-       /*  if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+         if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
          {
                 d3.selectAll("svg").remove();
          }
          else //sinon que les cercles
          {
          	d3.select('#cercle').remove();
-         }*/
+         }
                                  
 
          var data2 = [];
