@@ -13,11 +13,14 @@ var id;
 var animation = false;
 var dateTrue;
 
+window.onload = update;
+
 function update()//fonction appelée lors du click sur valider
 {
 		var scriptPhp = "nbGet.php";
 		source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton
+		var autoLoad = event.target;
 		initTranches(); //Initialisation du tableau de tranches horaires, nécessaire pour le svg en graphique
 		
 	if(source == "get" || source == "post" || source == "options" || source == "head")
@@ -41,7 +44,7 @@ function update()//fonction appelée lors du click sur valider
 	} 
 		
         var xhr = new XMLHttpRequest();//création de la requête
-        if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        if(((source == "valider" || source == "updateForm") && type == "click")|| autoLoad == "[object HTMLDocument]")//dans le cas où on change les dates du formulaire
         {
         	if(charge == 1)
         	{
@@ -103,7 +106,7 @@ function update()//fonction appelée lors du click sur valider
 														//On supprime l'animation de chargement
 		                                        	document.getElementById('chargement').innerHTML = "";
 		                                        	
-		                                        	if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+		                                        	if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
 		                                        	{
 		                                        		affiche(); //Affichage du curseur
 		                                        	}

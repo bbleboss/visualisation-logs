@@ -343,18 +343,22 @@ form
 	margin:auto;
 	width:73%;
 }
+
 label
 {
 	cursor:pointer;
 }
+
 input
 {
 	margin-top:0.7%;
 }
+
 input[type=text]
 {
 	width: 125px;
 }
+
 #curseur
 {
 	margin:auto;
@@ -362,10 +366,12 @@ input[type=text]
 	width: 76%;
 	
 }
+
 #updateForm
 {
 	float:right;
 }
+
 #resultat
 {
 	margin:auto;
@@ -373,6 +379,20 @@ input[type=text]
 	width: 76%;
 }
 
+#legende
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
+}
+
+#information
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
+	height:60px;
+}
 .axis text {
   font: 10px sans-serif;
 }
@@ -384,11 +404,16 @@ input[type=text]
   shape-rendering: crispEdges;
 }
 
-.bar {
-  fill: steelblue;
-  fill-opacity: .9;
+#chargement
+{
+	margin:auto;
+	margin-top:2%;
+	width: 76%;
 }
 
-.x.axis path {
-  display: none;
+#legende
+{
+margin:auto;
+margin-top:2%;
+width: 76%;
 }

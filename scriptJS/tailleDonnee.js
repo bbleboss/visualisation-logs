@@ -3,12 +3,14 @@ var charge = 0;
 var table = "apache_access_log";
 var animation = false;
 var dateTrue;
+
+window.onload = update;
  
 function update()//fonction appelée lors du click sur valider
 {
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
-		
+		var autoLoad = event.target;
 		 if(source == "apache" || source == "zope")
 		{
 			if(source == "apache")
@@ -21,7 +23,7 @@ function update()//fonction appelée lors du click sur valider
 			}
 		}
         var xhr = new XMLHttpRequest();//création de la requête
-        if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        if(((source == "valider" || source == "updateForm") && type == "click")|| autoLoad == "[object HTMLDocument]")//dans le cas où on change les dates du formulaire
         {
         	dateTrue = true;
         	var verifDate = /^[0-9]{4}-(0[1-9]|1[0-2])-[0-3][0-9][ ]*($|[ ]+([0-1][0-9]|2[0-3])[ ]*($|:[0-5][0-9]($|:[0-5][0-9]$)))/; 
@@ -75,8 +77,8 @@ function update()//fonction appelée lors du click sur valider
 		                                        	graph();
 		                                        	//On supprime l'animation de chargement
 		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	//alert('2ème étape de test - premiere date enregistrée') ;
-		                                			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+		                                        	
+		                                		if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
 		                                        	{
 		                                        		affiche();
 		                                        	}
@@ -87,9 +89,7 @@ function update()//fonction appelée lors du click sur valider
 
 function graph() {
      
-    //var dataAgent = [];
-	//var dataValue = [];
-	var width = 960;
+    var width = 960;
     var height = 500;
     var heightLegende = 50;
     var radius = Math.min(width, height) / 2;

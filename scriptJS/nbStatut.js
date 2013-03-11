@@ -4,11 +4,13 @@ var table = "apache_access_log";
 var animation = false;
 var dateTrue;
 
+window.onload = update;
+
 function update()//fonction appelée lors du click sur valider
 {
  		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
-		
+		var autoLoad = event.target;
 		 if(source == "apache" || source == "zope")
 		{
 			if(source == "apache")
@@ -21,7 +23,7 @@ function update()//fonction appelée lors du click sur valider
 			}
 		}
         var xhr = new XMLHttpRequest();//création de la requête
-        if((source == "valider" || source == "updateForm") && type == "click")//dans le cas où on change les dates du formulaire
+        if(((source == "valider" || source == "updateForm") && type == "click")|| autoLoad == "[object HTMLDocument]")//dans le cas où on change les dates du formulaire
         {
 
         	dateTrue = true;
@@ -79,8 +81,8 @@ function update()//fonction appelée lors du click sur valider
 		                                        	graph();
 		                                        	//On supprime l'animation de chargement
 		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	//alert('2ème étape de test - premiere date enregistrée') ;
-		                                			if((source == "valider"|| source == "updateForm") && type == "click" )// on appel affiche que quand on a détruit le curseur
+		                                        	
+		                                		if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
 		                                        	{
 		                                        		affiche();
 		                                        	}
