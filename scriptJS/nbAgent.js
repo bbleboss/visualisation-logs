@@ -33,6 +33,12 @@ function update()//fonction appelée lors du click sur valider
         		alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
         		dateTrue = false;
         	}
+        	nbvisite = document.getElementById('nbvisite').value;
+			if (isNaN(nbvisite))
+			{ 
+				alert('Vous devez rentrer un nombre pour le nombre de visite');
+				dateTrue =false;
+			}
         }
         else //cas où on bouge le curseur
         {	
@@ -51,7 +57,6 @@ function update()//fonction appelée lors du click sur valider
   			document.getElementById('date1').value = date1;
   			document.getElementById('date2').value =date2;
   		}
-		nbvisite = document.getElementById('nbvisite').value;
 		
 		var resultat = document.getElementById('resultat');
 		var legende = document.getElementById('legende');

@@ -98,6 +98,13 @@ function update()//fonction appelée lors du click sur valider
         		dateTrue = false;
         	}
         	
+        	nberror = document.getElementById('nberror').value;
+        	if (isNaN(nberror))
+			{ 
+				alert('Vous devez rentrer un nombre pour le nombre minimum d\'erreurs');
+				dateTrue =false;
+			}
+        	
         }
         else //cas où on bouge le curseur
         {	
@@ -116,7 +123,6 @@ function update()//fonction appelée lors du click sur valider
   			document.getElementById('date1').value = date1;
   			document.getElementById('date2').value =date2;
   		}
-	       	nberror = document.getElementById('nberror').value;
 		
 		var resultat = document.getElementById('resultat');
 		var legende = document.getElementById('legende');

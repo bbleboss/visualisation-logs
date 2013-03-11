@@ -33,6 +33,13 @@ function update()//fonction appelée lors du click sur valider
         		dateTrue = false;
         	}
         	
+        	taillesum = document.getElementById('taillesum').value;
+        	if (isNaN(taillesum))
+			{ 
+				alert('Vous devez rentrer un nombre pour la taille minimum');
+				dateTrue =false;
+			}
+        	
         }
         else //cas où on bouge le curseur
         {	
@@ -51,7 +58,6 @@ function update()//fonction appelée lors du click sur valider
   			document.getElementById('date1').value = date1;
   			document.getElementById('date2').value =date2;
   		}
-		taillesum = document.getElementById('taillesum').value;
 		trie = document.getElementById('trie').value;
 		
 		var resultat = document.getElementById('resultat');

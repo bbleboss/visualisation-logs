@@ -34,6 +34,13 @@ function update()//fonction appelée lors du click sur valider
         		dateTrue = false;
         	}
         	
+        	nbstatut = document.getElementById('nbstatut').value; 
+        	if (isNaN(nbstatut))
+			{ 
+				alert('Vous devez rentrer un nombre pour le nombre de statuts');
+				dateTrue =false;
+			}
+        	
         }
         else //cas où on bouge le curseur
         {	
@@ -53,7 +60,6 @@ function update()//fonction appelée lors du click sur valider
   			document.getElementById('date2').value =date2;
   		}
         
-		nbstatut = document.getElementById('nbstatut').value; 
 		trie = document.getElementById('trie').value;
 			
 		var resultat = document.getElementById('resultat');
