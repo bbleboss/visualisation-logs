@@ -20,7 +20,7 @@ function update()//fonction appelée lors du click sur valider
         if(((source == "valider" || source == "updateForm") && type == "click") || autoLoad == "[object HTMLDocument]")//dans le cas où on change les dates du formulaire
         {
         	dateTrue = true;
-        	var verifDate = /^[0-9]{4}-(0[1-9]|1[0-2])-[0-3][0-9][ ]*($|[ ]+([0-1][0-9]|2[0-3])[ ]*($|:[0-5][0-9]($|:[0-5][0-9]$)))/; 
+		var verifDate = /^[0-9]{4}-((0[1-9]|[1-9])|1[0-2])-([1-9]|[0-3][0-9])[ ]*($|[ ]+([0-9]|1[0-9]|2[0-3])[ ]*($|:([0-9]|[0-5][0-9])($|:([0-9]|[0-5][0-9])$)))/; 
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
         	if(!verifDate.exec(date1) || !verifDate.exec(date2))
