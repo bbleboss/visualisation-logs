@@ -3,6 +3,8 @@
 
 	ini_set('memory_limit','1G');
 	
+	$expressionModule = $_GET['expressionModule'];
+	$expressionDescription = $_GET['expressionDescription'];
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
 	$nberror = $_GET['nberror'];
@@ -23,14 +25,17 @@
 
 	while($a = mysql_fetch_object($r))
   	{
-  		$module=$a->module;
-  		$module=preg_replace('#\"#', ' ', $module);
-  		$module= str_replace("\\", " ", $module); 
-  		$description=$a->descrip;
-  		$description=preg_replace('#\"#', ' ', $description);
-  		$description= str_replace("\\", " ", $description); 
-  		$valeur=$a->nb;
-  		$message = "$message {\"module\":\"$module\",\"description\":\"$description\",\"value\":$valeur},";
+  		if(preg_match($expressionModule, $a->module) || preg_match($expressionDescription, $a->descrip) || strlen($expressionModule) < 2 || strlen($expressionDescription) < 2 )
+  		{
+  			$module=$a->module;
+  			$module=preg_replace('#\"#', ' ', $module);
+  			$module= str_replace("\\", " ", $module); 
+  			$description=$a->descrip;
+  			$description=preg_replace('#\"#', ' ', $description);
+  			$description= str_replace("\\", " ", $description); 
+  			$valeur=$a->nb;
+  			$message = "$message {\"module\":\"$module\",\"description\":\"$description\",\"value\":$valeur},";
+  		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
   	 echo $message;

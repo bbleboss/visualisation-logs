@@ -29,6 +29,8 @@
 				</br>
 				<label for="nbstatut">Nombre minimun de statuts </label>: <input id= nbstatut name= nbstatut type=text value="1" />
 				</br>
+				<label for="expressionStatut">Expression régulière pour l'intitulé du statut </label>: <input id=expressionStatut name=expressionStatut type=text />
+				</br>
 				<label for ="trie"> Trier par</label> :<select name="trie" id="trie">
   																	<option value="nb">Nb Statuts</option>
   																	<option value="nom">Nom Statuts</option>

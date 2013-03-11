@@ -4,11 +4,17 @@ var table = "apache_error_log";
 var typesev ="error";
 var animation = false;
 var dateTrue;
+
+var expressionModule;
+var expressionDescription;
  
  window.onload = update;
  
 function update()//fonction appelée lors du click sur valider
 {
+		expressionModule = document.getElementById('expressionModule').value;
+		expressionDescription = document.getElementById('expressionDescription').value;
+		
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
@@ -134,9 +140,11 @@ function update()//fonction appelée lors du click sur valider
 		document.getElementById('information').innerHTML="<br><br>";
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
+		expressionModule = encodeURIComponent(expressionModule);
+		expressionDescription = encodeURIComponent(expressionDescription);
 		
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/typErreur.php?date1='+date1+'&date2='+date2+'&nberror='+nberror+'&table='+table+'&typesev='+typesev);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/typErreur.php?date1='+date1+'&date2='+date2+'&nberror='+nberror+'&table='+table+'&typesev='+typesev+'&expressionModule='+expressionModule+'&expressionDescription='+expressionDescription);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
