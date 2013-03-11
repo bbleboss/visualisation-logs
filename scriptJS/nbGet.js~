@@ -52,12 +52,15 @@ function update()//fonction appelée lors du click sur valider
         		oldD2 = date2;
        		}
         	dateTrue = true;
-		var verifDate = /^[0-9]{4}-((0[1-9]|[1-9])|1[0-2])-([1-9]|[0-3][0-9])[ ]*($|[ ]+([0-9]|1[0-9]|2[0-3])[ ]*($|:([0-9]|[0-5][0-9])($|:([0-9]|[0-5][0-9])$)))/; 
+		var verifDate = /^[0-9]{4}-((0[1-9]|[1-9])|1[0-2])-([1-9]|[0-3][0-9])[ ]*($|[ ]+([0-9]|[0-1][0-9]|2[0-3])[ ]*($|:([0-9]|[0-5][0-9])($|:([0-9]|[0-5][0-9])$)))/;
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
         	if(!verifDate.exec(date1) || !verifDate.exec(date2))
         	{
-        		alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		if(date1.length > 0 || date2.length >0)
+        		{
+        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		}
         		dateTrue = false;
         	}
         	
@@ -313,4 +316,4 @@ function percentage()
 		
 	}
 	
-}
+}	
