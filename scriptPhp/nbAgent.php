@@ -2,7 +2,7 @@
 	require '../params.php';
 
 	ini_set('memory_limit','1G');
-	
+	$expression = $_GET['expression'];
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
 	$nbvisite = $_GET['nbvisite'];
@@ -16,11 +16,14 @@
 
 	while($a = mysql_fetch_object($r))
   	{
-  		$agent=$a->agent;
-  		$agent=preg_replace('#\"#', ' ', $agent);
-  		$agent= str_replace("\\", " ", $agent); 
-  		$valeur=$a->nb;
-  		$message = "$message {\"agent\":\"$agent\",\"value\":$valeur},";
+  		if(preg_match($expression, $a->agent) || strlen($expression) < 2 )
+  		{
+  			$agent=$a->agent;
+  			$agent=preg_replace('#\"#', ' ', $agent);
+  			$agent= str_replace("\\", " ", $agent); 
+  			$valeur=$a->nb;
+  			$message = "$message {\"agent\":\"$agent\",\"value\":$valeur},";
+  		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
   	 echo $message;

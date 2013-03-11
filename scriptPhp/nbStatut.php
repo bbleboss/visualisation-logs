@@ -3,6 +3,7 @@
 
 	ini_set('memory_limit','1G');
 	
+	$expressionStatut = $_GET['expressionStatut'];
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
 	$nbstatut = $_GET['nbstatut'];
@@ -23,9 +24,12 @@
 
 	while($a = mysql_fetch_object($r))
   	{
-  		$statut=$a->statut; 
-  		$valeur=$a->nb;
-  		$message = "$message {\"statut\":\"$statut\",\"value\":$valeur},";
+  		if(preg_match($expressionStatut, $a->statut) || strlen($expressionStatut) < 2)
+  		{
+  			$statut=$a->statut; 
+  			$valeur=$a->nb;
+  			$message = "$message {\"statut\":\"$statut\",\"value\":$valeur},";
+  		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
   	 echo $message;

@@ -29,6 +29,10 @@
 				</br>
 				<label for="nberror">Nombre d'erreur minimum </label>: <input id= nberror name=nberror type=text value="1" />
 				</br>
+				<label for="expressionModule">Expression régulière pour le module de l'erreur </label>: <input id=expressionModule name=expressionModule type=text />
+				</br>
+				<label for="expressionDescription">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text />
+				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		<div id=curseur></div>

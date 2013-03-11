@@ -3,11 +3,13 @@ var charge = 0;
 var table = "apache_access_log";
 var animation = false;
 var dateTrue;
+var expressionStatut;
 
 window.onload = update;
 
 function update()//fonction appelée lors du click sur valider
 {
+		expressionStatut = document.getElementById('expressionStatut').value;
  		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
@@ -72,9 +74,10 @@ function update()//fonction appelée lors du click sur valider
 		document.getElementById('information').innerHTML="<br><br>";
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
+		expressionStatut = encodeURIComponent(expressionStatut);
 	       
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbStatut.php?date1='+date1+'&date2='+date2+'&nbstatut='+nbstatut+ '&trie='+trie+'&table='+table);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbStatut.php?date1='+date1+'&date2='+date2+'&nbstatut='+nbstatut+ '&trie='+trie+'&table='+table+'&expressionStatut='+expressionStatut);//parametrage de la requête
 		xhr.send(null);//envoi de la requete
 	    	
 		xhr.onreadystatechange = function() {     		
