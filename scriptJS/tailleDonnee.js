@@ -132,7 +132,6 @@ function graph() {
     		.enter().append("g")
       		.attr("class", "arc")
       		.attr("id", function(){ nb++; text = "info("+nb+")";return nb;})
-      		.attr("onmouseout", "infovide()");// fonctionne pas encore 
       		
       		var i;
       		var nbmax =nb;
@@ -144,6 +143,15 @@ function graph() {
       			i = document.getElementById(nb);
       			i.setAttribute("onmouseover",text);
       		}
+      		nb=0;
+      		while (nb< nbmax)
+      		{
+      			nb++; 
+      			text = "infovide("+nb+")";
+      			i = document.getElementById(nb);
+      			i.setAttribute("onmouseout",text);
+      		}
+
 
   			g.append("path")
   			.attr("d", 0) 
@@ -154,13 +162,6 @@ function graph() {
       		.style("fill", function(d) { return color(d.value); })
       		
       		
-      		
- 
-      		/*g.append("text") // le texte ne fonctionne pas encore
-      		 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-      		.attr("dy", ".35em")
-      		.style("text-anchor", "middle")
-      		.text(function(d) { return d.value; }); */
       		
 // -------------creation de la legende---------//
 
@@ -230,11 +231,16 @@ function info(id)
 	var nb =id-1;
 	var info = document.getElementById('information');
 	info.innerHTML="Serveur: " +dataj[nb].host +  "<br> Nombre de requêtes: "+ dataj[nb].nbrequete+"<br> Taille totale des données: "+ dataj[nb].value;      
+	id = id.toString();
+	var part = document.getElementById(id);
+	part.style.opacity='0.8';
 }
 
-function infovide()
+function infovide(id)
 {
-
 	var info = document.getElementById('information');
 	info.innerHTML="<br><br>";
+	id = id.toString();
+	var part = document.getElementById(id);
+	part.style.opacity='1';
 }
