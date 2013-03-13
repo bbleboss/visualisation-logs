@@ -180,7 +180,7 @@ function graph() {
 	
 	// -------------creation du cercle ---------//
 	
-   var color = d3.scale.category20c() // limité au nombre de couleur dans le range 
+   var color = d3.scale.category20() // limité au nombre de couleur dans le range 
     //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
     //.rangeRoundBands(["#000000", "#FFFFFF"], "#303030");
 
