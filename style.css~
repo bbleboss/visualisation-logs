@@ -379,12 +379,7 @@ input[type=text]
 	width: 76%;
 }
 
-#legende
-{
-	margin:auto;
-	margin-top:2%;
-	width: 76%;
-}
+
 
 #information
 {
@@ -411,9 +406,4 @@ input[type=text]
 	width: 76%;
 }
 
-#legende
-{
-margin:auto;
-margin-top:2%;
-width: 76%;
-}
+

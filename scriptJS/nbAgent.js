@@ -12,7 +12,7 @@ function update()//fonction appelée lors du click sur valider
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
-		 if(source == "apache" || source == "zope" || autoLoad == "[object HTMLDocument]")
+		if(source == "apache" || source == "zope" || autoLoad == "[object HTMLDocument]")
 		{
 			if(source == "apache")
 			{
@@ -86,6 +86,11 @@ function update()//fonction appelée lors du click sur valider
 		                                        		affiche();
 		                                        	}
 		                                        }
+		                                        else if(xhr.readyState == 4 && xhr.status != 200)
+		                                        {
+		                                        	document.getElementById('chargement').innerHTML = "";
+		                                        	alert('ee');
+		                                        }			
 		                                	};
 	}
 }
