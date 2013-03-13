@@ -38,7 +38,10 @@ function update()//fonction appelée lors du click sur valider
         	
         	if(!verifDate.exec(date1) || !verifDate.exec(date2))
         	{
-        		alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		if(date1.length > 0 || date2.length >0)
+        		{
+        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        		}
         		dateTrue = false;
         	}
         }
