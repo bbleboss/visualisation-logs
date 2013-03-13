@@ -28,7 +28,7 @@ function update()//fonction appelée lors du click sur valider
         {
         	
         	dateTrue = true;
-		var verifDate = /^[0-9]{4}-((0[1-9]|[1-9])|1[0-2])-([1-9]|[0-3][0-9])[ ]*($|[ ]+([0-9]|[0-1][0-9]|2[0-3])[ ]*($|:([0-9]|[0-5][0-9])($|:([0-9]|[0-5][0-9])$)))/;
+		var verifDate = /^[ ]*[0-9]{4}-((0[1-9]|[1-9])|1[0-2])-([1-9]|[0-3][0-9])[ ]*($|[ ]+([0-9]|[0-1][0-9]|2[0-3])[ ]*($|:([0-9]|[0-5][0-9])[ ]*($|:([0-9]|[0-5][0-9])[ ]*$)))/;
         	date1 = document.getElementById('date1').value;
         	date2 = document.getElementById('date2').value;
         	if(!verifDate.exec(date1) || !verifDate.exec(date2))
@@ -75,7 +75,7 @@ function update()//fonction appelée lors du click sur valider
 		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite+'&table='+table+'&expression='+expression);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
-		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
+		                               	      if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
 		                                        	graph();
 		                                        	//On supprime l'animation de chargement
@@ -86,11 +86,7 @@ function update()//fonction appelée lors du click sur valider
 		                                        		affiche();
 		                                        	}
 		                                        }
-		                                        else if(xhr.readyState == 4 && xhr.status != 200)
-		                                        {
-		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	alert('ee');
-		                                        }			
+		                                			
 		                                	};
 	}
 }
