@@ -22,7 +22,7 @@ function update()//fonction appelée lors du click sur valider
 		{
 			scriptPhp = "basePhp.php";
 		}
-		else if(source == "zopeError.php")
+		else if(source == "zopeError")
 		{
 			scriptPhp = "zopeError.php";
 		}
