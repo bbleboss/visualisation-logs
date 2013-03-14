@@ -40,7 +40,7 @@ function update()//fonction appelée lors du click sur valider
         	{
         		if(date1.length > 0 || date2.length >0)
         		{
-        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        			alert('Vous devez respecter la syntaxe: YYYY-MM-DD HH:MM:SS');
         		}
         		dateTrue = false;
         	}

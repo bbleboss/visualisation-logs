@@ -10,6 +10,8 @@
 	$trie = $_GET['trie'];
 	$table = $_GET['table'];
 	$message = "[";
+	$trouve = 0;
+	
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 	if ($trie == "nb")
@@ -26,12 +28,18 @@
   	{
   		if(preg_match($expressionStatut, $a->statut) || strlen($expressionStatut) < 2)
   		{
+  			$trouve = 1;
   			$statut=$a->statut; 
   			$valeur=$a->nb;
   			$message = "$message {\"statut\":\"$statut\",\"value\":$valeur},";
   		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
+  	
+  	if($trouve==0)
+  	{
+  		$message += ']';
+  	}
   	 echo $message;
   	 
   	

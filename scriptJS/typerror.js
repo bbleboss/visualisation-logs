@@ -8,20 +8,44 @@ var dateTrue;
 var expressionModule;
 var expressionDescription;
  
- window.onload = update;
+ window.onload = function() { majBoutonApache(); update(); };
+ 
+ //Fonction appellée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
+function majBoutonApache() {
+	expressionModule = "null";
+	document.getElementById('expression').innerHTML = "";
+	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
+}
+
+//Fonction appelée lorsqu'on clique sur le radio bouton 'Zope'
+function majBoutonZope() {
+	expressionModule = "";
+	document.getElementById('expression').innerHTML = "";
+	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionModule\">Expression régulière pour le module de l'erreur </label>: <input id=expressionModule name=expressionModule type=text /></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
+	
+}
  
 function update()//fonction appelée lors du click sur valider
 {
-		expressionModule = document.getElementById('expressionModule').value;
-		expressionDescription = document.getElementById('expressionDescription').value;
-		
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
+		
+		if(expressionModule == "null")
+		{
+			expressionDescription = document.getElementById('expressionDescription').value;
+		}
+		else
+		{
+			expressionModule = document.getElementById('expressionModule').value;
+			expressionDescription = document.getElementById('expressionDescription').value;
+		}
+		
 		 if(source == "apache" || source == "zope")
 		{
 			if(source == "apache")
 			{
+				
 				table = "apache_error_log";
 				if(typesev == "ERROR")
 				{
@@ -39,6 +63,7 @@ function update()//fonction appelée lors du click sur valider
 			}
 			else
 			{
+				
 				table = "zope_instance_log";
 				if(typesev == "error")
 				{
@@ -55,6 +80,8 @@ function update()//fonction appelée lors du click sur valider
 				
 			}
 		}
+		
+
 		
 		 if(source == "error" || source == "warning" || source =="notice")
 		{
@@ -104,7 +131,7 @@ function update()//fonction appelée lors du click sur valider
         	{
         		if(date1.length > 0 || date2.length >0)
         		{
-        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        			alert('Vous devez respecter la syntaxe: YYYY-MM-DD HH:MM:SS');
         		}
         		dateTrue = false;
         	}
@@ -142,27 +169,35 @@ function update()//fonction appelée lors du click sur valider
 		date2 = encodeURIComponent(date2);
 		expressionModule = encodeURIComponent(expressionModule);
 		expressionDescription = encodeURIComponent(expressionDescription);
-		
+	
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
 		xhr.open('GET', 'http://localhost:8888/scriptPhp/typErreur.php?date1='+date1+'&date2='+date2+'&nberror='+nberror+'&table='+table+'&typesev='+typesev+'&expressionModule='+expressionModule+'&expressionDescription='+expressionDescription);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-		                                        	graph();
-		                                        	//On supprime l'animation de chargement
-		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	//alert('2ème étape de test - premiere date enregistrée') ;
-		                                			if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        	if(dataj == 0)
 		                                        	{
-		                                        		affiche();
+		                                        		alert("Aucun élément n'a été trouvé avec l'expression régulière entrée.");
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        	}
+		                                        	else{
+		                                        		
+		                                        		graph(source, type);
+		                                        		//On supprime l'animation de chargement
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        	
+		                                				if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        		{
+		                                        			affiche();
+		                                        		}
 		                                        	}
 		                                        }
 		                                	};
 	}
 }
 
-function graph() {
+function graph(source, type) {
      
 	var width = 960;
     var height = 500;
@@ -172,11 +207,15 @@ function graph() {
     var nb =0;
    var text;
 	     
-    if(charge == 1)
-    {
-        d3.select("#camembert").remove();
-        d3.select("#svglegende").remove();
-    }
+    if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+     {
+                d3.selectAll("svg").remove();
+     }
+     else
+     {
+		d3.select("#camembert").remove();
+        	d3.select("#svglegende").remove();
+     }
 	
 	// -------------creation du cercle ---------//
 	
