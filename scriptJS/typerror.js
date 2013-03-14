@@ -12,21 +12,18 @@ var expressionDescription;
  
  //Fonction appellée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
 function majBoutonApache() {
-	
+	expressionModule = "null";
 	document.getElementById('expression').innerHTML = "";
 	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
-	expressionModule = "null";
-	expressionDescription = document.getElementById('expressionDescription').value;
 }
 
 //Fonction appelée lorsqu'on clique sur le radio bouton 'Zope'
 function majBoutonZope() {
 
+	expressionModule = "";
+
 	document.getElementById('expression').innerHTML = "";
 	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionModule\">Expression régulière pour le module de l'erreur </label>: <input id=expressionModule name=expressionModule type=text /></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
-	
-	expressionModule = document.getElementById('expressionModule').value;
-	expressionDescription = document.getElementById('expressionDescription').value;
 	
 }
  
@@ -36,7 +33,15 @@ function update()//fonction appelée lors du click sur valider
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
 		
-		expressionDescription = document.getElementById('expressionDescription').value;
+		if(expressionModule == "null")
+		{
+			expressionDescription = document.getElementById('expressionDescription').value;
+		}
+		else
+		{
+			expressionModule = document.getElementById('expressionModule').value;
+			expressionDescription = document.getElementById('expressionDescription').value;
+		}
 		
 		 if(source == "apache" || source == "zope")
 		{
@@ -128,7 +133,7 @@ function update()//fonction appelée lors du click sur valider
         	{
         		if(date1.length > 0 || date2.length >0)
         		{
-        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        			alert('Vous devez respecter la syntaxe: YYYY-MM-DD HH:MM:SS');
         		}
         		dateTrue = false;
         	}
@@ -179,8 +184,7 @@ function update()//fonction appelée lors du click sur valider
 		                                        		document.getElementById('chargement').innerHTML = "";
 		                                        	}
 		                                        	else{
-		                                        		
-		                                        		graph();
+		                                        		graph(source, type);
 		                                        		//On supprime l'animation de chargement
 		                                        		document.getElementById('chargement').innerHTML = "";
 		                                        	
@@ -194,7 +198,7 @@ function update()//fonction appelée lors du click sur valider
 	}
 }
 
-function graph() {
+function graph(source, type) {
      
 	var width = 960;
     var height = 500;
@@ -204,11 +208,15 @@ function graph() {
     var nb =0;
    var text;
 	     
-    if(charge == 1)
-    {
-        d3.select("#camembert").remove();
-        d3.select("#svglegende").remove();
-    }
+    if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+     {
+                d3.selectAll("svg").remove();
+     }
+     else
+     {
+		d3.select("#camembert").remove();
+        	d3.select("#svglegende").remove();
+     }
 	
 	// -------------creation du cercle ---------//
 	
