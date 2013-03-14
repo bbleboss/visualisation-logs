@@ -54,7 +54,7 @@ function update()//fonction appelée lors du click sur valider
         }
         
         if(dateTrue == true)
-  	{
+  		{
   		if(date1 > date2)
   		{
   			var tmp = date1;
@@ -75,18 +75,26 @@ function update()//fonction appelée lors du click sur valider
 		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite+'&table='+table+'&expression='+expression);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
-		                               	      if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
+		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-		                                        	graph();
-		                                        	//On supprime l'animation de chargement
-		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	//alert('2ème étape de test - premiere date enregistrée') ;
-		                                			if(((source == "valider"|| source == "updateForm") && type == "click" ) || autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        	if(dataj == 0)
 		                                        	{
-		                                        		affiche();
+		                                        		alert("Aucun élément n'a été trouvé avec l'expression régulière entrée.");
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        	}
+		                                        	else
+		                                        	{
+		                                        		graph();
+		                                        		//On supprime l'animation de chargement
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        		//alert('2ème étape de test - premiere date enregistrée') ;
+		                                        	
+		                                				if(((source == "valider"|| source == "updateForm") && type == "click" ) || autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        		{
+		                                        			affiche();
+		                                        		}
 		                                        	}
 		                                        }
-		                                			
 		                                	};
 	}
 }
