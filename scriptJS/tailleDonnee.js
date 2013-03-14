@@ -33,7 +33,7 @@ function update()//fonction appelée lors du click sur valider
         	{
         		if(date1.length > 0 || date2.length >0)
         		{
-        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        			alert('Vous devez respecter la syntaxe: YYYY-MM-DD HH:MM:SS');
         		}
         		dateTrue = false;
         	}
@@ -77,7 +77,7 @@ function update()//fonction appelée lors du click sur valider
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-		                                        	graph();
+		                                        	graph(source, type);
 		                                        	//On supprime l'animation de chargement
 		                                        	document.getElementById('chargement').innerHTML = "";
 		                                        	
@@ -90,7 +90,7 @@ function update()//fonction appelée lors du click sur valider
 	}
 }
 
-function graph() {
+function graph(source, type) {
      
     var width = 960;
     var height = 500;
@@ -100,11 +100,15 @@ function graph() {
     var nb =0;
    var text;
 	     
-    if(charge == 1)
-    {
-        d3.select("#camembert").remove();
-        d3.select("#svglegende").remove();
-    }
+    if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
+     {
+                d3.selectAll("svg").remove();
+     }
+     else
+     {
+		d3.select("#camembert").remove();
+        	d3.select("#svglegende").remove();
+     }
 	
 	// -------------creation du cercle ---------//
 	

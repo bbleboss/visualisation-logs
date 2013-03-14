@@ -8,6 +8,8 @@
 	$nbvisite = $_GET['nbvisite'];
 	$table = $_GET['table'];
 	$message = "[";
+	$trouve=0;
+	
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 
@@ -18,6 +20,7 @@
   	{
   		if(preg_match($expression, $a->agent) || strlen($expression) < 2 )
   		{
+  			$trouve=1;
   			$agent=$a->agent;
   			$agent=preg_replace('#\"#', ' ', $agent);
   			$agent= str_replace("\\", " ", $agent); 
@@ -26,6 +29,12 @@
   		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
+  	
+  	if($trouve==0)
+  	{
+  		$message += ']';
+  	}
+  	
   	 echo $message;
   	
 ?>
