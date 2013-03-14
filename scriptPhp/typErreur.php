@@ -46,7 +46,10 @@
   					$valeur=$a->nb;
   					$message = "$message {\"module\":\"$module\",\"description\":\"$description\",\"value\":$valeur},";
   					$trouve=1;
+<<<<<<< local
+=======
 
+>>>>>>> other
   				}
   			}
   		}
