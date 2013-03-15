@@ -28,11 +28,10 @@
 				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text />
 				</br>
 				<label for="nberror">Nombre d'erreur minimum </label>: <input id= nberror name=nberror type=text value="1" />
-				</br>
+				<div id=expression></div>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
 		</br>
-		<div id=expression></div>
 		<div id=curseur></div>
 		<div id=chargement></div>
 		<div id=information></div>

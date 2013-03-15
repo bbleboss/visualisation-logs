@@ -386,6 +386,11 @@ input[type=text]
 	width: 76%;
 }
 
+#expression
+{
+	margin-top:-2%;
+}
+
 #information
 {
 	margin:auto;

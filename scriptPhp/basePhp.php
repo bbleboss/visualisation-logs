@@ -24,5 +24,4 @@
 	$a = mysql_fetch_object($r);
 	$res = $a->warning;
 	echo "{\"title\":\"warning\",\"value\":$res}]";
-
 ?>

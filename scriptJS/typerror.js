@@ -16,7 +16,6 @@ function majBoutonApache() {
 	document.getElementById('expression').innerHTML = "";
 	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
 }
-
 //Fonction appelée lorsqu'on clique sur le radio bouton 'Zope'
 function majBoutonZope() {
 
