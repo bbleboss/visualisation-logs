@@ -3,6 +3,7 @@ var charge = 0;
 var table = "apache_access_log";
 var animation = false;
 var dateTrue;
+var expressionServeur;
 
 window.onload = update;
  
@@ -67,12 +68,14 @@ function update()//fonction appelée lors du click sur valider
 		
 		var resultat = document.getElementById('resultat');
 		var legende = document.getElementById('legende');
+		expressionServeur = document.getElementById('expressionServeur').value;
+		expressionServeur = encodeURIComponent(expressionServeur);
 		document.getElementById('information').innerHTML="<br><br>";
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
 		
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&trie='+trie+'&table='+table);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/tailleDonnee.php?date1='+date1+'&date2='+date2+'&taillesum='+taillesum+'&trie='+trie+'&table='+table+'&expressionServeur='+expressionServeur);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
