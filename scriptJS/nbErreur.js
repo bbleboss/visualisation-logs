@@ -9,6 +9,8 @@ var id;
 var animation = false;
 var moitie = parseInt(d3.select('nav').style("width"))/2;
 var dateTrue;
+var nb =0;
+var cercle;
 
 window.onload = update;
 function update()//fonction appelée lors du click sur valider
@@ -154,7 +156,9 @@ function graph(source, type) {
                                  .enter().append("circle")
                                          .attr("cx", function(d,i) {return moitie+50+(i* 105)-moitieCercle; })
                                          .attr("cy", 50)
-                                         .attr("fill", "url(#grad1)");
+                                         .attr("fill", "url(#grad1)")
+                                         .attr("id", function(){ nb++;return nb;});
+                                         nb =0;
                      			 if(charge != 1)
                      			 {
                      				chart.selectAll("circle").transition()
@@ -166,6 +170,13 @@ function graph(source, type) {
                	     			 {
                	     				chart.selectAll("circle").attr("r",x);
                	    			 }
+               	    			 
+               	    			cercle = document.getElementById("1");
+      							cercle.setAttribute("onclick","liengrapherror();");
+      							cercle = document.getElementById("2");
+      							cercle.setAttribute("onclick","liengraphnotice();");
+      							cercle = document.getElementById("3");
+      							cercle.setAttribute("onclick","liengraphwarning();");
                                                        
         if(ratio > 0,4)
         {
@@ -204,4 +215,69 @@ function graph(source, type) {
                         
 }
                         
+function liengrapherror()
+{
+ var i =0;
+  while( i < 3)
+        {
+        	date1 = date1.replace("%3A",':');
+        	date1 = date1.replace("%20",' ');
+        	date2 = date2.replace("%3A",':');
+        	date2 = date2.replace("%20",' ');
+        	i++;
+        	
+        }
+	if(scriptPhp=="basePhp.php")
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=error&table=apache_error_log";
+	}
+	else
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=ERROR&table=zope_instance_log";
+	}
+}
+
+function liengraphwarning()
+{
+ var i =0;
+  while( i < 3)
+        {
+        	date1 = date1.replace("%3A",':');
+        	date1 = date1.replace("%20",' ');
+        	date2 = date2.replace("%3A",':');
+        	date2 = date2.replace("%20",' ');
+        	i++;
+        	
+        }
+	if(scriptPhp=="basePhp.php")
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=warn&table=apache_error_log";
+	}
+	else
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=WARNING&table=zope_instance_log";
+	}
+}
+
+function liengraphnotice()
+{
+ var i =0;
+  while( i < 3)
+        {
+        	date1 = date1.replace("%3A",':');
+        	date1 = date1.replace("%20",' ');
+        	date2 = date2.replace("%3A",':');
+        	date2 = date2.replace("%20",' ');
+        	i++;
+        	
+        }
+	if(scriptPhp=="basePhp.php")
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=notice&table=apache_error_log";
+	}
+	else
+	{
+		location.href="typerror.php#date1="+date1+"&date2="+date2+"&typesev=INFO&table=zope_instance_log";
+	}
+}
 
