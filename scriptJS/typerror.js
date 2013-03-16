@@ -1,31 +1,38 @@
 var date1, date2, nberror, dataj;
 var charge = 0;
 var typesev ="error";
+
+//on recupere l'url
 var url =document.location.href;
-			var pos = url.search("typesev");
-			if (pos != -1)
+
+// on regarde si il y a pas un typesev dans l'url et on le récupere si il y en a un
+var pos = url.search("typesev");
+	if (pos != -1)
+		{
+			var i = pos+8;
+			typesev ="";
+			while(url[i] != '&' && i < url.length)
 			{
-				var i = pos+8;
-				typesev ="";
-				while(url[i] != '&' && i < url.length)
-				{
-					typesev = typesev + url[i];
-					i++;
-				}
-				i =0;
+				typesev = typesev + url[i];
+				i++;
 			}
+			i =0;
+		}
+		
 var table = "apache_error_log";
+// on regarde si il y a pas une table dans l'url et on la récupere si il y en a une
 pos = url.search("table");
-			if (pos != -1)
+		if (pos != -1)
+		{
+			i = pos+6;
+			table ="";
+			while(url[i] != '&' && i < url.length)
 			{
-				i = pos+6;
-				table ="";
-				while(url[i] != '&' && i < url.length)
-				{
-					table = table + url[i];
-					i++;
-				}
+				table = table + url[i];
+				i++;
 			}
+		}
+		
 var animation = false;
 var dateTrue;
 
@@ -41,7 +48,7 @@ var expressionDescription;
   window.onload = function() {majBoutonZope(); update(); };
  }
  
- //Fonction appellée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
+ //Fonction appelée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
 function majBoutonApache() {
 	expressionModule = "null";
 	document.getElementById('expression').innerHTML = "";
