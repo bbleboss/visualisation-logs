@@ -32,7 +32,14 @@ var dateTrue;
 var expressionModule;
 var expressionDescription;
  
+ if (table == "apache_error_log")
+ {
  window.onload = function() {majBoutonApache(); update(); };
+ }
+ else
+ {
+  window.onload = function() {majBoutonZope(); update(); };
+ }
  
  //Fonction appellée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
 function majBoutonApache() {
