@@ -8,6 +8,7 @@
 	$taillesum = $_GET['taillesum'];
 	$trie = $_GET['trie'];
 	$table = $_GET['table'];
+	$expressionServeur = $_GET['expressionServeur'];
 	$message = "[";
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
@@ -24,12 +25,15 @@
 
 	while($a = mysql_fetch_object($r))
   	{
+  		if(preg_match($expressionServeur, $a->host) || strlen($expressionServeur) < 2)
+  		{
   		$host=$a->host;
   		$host=preg_replace('#\"#', ' ', $host);
   		$host= str_replace("\\", " ", $host);
   		$nbrequete=$a->nb; 
   		$valeur=$a->taille;
   		$message = "$message {\"host\":\"$host\",\"value\":$valeur,\"nbrequete\":$nbrequete},";
+  		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
   	 echo $message;
