@@ -216,6 +216,7 @@ function graph(source, type) {
                         
 }
 
+// fonctions pour les onclicks qui envoie les typesev et les tables en plus des dates a typerror.php
 
 function liengrapherror()
 {
