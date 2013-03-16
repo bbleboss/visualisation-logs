@@ -218,8 +218,6 @@ function graph(source, type) {
                         
 function liengrapherror()
 {
-	cercle = document.getElementById("1");
-	cercle.style.opacity='0.8';
  var i =0;
   while( i < 3)
         {
