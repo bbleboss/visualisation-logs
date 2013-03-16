@@ -13,16 +13,16 @@
 	$res = $a->ERROR;
 	echo "{\"title\":\"error\",\"value\":$res},";
 	
-	$query = "select count(*) 'INFO' from zope_instance_log where severity = 'INFO' and datetime >='$date1' and datetime <='$date2'";
-	$r = mysql_query($query);
-	$a = mysql_fetch_object($r);
-	$res = $a->INFO;
-	echo "{\"title\":\"notice\",\"value\":$res},";
-	
 	$query = "select count(*) 'WARNING' from zope_instance_log where severity = 'WARNING' and datetime >='$date1' and datetime <='$date2'";
 	$r = mysql_query($query);
 	$a = mysql_fetch_object($r);
 	$res = $a->WARNING;
-	echo "{\"title\":\"warning\",\"value\":$res}]";
+	echo "{\"title\":\"warning\",\"value\":$res},";
+	
+	$query = "select count(*) 'INFO' from zope_instance_log where severity = 'INFO' and datetime >='$date1' and datetime <='$date2'";
+	$r = mysql_query($query);
+	$a = mysql_fetch_object($r);
+	$res = $a->INFO;
+	echo "{\"title\":\"notice\",\"value\":$res}]";
 
 ?>
