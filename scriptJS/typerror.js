@@ -1,14 +1,38 @@
 var date1, date2, nberror, dataj;
 var charge = 0;
-var table = "apache_error_log";
 var typesev ="error";
+var url =document.location.href;
+			var pos = url.search("typesev");
+			if (pos != -1)
+			{
+				var i = pos+8;
+				typesev ="";
+				while(url[i] != '&' && i < url.length)
+				{
+					typesev = typesev + url[i];
+					i++;
+				}
+				i =0;
+			}
+var table = "apache_error_log";
+pos = url.search("table");
+			if (pos != -1)
+			{
+				i = pos+6;
+				table ="";
+				while(url[i] != '&' && i < url.length)
+				{
+					table = table + url[i];
+					i++;
+				}
+			}
 var animation = false;
 var dateTrue;
 
 var expressionModule;
 var expressionDescription;
  
- window.onload = function() { majBoutonApache(); update(); };
+ window.onload = function() {majBoutonApache(); update(); };
  
  //Fonction appellée au démarrage de la page et lorsqu'on clique sur le radio bouton 'Apache'
 function majBoutonApache() {
@@ -28,6 +52,7 @@ function majBoutonZope() {
  
 function update()//fonction appelée lors du click sur valider
 {
+		
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
@@ -242,7 +267,7 @@ function graph(source, type) {
       		.data(pie(dataj))
     		.enter().append("g")
       		.attr("class", "arc")
-      		.attr("id", function(){ nb++; text = "info("+nb+")";return nb;})
+      		.attr("id", function(){ nb++;return nb;})
       		
       		var i;
       		var nbmax =nb;
