@@ -16,15 +16,13 @@
 			<li class="menu2">
 				<a class="menu2" href="acces.php">Accès</a>
 				<ul class="menuniveau2">
-              <li class="menuniveau2"> <a class="menu22" href="acces.php">Periode d'accès</a></li>
-              <li class="menuniveau2"> <a class="menu22" href="error.php">Durée d'accès</a></li>
+              		<li class="menuniveau2"> <a class="menu22" href="acces.php">Periode d'accès</a></li>
 				</ul>
 			</li>
 			<li class="menu3">
 				<a class="menu3" href="requete.php">Requètes</a>	
 				<ul class="menuniveau2">
-					<li class="menuniveau2"><a class="menu33" href="requete.php"> Type de requètes</a></li>
-              <li class="menuniveau2"><a class="menu33" href="requete.php"> Nombre de requètes</a></li>
+             		<li class="menuniveau2"><a class="menu33" href="requete.php"> Nombre de requètes</a></li>
 				</ul>
 			</li>
 			<li class="menu4">
