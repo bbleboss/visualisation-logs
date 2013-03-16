@@ -175,9 +175,9 @@ function graph(source, type) {
                	    			cercle = document.getElementById("1");
       							cercle.setAttribute("onclick","liengrapherror();");
       							cercle = document.getElementById("2");
-      							cercle.setAttribute("onclick","liengraphnotice();");
-      							cercle = document.getElementById("3");
       							cercle.setAttribute("onclick","liengraphwarning();");
+      							cercle = document.getElementById("3");
+      							cercle.setAttribute("onclick","liengraphnotice();");
                                                        
         if(ratio > 0,4)
         {
