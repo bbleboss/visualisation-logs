@@ -157,6 +157,7 @@ function graph(source, type) {
                                          .attr("cx", function(d,i) {return moitie+50+(i* 105)-moitieCercle; })
                                          .attr("cy", 50)
                                          .attr("fill", "url(#grad1)")
+                                         .attr("style", "cursor:pointer")
                                          .attr("id", function(){ nb++;return nb;});
                                          nb =0;
                      			 if(charge != 1)
@@ -217,6 +218,8 @@ function graph(source, type) {
                         
 function liengrapherror()
 {
+	cercle = document.getElementById("1");
+	cercle.style.opacity='0.8';
  var i =0;
   while( i < 3)
         {
