@@ -22,7 +22,8 @@
 			<li class="menu3">
 				<a class="menu3" href="requete.php">Requètes</a>	
 				<ul class="menuniveau2">
-             		<li class="menuniveau2"><a class="menu33" href="requete.php"> Nombre de requètes</a></li>
+             		<li class="menuniveau2"><a class="menu33" href="requete.php">Nombre de requètes</a></li>
+             		<li class="menuniveau2"><a class="menu33" href="typerequete.php">Type de requètes</a></li>
 				</ul>
 			</li>
 			<li class="menu4">
