@@ -184,12 +184,12 @@ function graph( source, type) {
       		nomColonne.append("text")
 				.attr("x","35") 
 				.attr("y","15")
-      		.text("Nb Visite");
+      		.text("Nb d'execution");
       		
       		nomColonne.append("text")
-				.attr("x","120") 
+				.attr("x","200") 
 				.attr("y","15")
-      		.text("Nom des Agents");
+      		.text("Nom des Requêtes");
   			
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
@@ -198,7 +198,7 @@ function graph( source, type) {
       		
       		// nom des requetes
       		g2.append("text")
-				.attr("x","120") 
+				.attr("x","200") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
       		.text(function(d) { return d.requete; });
       		var ylegende=6;
@@ -231,7 +231,7 @@ function info(id)
 	id = id.toString();
 	var part = document.getElementById(id);
 	part.style.opacity='0.8';
-	info.innerHTML="Agent: " +dataj[nb].requete + "<br> Nombre de visite: "+ dataj[nb].value;      
+	info.innerHTML="Requête: " +dataj[nb].requete + "<br> Nombre d'execution: "+ dataj[nb].value;      
 }
 
 function infovide(id)
