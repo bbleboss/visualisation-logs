@@ -1,6 +1,7 @@
 var date1, date2, nbrequete, dataj;
 var charge = 0;
 var table = "apache_access_log";
+var typerequest="tout";
 var animation = false;
 var dateTrue;
 var expression;
@@ -21,6 +22,50 @@ function update()//fonction appelée lors du click sur valider
 			else
 			{
 				table = "apache_access_log";
+			}
+		}
+		
+		if(source == "tout" || source == "get" || source =="post" || source =="options" || source =="head" || source =="put" || source =="delete" || source =="connect" || source =="trace" || source =="patch")
+		{
+			if(source == "tout")
+			{
+				typerequest="tout";
+			}
+			else if (source == "get")
+			{
+				typerequest="get";
+			}
+			else if (source == "post")
+			{
+				typerequest="post";
+			}
+			else if (source == "options")
+			{
+				typerequest="options";
+			}
+			else if (source == "head")
+			{
+				typerequest="head";
+			}
+			else if (source == "put")
+			{
+				typerequest="put";
+			}
+			else if (source == "delete")
+			{
+				typerequest="delete";
+			}
+			else if (source == "connect")
+			{
+				typerequest="connect";
+			}
+			else if (source == "trace")
+			{
+				typerequest="trace";
+			}
+			else
+			{
+				typerequest="patch";
 			}
 		}
         var xhr = new XMLHttpRequest();//création de la requête
@@ -70,14 +115,14 @@ function update()//fonction appelée lors du click sur valider
 		date2 = encodeURIComponent(date2);
 		expression = encodeURIComponent(expression);
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/typeRequest.php?date1='+date1+'&date2='+date2+'&nbrequete='+nbrequete+'&table='+table+'&expression='+expression);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/typeRequest.php?date1='+date1+'&date2='+date2+'&nbrequete='+nbrequete+'&table='+table+'&typerequest='+typerequest+'&expression='+expression);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
 		                                        	if(dataj == 0)
 		                                        	{
-		                                        		alert("Aucun élément n'a été trouvé avec l'expression régulière entrée.");
+		                                        		alert("Aucun élément n'a été trouvé.");
 		                                        		document.getElementById('chargement').innerHTML = "";
 		                                        	}
 		                                        	else
