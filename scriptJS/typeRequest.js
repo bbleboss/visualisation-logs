@@ -1,7 +1,37 @@
 var date1, date2, nbrequete, dataj;
 var charge = 0;
-var table = "apache_access_log";
 var typerequest="tout";
+//on recupere l'url
+var url =document.location.href;
+
+// on regarde si il y a pas un typesev dans l'url et on le récupere si il y en a un
+var pos = url.search("typerequest");
+	if (pos != -1)
+		{
+			var i = pos+12;
+			typerequest ="";
+			while(url[i] != '&' && i < url.length)
+			{
+				typerequest = typerequest + url[i];
+				i++;
+			}
+			i =0;
+		}
+
+var table = "apache_access_log";
+// on regarde si il y a pas une table dans l'url et on la récupere si il y en a une		
+pos = url.search("table");
+	if (pos != -1)
+	{
+		i = pos+6;
+		table ="";
+		while(url[i] != '&' && i < url.length)
+		{
+			table = table + url[i];
+			i++;
+		}
+		i =0;
+	}
 var animation = false;
 var dateTrue;
 var expression;
@@ -13,7 +43,7 @@ function update()//fonction appelée lors du click sur valider
 		var source = event.target.id;//quel objet a appelé
 		var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 		var autoLoad = event.target;
-		if(source == "apache" || source == "zope" || autoLoad == "[object HTMLDocument]")
+		if(source == "apache" || source == "zope")
 		{
 			if(source == "zope")
 			{
@@ -110,7 +140,6 @@ function update()//fonction appelée lors du click sur valider
   		}
 		var resultat = document.getElementById('resultat');
 		var legende = document.getElementById('legende');
-		document.getElementById('information').innerHTML="<br><br>";
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
 		expression = encodeURIComponent(expression);

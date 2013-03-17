@@ -11,6 +11,9 @@ var animation = false;
 
 var moitie = parseInt(d3.select('nav').style("width"))/2;
 var dateTrue;
+var cercle;
+var text;
+
 window.onload = update;
 function update()//fonction appelée lors du click sur valider
 {
@@ -102,6 +105,7 @@ function graph(source, type) {
 
          var data2 = [];
          var data3 = [];
+         var nb =0;
 
          for(var i in data)
          {
@@ -152,7 +156,11 @@ function graph(source, type) {
                                  .enter().append("circle")
                                          .attr("cx", function(d,i) {return moitie+50+(i* 105)-moitieCercle; })
                                          .attr("cy", 50)
-                                         .attr("fill", "url(#grad1)");
+                                         .attr("fill", "url(#grad1)")
+                                         .attr("style", "cursor:pointer")
+                                         .attr("id", function(){ nb++;return nb;});
+                                         var nbmax =nb;
+                                         nb =0; 
                      			 if(charge != 1)
                      			 {
                      				chart.selectAll("circle").transition()
@@ -163,6 +171,16 @@ function graph(source, type) {
                	     			 else
                	     			 {
                	     				chart.selectAll("circle").attr("r",x);
+               	    			 }
+               	    			 
+               	    			 while (nb < nbmax)
+               	    			 { 
+               	    			 	nb++;
+      								text = "liengraph(\""+data3[nb-1]+"\")";
+      								nb = nb.toString();
+      								cercle = document.getElementById(nb);
+      								cercle.setAttribute("onclick",text);
+      								
                	    			 }
                                                        
         if(ratio > 0,4)
@@ -202,4 +220,18 @@ function graph(source, type) {
                         
 }
                         
+function liengraph(typerequest)
+{
+ var i =0;
+  while( i < 3)
+        {
+        	date1 = date1.replace("%3A",':');
+        	date1 = date1.replace("%20",' ');
+        	date2 = date2.replace("%3A",':');
+        	date2 = date2.replace("%20",' ');
+        	i++;
+        	
+        }
+		location.href="typerequete.php#date1="+date1+"&date2="+date2+"&typerequest="+typerequest+"&table="+table;
 
+}
