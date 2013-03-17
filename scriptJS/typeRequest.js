@@ -1,4 +1,4 @@
-var date1, date2, nbvisite, dataj;
+var date1, date2, nbrequete, dataj;
 var charge = 0;
 var table = "apache_access_log";
 var animation = false;
@@ -39,10 +39,10 @@ function update()//fonction appelée lors du click sur valider
         		}
         		dateTrue = false;
         	}
-        	nbvisite = document.getElementById('nbvisite').value;
-			if (isNaN(nbvisite))
+        	nbrequete = document.getElementById('nbrequete').value;
+			if (isNaN(nbrequete))
 			{ 
-				alert('Vous devez rentrer un nombre pour le nombre de visite');
+				alert('Vous devez rentrer un nombre pour le nombre de requete');
 				dateTrue =false;
 			}
         }
@@ -63,16 +63,14 @@ function update()//fonction appelée lors du click sur valider
   			document.getElementById('date1').value = date1;
   			document.getElementById('date2').value =date2;
   		}
-		
 		var resultat = document.getElementById('resultat');
 		var legende = document.getElementById('legende');
 		document.getElementById('information').innerHTML="<br><br>";
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
 		expression = encodeURIComponent(expression);
-		
 		document.getElementById('chargement').innerHTML = "Chargement en cours, veuillez patienter ... </br> <img src=\"http://localhost:8888/gif/loading.gif\" />";
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbAgent.php?date1='+date1+'&date2='+date2+'&nbvisite='+nbvisite+'&table='+table+'&expression='+expression);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/typeRequest.php?date1='+date1+'&date2='+date2+'&nbrequete='+nbrequete+'&table='+table+'&expression='+expression);//parametrage de la requête
 		xhr.send(null);//envoi de la requete          
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
@@ -100,9 +98,7 @@ function update()//fonction appelée lors du click sur valider
 }
 
 function graph( source, type) {
-     
-    //var dataAgent = [];
-	//var dataValue = [];
+
 	var width = 960;
     var height = 500;
     var heightLegende = 50;
@@ -200,11 +196,11 @@ function graph( source, type) {
     		.enter().append("g")
       		.attr("class", "agent");
       		
-      		// nom des agents
+      		// nom des requetes
       		g2.append("text")
 				.attr("x","120") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
-      		.text(function(d) { return d.agent; });
+      		.text(function(d) { return d.requete; });
       		var ylegende=6;
       		
       		// rectangles des legendes
@@ -216,7 +212,7 @@ function graph( source, type) {
   			
   			var ylegende=20;
   			
-  			// nombre d'agents
+  			// nombre de requete
   			
   			g2.append("text")
 				.attr("x","35") 
@@ -235,7 +231,7 @@ function info(id)
 	id = id.toString();
 	var part = document.getElementById(id);
 	part.style.opacity='0.8';
-	info.innerHTML="Agent: " +dataj[nb].agent + "<br> Nombre de visite: "+ dataj[nb].value;      
+	info.innerHTML="Agent: " +dataj[nb].requete + "<br> Nombre de visite: "+ dataj[nb].value;      
 }
 
 function infovide(id)

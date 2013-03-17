@@ -4,6 +4,7 @@
 var data;
 var charge = 0;
 var date1, date2;
+var table = "apache_access_log";
                 
 var id;
 var animation = false;
@@ -16,6 +17,17 @@ function update()//fonction appelée lors du click sur valider
 	var source = event.target.id;//quel objet a appelé
 	var type = event.type;//pour pouvoir vérifier qu'on a bien clické et pas juste passé la souris sur le bouton 
 	var autoLoad = event.target;
+	if(source == "apache" || source == "zope" || autoLoad == "[object HTMLDocument]")
+		{
+			if(source == "zope")
+			{
+				table = "zope_instance_z2_log";
+			}
+			else
+			{
+				table = "apache_access_log";
+			}
+		}
         var xhr = new XMLHttpRequest();//création de la requête
         if(((source == "valider" || source == "updateForm") && type == "click") || autoLoad == "[object HTMLDocument]")//dans le cas où on change les dates du formulaire
         {
@@ -27,7 +39,7 @@ function update()//fonction appelée lors du click sur valider
         	{
         		if(date1.length > 0 || date2.length >0)
         		{
-        			alert('Vous devez respecter la syntaxe: YYY-MM-DD HH:MM:SS');
+        			alert('Vous devez respecter la syntaxe: YYYY-MM-DD HH:MM:SS');
         		}
         		dateTrue = false;
         	}
@@ -56,7 +68,7 @@ function update()//fonction appelée lors du click sur valider
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
 		
-		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbRequete.php?date1='+date1+'&date2='+date2);//parametrage de la requête
+		xhr.open('GET', 'http://localhost:8888/scriptPhp/nbRequete.php?date1='+date1+'&date2='+date2+'&table='+table);//parametrage de la requête
 		xhr.send(null);//envoi de la requete
 		        
 		xhr.onreadystatechange = function() {

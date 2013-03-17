@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<meta charset= "UTF-8" />
 	<meta name="author" content="Amblard Clément, Boulay Baptiste, Play Jonathan"/>
-	<meta name="description" content="Visualisation des erreurs du fichiers logs"/>
+	<meta name="description" content="Visualisation des agents"/>
 	<script type="text/javascript" src="/d3/d3.js"></script>
 </head>
 
