@@ -1,7 +1,7 @@
 <?php
 	require '../params.php';
 
-	ini_set('memory_limit','1G');
+	ini_set('memory_limit','3G');
 	$expression = $_GET['expression'];
 	$date1 = $_GET['date1'];
 	$date2 = $_GET['date2'];
