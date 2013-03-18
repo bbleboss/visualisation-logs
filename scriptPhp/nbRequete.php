@@ -79,14 +79,23 @@
 	{
 	$message = "$message {\"title\":\"trace\",\"value\":$res},";
 	}
-  
- 	$query = "select count(*) 'reqpatch' from $table where request_type = 'patch' and ltime >='$date1' and ltime <='$date2'";
+	
+	$query = "select count(*) 'reqpatch' from $table where request_type = 'patch' and ltime >='$date1' and ltime <='$date2'";
 	$r = mysql_query($query);
 	$a = mysql_fetch_object($r);
 	$res = $a->reqpatch;
 	if($res != 0)
 	{
-	$message = "$message {\"title\":\"patch\",\"value\":$res}]";
+	$message = "$message {\"title\":\"patch\",\"value\":$res},";
+	}
+  
+ 	$query = "select count(*) 'reqautre' from $table where ltime >='$date1' and ltime <='$date2' and request_type != \"get\" and request_type != \"post\" and request_type != \"options\" and request_type != \"head\" and request_type != \"put\" and request_type != \"delete\" and request_type != \"connect\" and request_type != \"trace\" and request_type != \"patch\"";
+	$r = mysql_query($query);
+	$a = mysql_fetch_object($r);
+	$res = $a->reqautre;
+	if($res != 0)
+	{
+	$message = "$message {\"title\":\"autre\",\"value\":$res}]";
 	}
 	else
 	{
