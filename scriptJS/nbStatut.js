@@ -58,7 +58,10 @@ function update()//fonction appelée lors du click sur valider
     	
     	if(dateTrue == true)
   	{
-  		if(date1 > date2)
+  		javaDate1 = conversionDate(date1);
+  		javaDate2 = conversionDate(date2);
+  	
+  		if(javaDate1 > javaDate2)
   		{
   			var tmp = date1;
   			date1 = date2;

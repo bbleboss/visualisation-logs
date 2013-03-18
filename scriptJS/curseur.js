@@ -4,6 +4,9 @@ var curseurX1=0, curseurX2=parseInt(d3.select('nav').style("width"));
 
 var jsDate1;
 var jsDate2;
+//Ces dates seront des instances de dates javascript
+var javaDate1; 
+var javaDate2;
 var millisecD1;
 var millisecD2;
 var charge2 = 0;
@@ -296,4 +299,47 @@ function updateCurseur()//mise à jour des dates
         document.getElementById("curDate1").value = dateX1;
         document.getElementById("curDate2").value = dateX2;
 
+}
+
+//Conversion de la date entrée dans le formulaire en date js pour pouvoir faire la comparaison entre deux dates
+function conversionDate(date){
+	
+	var annee, mois, jour, heure, minutes, secondes;
+
+	if(date.search(":") == -1){
+	
+		annee = date.substring( 0 ,date.indexOf( "-" ));
+		mois = date.substring(date.indexOf( "-" )+1, date.lastIndexOf("-"));
+		jour = date.substring(date.lastIndexOf("-")+1, date.length);
+		
+ 		newDate = new Date();	
+ 		newDate.setFullYear(annee);  
+		newDate.setMonth(mois);  
+		newDate.setDate(jour);	
+		newDate.setHours(0);  
+    	newDate.setMinutes(0);  
+    	newDate.setSeconds(0);  
+    	newDate.setMilliseconds(0);
+    }
+    else{
+    	
+    	annee = date.substring( 0 ,date.indexOf( "-" ));
+		mois = date.substring(date.indexOf( "-" )+1, date.lastIndexOf("-"));
+		jour = date.substring(date.lastIndexOf("-")+1, date.indexOf(" "));
+		
+    	heure = date.substring(date.indexOf(" ")+1, date.indexOf(":"));
+    	minutes = date.substring(date.indexOf( ":" )+1, date.lastIndexOf(":"));
+    	secondes = date.substring(date.lastIndexOf(":")+1, date.length);
+    	
+    	newDate = new Date();	
+ 		newDate.setFullYear(annee);  
+		newDate.setMonth(mois);  
+		newDate.setDate(jour);	
+		newDate.setHours(heure);  
+    	newDate.setMinutes(minutes);  
+    	newDate.setSeconds(secondes);  
+    	newDate.setMilliseconds(0);
+    }
+    
+	return newDate;
 }
