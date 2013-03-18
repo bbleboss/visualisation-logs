@@ -1,6 +1,6 @@
 var date1, date2, nbrequete, dataj;
 var charge = 0;
-var typerequest="tout";
+var typerequest="get";
 //on recupere l'url
 var url =document.location.href;
 
@@ -55,7 +55,7 @@ function update()//fonction appelée lors du click sur valider
 			}
 		}
 		
-		if(source == "tout" || source == "get" || source =="post" || source =="options" || source =="head" || source =="put" || source =="delete" || source =="connect" || source =="trace" || source =="patch")
+		if(source == "tout" || source == "get" || source =="post" || source =="options" || source =="head" || source =="put" || source =="delete" || source =="connect" || source =="trace" || source =="patch" || source =="autre")
 		{
 			if(source == "tout")
 			{
@@ -93,9 +93,13 @@ function update()//fonction appelée lors du click sur valider
 			{
 				typerequest="trace";
 			}
-			else
+			else if (source == "patch")
 			{
 				typerequest="patch";
+			}
+			else
+			{
+				typerequest="autre";
 			}
 		}
         var xhr = new XMLHttpRequest();//création de la requête
