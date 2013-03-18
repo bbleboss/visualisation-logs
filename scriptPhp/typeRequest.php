@@ -14,9 +14,9 @@
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
 
-	if ($typerequest == "tout")
+	if ($typerequest == "autre")
 	{
-		$query = "select request, count(id) as nb from $table where ltime >='$date1' and ltime <='$date2' group by request having nb >= $nbrequete order by nb desc";
+		$query = "select request, count(id) as nb from $table where ltime >='$date1' and ltime <='$date2' and request_type != \"get\" and request_type != \"post\" and request_type != \"options\" and request_type != \"head\" and request_type != \"put\" and request_type != \"delete\" and request_type != \"connect\" and request_type != \"trace\" and request_type != \"patch\"group by request having nb >= $nbrequete order by nb desc";
 		$r = mysql_query($query);
 
 		while($a = mysql_fetch_object($r))
