@@ -3,11 +3,14 @@ var date1 = document.getElementById('date1');
 var date2 = document.getElementById('date2');
 
 
-date1.onchange = function (){updateUrl(date1,date2);};
+date1.onchange = updateUrl;
 			    
-date2.onchange = function(){updateUrl(date1, date2);};
+date2.onchange = updateUrl;
 
-function updateUrl(date1,date2){
+function updateUrl(){
+				
+				var date1 = document.getElementById('date1');
+				var date2 = document.getElementById('date2');
 				liens = document.getElementById('menu').getElementsByTagName('a');//selection des liens
 				for(var i= 0; i < liens.length; i++)
 				{
