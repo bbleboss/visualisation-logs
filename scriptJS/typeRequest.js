@@ -119,7 +119,7 @@ function update()//fonction appelée lors du click sur valider
         		dateTrue = false;
         	}
         	nbrequete = document.getElementById('nbrequete').value;
-			if (isNaN(nbrequete))
+			if (isNaN(nbrequete) || nbrequete == "")
 			{ 
 				alert('Vous devez rentrer un nombre pour le nombre de requete');
 				dateTrue =false;

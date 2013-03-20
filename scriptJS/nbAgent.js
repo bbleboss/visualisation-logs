@@ -40,7 +40,7 @@ function update()//fonction appelée lors du click sur valider
         		dateTrue = false;
         	}
         	nbvisite = document.getElementById('nbvisite').value;
-			if (isNaN(nbvisite))
+			if (isNaN(nbvisite) || nbvisite == "")
 			{ 
 				alert('Vous devez rentrer un nombre pour le nombre de visite');
 				dateTrue =false;

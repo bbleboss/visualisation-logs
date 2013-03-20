@@ -40,7 +40,7 @@ function update()//fonction appelée lors du click sur valider
         	}
         	
         	taillesum = document.getElementById('taillesum').value;
-        	if (isNaN(taillesum))
+        	if (isNaN(taillesum) || taillesum == "")
 			{ 
 				alert('Vous devez rentrer un nombre pour la taille minimum');
 				dateTrue =false;

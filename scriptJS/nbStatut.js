@@ -42,7 +42,7 @@ function update()//fonction appelée lors du click sur valider
         	}
         	
         	nbstatut = document.getElementById('nbstatut').value; 
-        	if (isNaN(nbstatut))
+        	if (isNaN(nbstatut) || nbstatut =="")
 			{ 
 				alert('Vous devez rentrer un nombre pour le nombre de statuts');
 				dateTrue =false;
