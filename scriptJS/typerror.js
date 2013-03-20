@@ -177,7 +177,7 @@ function update()//fonction appelée lors du click sur valider
         	}
         	
         	nberror = document.getElementById('nberror').value;
-        	if (isNaN(nberror))
+        	if (isNaN(nberror) || nberror == "")
 			{ 
 				alert('Vous devez rentrer un nombre pour le nombre minimum d\'erreurs');
 				dateTrue =false;
