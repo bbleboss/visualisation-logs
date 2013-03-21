@@ -27,7 +27,11 @@ function affiche(){ //affichage du curseur
         if(charge2 != 1)
         {
         //Ajout du curseur et des boutons radio en fonction de la page dans laquelle on se trouve
-        if(currentLocation == "error.php" || currentLocation == "requete.php" || currentLocation == "agent.php" || currentLocation == "serveur.php" || currentLocation == "statut.php")
+        if(currentLocation == "graphtemp.php")
+        {
+        	document.getElementById('curseur').innerHTML = "<button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        }
+        else if(currentLocation == "error.php" || currentLocation == "requete.php" || currentLocation == "agent.php" || currentLocation == "serveur.php" || currentLocation == "statut.php" )
         {
         	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"apache\" name=\"serveur\" onclick=\"update()\" checked>Apache <input type=\"radio\" id=\"zope\" name=\"serveur\" onclick=\"update()\">Zope<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
         }
