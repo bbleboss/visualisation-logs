@@ -113,6 +113,7 @@ function graph( source, type) {
     var ylegende= 20;
     var nb =0;
    var text;
+   var text2;
 	     
     if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
      {
@@ -158,8 +159,10 @@ function graph( source, type) {
       		{
       			nb++; 
       			text = "info("+nb+")";
+      			text2 = "liengraph("+nb+");";
       			i = document.getElementById(nb);
       			i.setAttribute("onmouseover",text);
+      			i.setAttribute("onclick",text2);
       		}
       		
       		nb=0;
@@ -248,4 +251,21 @@ function infovide(id)
 	part.style.opacity='1';
 	var info = document.getElementById('information');
 	info.innerHTML="<br><br>";
+}
+
+function liengraph(id)
+{
+ var i =0;
+  while( i < 3)
+        {
+        	date1 = date1.replace("%3A",':');
+        	date1 = date1.replace("%20",' ');
+        	date2 = date2.replace("%3A",':');
+        	date2 = date2.replace("%20",' ');
+        	i++;
+        	
+        }
+        var elemexame = dataj[id-1].agent;
+		location.href="graphtemp.php#elemexame="+elemexame+"&date1="+date1+"&date2="+date2+"&table="+table+"&indicateur=agent";
+	
 }
