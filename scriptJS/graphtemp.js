@@ -55,7 +55,10 @@ window.onload = update;
 
 function update()//fonction appelée lors du click sur valider
 {
-			elemexame =encodeURIComponent(elemexame);
+		var elemexameAffichage = elemexame
+		var info = document.getElementById('information');
+		info.innerHTML="Repartition dans le temps de " +elemexame;  
+		elemexame =encodeURIComponent(elemexame);
 		if(indicateur == "agent")
 		{
 			var scriptPhp = "agentTemps.php?elemexame="+elemexame+"&table="+table;
@@ -135,8 +138,7 @@ function update()//fonction appelée lors du click sur valider
 		var resultat = document.getElementById('resultat');
 		date1 =encodeURIComponent(date1);
 		date2 = encodeURIComponent(date2);
-		var info = document.getElementById('information');
-		info.innerHTML="Repartition de le temps de " +elemexame;  
+
 		
 		xhr.open('GET', 'http://localhost:8888/scriptPhp/'+scriptPhp+'&date1='+date1+'&date2='+date2);//parametrage de la requête
 		xhr.send(null);//envoi de la requete
@@ -177,7 +179,7 @@ function graph(source, type) {
     
               
                   
-    var margin = {top: 50, right: 20, bottom: 30, left: 100},
+    var margin = {top: 50, right: 50, bottom: 30, left: 200},
    		width = 1200 - margin.left - margin.right,
     	height = 500 - margin.top - margin.bottom;
 
@@ -197,11 +199,11 @@ function graph(source, type) {
     	//.tickValues([1, 2, 3, 5, 8, 13, 21]);              
 
     var svg = d3.select("#resultat").append("svg") //création du svg
-    	.attr("width", 1090) //largeur du svg
+    	.attr("width", 1200) //largeur du svg
     	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
     	.attr("id", "barre")
   	.append("g")
-   	.attr("transform", "translate(" + 30 + "," + margin.top + ")");    
+   	.attr("transform", "translate(" + 40+ "," + margin.top + ")");    
    		
    	x.domain(tranches_horaires.map(function(d) { return d; })); //Determine toutes les valeurs qui seront présentes en abscisse sur notre graphique
    	
@@ -225,7 +227,7 @@ function graph(source, type) {
       	.attr("y", 6)
       	.attr("dy", ".71em")
       	.style("text-anchor", "end")
-      	.text("Frequence");
+      	.text("Quantité");
      	
      	
   	var group = svg.selectAll("group") //création de svg dans lesquels on mettra les rect
