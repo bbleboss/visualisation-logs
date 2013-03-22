@@ -55,7 +55,6 @@ window.onload = update;
 
 function update()//fonction appelée lors du click sur valider
 {
-		var elemexameAffichage = elemexame
 		var info = document.getElementById('information');
 		info.innerHTML="Repartition dans le temps de " +elemexame;  
 		elemexame =encodeURIComponent(elemexame);
