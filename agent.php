@@ -38,6 +38,7 @@
 		<div id=information></div>
 		<div id=resultat></div>
 		<div id=legende></div>
+		<script src="scriptJS/popup.js"></script>
 		<script src="scriptJS/nbAgent.js"></script>
 		<script src="scriptJS/curseur.js"></script>
 		<script src="scriptJS/modifUrl.js"></script>
