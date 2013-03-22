@@ -113,8 +113,6 @@ function graph( source, type) {
     var ylegende= 20;
     var nb =0;
    var text;
-   var text2;
-	     
     if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
      {
                 d3.selectAll("svg").remove();
@@ -151,6 +149,7 @@ function graph( source, type) {
     		.enter().append("g")
       		.attr("class", "arc")
       		.attr("id", function(){ nb++; text = "info("+nb+")";return nb;})
+      		.attr("style", "cursor:pointer");
       		
       		var i;
       		var nbmax =nb;
@@ -158,22 +157,16 @@ function graph( source, type) {
       		while (nb< nbmax)
       		{
       			nb++; 
+      			i = document.getElementById(nb);
       			text = "info("+nb+")";
-      			text2 = "liengraph("+nb+");";
-      			i = document.getElementById(nb);
       			i.setAttribute("onmouseover",text);
-      			i.setAttribute("onclick",text2);
-      		}
-      		
-      		nb=0;
-      		while (nb< nbmax)
-      		{
-      			nb++; 
+      			text = "liengraph("+nb+");";
+      			i.setAttribute("onclick",text);
       			text = "infovide("+nb+")";
-      			i = document.getElementById(nb);
       			i.setAttribute("onmouseout",text);
       		}
-
+      		nb=0;
+      		
   			g.append("path")
   			.attr("d", 0) 
   			.style("fill", "white")
@@ -201,16 +194,34 @@ function graph( source, type) {
 				.attr("y","15")
       		.text("Nom des Agents");
   			
+  			var nb2 =nbmax;
   			var g2 = svglegende.selectAll(".agent")
       		.data(dataj)
     		.enter().append("g")
-      		.attr("class", "agent");
+      		.attr("class", "agent")
+      		.attr("id", function(){ nb2++; return nb2;})
+      		.attr("style", "cursor:pointer");
+      		
+      		var nbmax2 =nb2;
+      		nb2 =nbmax+1;
+      		while (nb <nbmax)
+      		{
+      			nb++;
+      		    text = "liengraph("+nb+")";
+      			i = document.getElementById(nb2);
+      			i.setAttribute("onclick",text);
+      			nb2++;
+      			
+      		}
+      		nb =0;
       		
       		// nom des agents
+      		
       		g2.append("text")
 				.attr("x","120") 
 				.attr("y",function(){ ylegende= ylegende +15; return ylegende})
       		.text(function(d) { return d.agent; });
+      		
       		var ylegende=6;
       		
       		// rectangles des legendes

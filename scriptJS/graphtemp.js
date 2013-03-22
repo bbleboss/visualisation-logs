@@ -198,7 +198,7 @@ function graph(source, type) {
     	//.tickValues([1, 2, 3, 5, 8, 13, 21]);              
 
     var svg = d3.select("#resultat").append("svg") //création du svg
-    	.attr("width", 1200) //largeur du svg
+    	.attr("width", 1000) //largeur du svg
     	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
     	.attr("id", "barre")
   	.append("g")
