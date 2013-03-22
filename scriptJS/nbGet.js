@@ -204,7 +204,21 @@ function graph(source, type) {
     	     .data(function (d){return d;})
     	     .enter().append("rect")
     	     .attr("class", "bar")
-     	     .attr("width", x.rangeBand()/2)
+     	     .attr("width", function(){ 
+     	     					var arrayHisto = new Array();
+   						for(var i = 0; i < acces.length; i++)
+   						{
+   							arrayHisto[i] = acces[i][1];
+   						}
+   						if(d3.max(arrayHisto) == 0)//si l'historique est vide
+   						{
+   							return x.rangeBand();
+   						}
+   						else
+   						{
+   							return x.rangeBand()/2;
+   						}
+   					})
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
       	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 15, 193)"; }else{ return "rgb(51, 153, 193)";}})
      	     .transition()
