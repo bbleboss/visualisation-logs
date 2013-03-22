@@ -153,7 +153,7 @@ function graph(source, type) {
       			text = "info("+nb+")";
       			i = document.getElementById(nb);
       			i.setAttribute("onmouseover",text);
-      			text = "liengraph("+nb+");";
+      			text = "popUp("+nb+", \"host\")";
       			i.setAttribute("onclick",text);
       			text = "infovide("+nb+")";
       			i.setAttribute("onmouseout",text);
@@ -207,7 +207,7 @@ function graph(source, type) {
       		while (nb <nbmax)
       		{
       			nb++;
-      		    text = "liengraph("+nb+")";
+      		    text = "popUp("+nb+", \"host\")";
       			i = document.getElementById(nb2);
       			i.setAttribute("onclick",text);
       			nb2++;
@@ -267,21 +267,4 @@ function infovide(id)
 	id = id.toString();
 	var part = document.getElementById(id);
 	part.style.opacity='1';
-}
-
-function liengraph(id)
-{
- var i =0;
-  while( i < 3)
-        {
-        	date1 = date1.replace("%3A",':');
-        	date1 = date1.replace("%20",' ');
-        	date2 = date2.replace("%3A",':');
-        	date2 = date2.replace("%20",' ');
-        	i++;
-        	
-        }
-        var elemexame = dataj[id-1].host;
-		location.href="graphtemp.php#elemexame="+elemexame+"&date1="+date1+"&date2="+date2+"&table="+table+"&indicateur=host";
-	
 }
