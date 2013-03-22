@@ -206,7 +206,7 @@ function graph(source, type) {
     	     .attr("class", "bar")
      	     .attr("width", x.rangeBand()/2)
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
-      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}})
+      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 15, 193)"; }else{ return "rgb(51, 153, 193)";}})
      	     .transition()
     	     .delay(100)
    	     .duration(1000)
@@ -220,7 +220,7 @@ function graph(source, type) {
            .attr("y",-50)
            .attr("width", 20)
            .attr("height", 20)
-           .attr("fill", "rgb(51, 153, 193)");
+           .attr("fill", "rgb(51, 15, 193)");
        
        svg.append("text")
            .attr("x",25)
@@ -234,7 +234,7 @@ function graph(source, type) {
 		   .attr("y",-25)
 		   .attr("width", 20)
 		   .attr("height", 20)
-		   .attr("fill", "rgb(51, 15, 193)");
+		   .attr("fill", "rgb(51, 153, 193)");
 		
 	       svg.append("text")
            	  .attr("x",25)
