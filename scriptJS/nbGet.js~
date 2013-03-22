@@ -7,6 +7,7 @@ var date1, date2, oldD1, oldD2;
 var acces = new Array();
 var tranches_horaires = new Array;
 
+
 var source;
 
 var id;
@@ -77,8 +78,12 @@ function update()//fonction appelée lors du click sur valider
         }
         
         if(dateTrue == true)
-  	{
-  		if(date1 > date2)
+  		{
+  		
+  		javaDate1 = conversionDate(date1);
+  		javaDate2 = conversionDate(date2);
+  	
+  		if(javaDate1 > javaDate2)
   		{
   			var tmp = date1;
   			date1 = date2;
@@ -201,7 +206,7 @@ function graph(source, type) {
     	     .attr("class", "bar")
      	     .attr("width", x.rangeBand()/2)
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
-      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 153, 193)"; }else{ return "rgb(51, 15, 193)";}})
+      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 15, 193)"; }else{ return "rgb(51, 153, 193)";}})
      	     .transition()
     	     .delay(100)
    	     .duration(1000)
