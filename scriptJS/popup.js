@@ -26,7 +26,7 @@ function popUp(id, statut){
 	    popup.appendChild(message);
 	    document.body.appendChild(popup);
 	
-	    popup.setAttribute("style", "position:fixed;background-color: black; opacity:0.5; top:"+((screen.height/2)-320)+"px;left:"+((screen.width/2)-500)+"px;");
+	    popup.setAttribute("style", "position:fixed;background-color: black; opacity:0.8; top:"+((screen.height/2)-320)+"px;left:"+((screen.width/2)-500)+"px;");
 	    
 	    var i =0;
 	    while( i < 3)
