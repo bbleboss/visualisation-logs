@@ -9,25 +9,28 @@ function popUp(id, statut){
     
     if(premierPlan == 0)//on ouvre un popup à la fois
     {
-    	    premierPlan = 1;
-    	    var htmlElement = document.getElementsByTagName('html')[0]; //empêche le scroll, permet d'être sur que l'utilisateur cliquera pas sur un bouton de l'interface pendant qu'il consulte le popup
+    	premierPlan = 1;
+    	var htmlElement = document.getElementsByTagName('html')[0]; //empêche le scroll, permet d'être sur que l'utilisateur cliquera pas sur un bouton de l'interface pendant qu'il consulte le popup
 	    htmlElement.style.overflow = 'hidden';
+	    
 	    var popup = document.createElement('div');
 	    popup.className = 'popup';
 	    popup.id = 'popup';
+	    popup.setAttribute("style", "position:fixed;background-color: rgba(0, 0, 0, 0.8); top:"+((screen.height/2)-400)+"px;left:"+((screen.width/2)-600)+"px;");
+	    
 	    var cancel = document.createElement('div');
 	    cancel.innerHTML = 'fermer';
 	    cancel.setAttribute("style", "color:white;cursor:pointer;");
 	    cancel.onclick = function (e) { htmlElement.style.overflow = 'visible';premierPlan = 0; popup.parentNode.removeChild(popup); };
+	   
 	    var message = document.createElement('div');
 	    message.id = 'info';
-	    message.setAttribute("style", "color:white;text-align:center;font-size:20px;");                                   
+	    message.setAttribute("style", "width: 1000px; margin-bottom: 20px; margin-top: 20px; color:white;text-align:center;font-size:20px;");                                   
+	   
 	    popup.appendChild(cancel);
 	    popup.appendChild(message);
 	    document.body.appendChild(popup);
-	
-	    popup.setAttribute("style", "position:fixed;background-color: black; opacity:0.8; top:"+((screen.height/2)-320)+"px;left:"+((screen.width/2)-500)+"px;");
-	    
+		    
 	    var i =0;
 	    while( i < 3)
 	    {
@@ -76,7 +79,7 @@ function temporel(elemexame, table, date1, date2, indicateur){
 	d2 = date2;
 
 	var info = document.getElementById('info');
-	info.innerHTML="Repartition dans le temps de " +elem;  
+	info.innerHTML="Repartition dans le temps de " +elem;
 	elem =encodeURIComponent(elem);
 	if(indic == "agent")
 	{
@@ -149,6 +152,7 @@ function graphTemp() {
     var svg = d3.select("#popup").append("svg") //création du svg
     	.attr("width", 1000) //largeur du svg
     	.attr("height", height + margin.top + margin.bottom) //hauteur du svg
+    	.attr("opacity", 1)
     	.attr("id", "barre")
   	.append("g")
   	.style("fill", "white")
