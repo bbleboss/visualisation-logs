@@ -30,7 +30,7 @@ function popUp(id, statut){
             popup.appendChild(cancel);
             popup.appendChild(message);
             document.body.appendChild(popup);
-            document.body.onclick = function () { if(event.target.className != "[object SVGAnimatedString]")
+            document.body.onmouseup = function () { if(event.target.className != "[object SVGAnimatedString]"||event.target.id == "x1Date" || event.target.id == "x2Date" || event.target.id == "zoneDate") //la verifi des id permet de fermer quand on clique sur le curseur, sinon ça fermerait pas car curseur est un SVGAnimatedString
             						{
             							premierPlan = 0; 
             							popup.parentNode.removeChild(popup);
