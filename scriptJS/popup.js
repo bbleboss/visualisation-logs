@@ -14,7 +14,7 @@ function popUp(id, statut){
         
             var popup = document.createElement('div');
             popup.className = 'popup';
-            zpopup.id = 'popup';
+            popup.id = 'popup';
             
             popup.setAttribute("style", "border-radius: 7px;position:fixed;background-color: rgba(0, 0, 0, 0.8); top:"+((window.innerHeight/2)-296)+"px;left:"+((window.innerWidth/2)-500)+"px;");
             
