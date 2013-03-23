@@ -10,18 +10,17 @@ function popUp(id, statut){
     if(premierPlan == 0)//on ouvre un popup à la fois
     {
     	premierPlan = 1;
-    	var htmlElement = document.getElementsByTagName('html')[0]; //empêche le scroll, permet d'être sur que l'utilisateur cliquera pas sur un bouton de l'interface pendant qu'il consulte le popup
-	    htmlElement.style.overflow = 'hidden';
-	    
+    	
 	    var popup = document.createElement('div');
 	    popup.className = 'popup';
 	    popup.id = 'popup';
-	    popup.setAttribute("style", "position:fixed;background-color: rgba(0, 0, 0, 0.8); top:"+((screen.height/2)-400)+"px;left:"+((screen.width/2)-600)+"px;");
+	    alert(window.clientHeight);
+	    popup.setAttribute("style", "position:fixed;background-color: rgba(0, 0, 0, 0.8); top:"+((window.innerHeight/2)-296)+"px;left:"+((window.innerWidth/2)-500)+"px;");
 	    
 	    var cancel = document.createElement('div');
-	    cancel.innerHTML = 'fermer';
-	    cancel.setAttribute("style", "color:white;cursor:pointer;");
-	    cancel.onclick = function (e) { htmlElement.style.overflow = 'visible';premierPlan = 0; popup.parentNode.removeChild(popup); };
+	    cancel.innerHTML = 'Fermer';
+	    cancel.setAttribute("style", "color:white;cursor:pointer;margin-left:5px;margin-top:5px;");
+	    cancel.onclick = function (e) { premierPlan = 0; popup.parentNode.removeChild(popup); };
 	   
 	    var message = document.createElement('div');
 	    message.id = 'info';
@@ -185,7 +184,7 @@ function graphTemp() {
     	     .enter().append("rect")
     	     .attr("class", "bar")
      	     .attr("width", x.rangeBand())
-     	     .attr("x", function(d){return x(d);})
+     	     .attr("x", function(d, i){return x(i);})
       	     .attr("fill", "rgb(51, 153, 193)")
      	     .transition()
     	     .delay(100)
