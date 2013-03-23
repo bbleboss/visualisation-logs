@@ -20,17 +20,19 @@ function popUp(id, statut){
             
             var cancel = document.createElement('div');
             cancel.innerHTML = 'Fermer';
-            cancel.setAttribute("style", "color:white;cursor:pointer;margin-left:5px;margin-top:5px;");
+            cancel.className = 'popup';
+            cancel.setAttribute("style", "color:white;cursor:pointer;margin-left:5px;margin-top:5px;display:inline;");
             cancel.onclick = function (e) { premierPlan = 0; popup.parentNode.removeChild(popup); };
            
             var message = document.createElement('div');
             message.id = 'info';
+            message.className = 'popup';
             message.setAttribute("style", "width: 1000px; margin-bottom: 20px; margin-top: 20px; color:white;text-align:center;font-size:20px;");                                   
            
             popup.appendChild(cancel);
             popup.appendChild(message);
             document.body.appendChild(popup);
-            document.body.onmouseup = function () { if(event.target.className != "[object SVGAnimatedString]"||event.target.id == "x1Date" || event.target.id == "x2Date" || event.target.id == "zoneDate") //la verifi des id permet de fermer quand on clique sur le curseur, sinon ça fermerait pas car curseur est un SVGAnimatedString
+            document.body.onmouseup = function () { if((event.target.className != "[object SVGAnimatedString]"||event.target.id == "x1Date" || event.target.id == "x2Date" || event.target.id == "zoneDate")&& event.target.className != "popup") //la verifi des id permet de fermer quand on clique sur le curseur, sinon ça fermerait pas car curseur est un SVGAnimatedString
             						{
             							premierPlan = 0; 
             							popup.parentNode.removeChild(popup);
