@@ -52,7 +52,7 @@ var expressionDescription;
 function majBoutonApache() {
 	expressionModule = "null";
 	document.getElementById('expression').innerHTML = "";
-	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
+	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text value=\"##\" /></br></form>";
 }
 //Fonction appelée lorsqu'on clique sur le radio bouton 'Zope'
 function majBoutonZope() {
@@ -60,7 +60,7 @@ function majBoutonZope() {
 	expressionModule = "";
 
 	document.getElementById('expression').innerHTML = "";
-	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionModule\">Expression régulière pour le module de l'erreur </label>: <input id=expressionModule name=expressionModule type=text /></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text /></br></form>";
+	document.getElementById('expression').innerHTML = "<form></br><label for=\"expressionModule\">Expression régulière pour le module de l'erreur </label>: <input id=expressionModule name=expressionModule type=text value=\"##\"/></br><label for=\"expressionDescription\">Expression régulière pour la description de l'erreur </label>: <input id=expressionDescription name=expressionDescription type=text value=\"##\"/></br></form>";
 	
 }
  
