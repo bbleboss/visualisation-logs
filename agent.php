@@ -29,7 +29,7 @@
 				</br>
 				<label for="nbvisite">Nombre de visite minimum de l'agent </label>: <input id= nbvisite name=nbvisite type=text value="1" />
 				</br>
-				<label for="expression">Expression régulière pour le nom de l'agent </label>: <input id=expression name=expression type=text />
+				<label for="expression">Expression régulière pour le nom de l'agent </label>: <input id=expression name=expression type=text value="##"/>
 				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>

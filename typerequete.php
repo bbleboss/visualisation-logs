@@ -29,7 +29,7 @@
 				</br>
 				<label for="nbrequete">Nombre de requête minimum</label>: <input id= nbrequete name=nbrequete type=text value="1" />
 				</br>
-				<label for="expression">Expression régulière pour le nom des requêtes </label>: <input id=expression name=expression type=text />
+				<label for="expression">Expression régulière pour le nom des requêtes </label>: <input id=expression name=expression type=text value="##"/>
 				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>

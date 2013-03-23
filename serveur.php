@@ -29,7 +29,7 @@
 				</br>
 				<label for="nberror">Minimum du total de la taille des données </label>: <input id= taillesum name=taillesum type=text value="1" />
 				</br>
-				<label for="expressionServeur">Expression régulière pour l'intitulé des serveurs </label>: <input id=expressionServeur name=expressionServeur type=text />
+				<label for="expressionServeur">Expression régulière pour l'intitulé des serveurs </label>: <input id=expressionServeur name=expressionServeur type=text value="##" />
 				</br>
 				<label for ="trie"> Trier par</label> :<select name="trie" id="trie">
   																	<option value="taille">Taille</option>

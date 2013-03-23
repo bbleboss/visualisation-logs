@@ -126,7 +126,7 @@ function update()//fonction appelée lors du click sur valider
 
 // Affichage du graphique                       
 function graph(source, type) {
-                         
+                  
 	if(charge == 1 && ((source == "valider"|| source == "updateForm")&& type == "click"))//si on change le formulaire on refait toutes les svg
 	{
         d3.selectAll("svg").remove();

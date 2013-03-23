@@ -1,4 +1,3 @@
-
 var data;
 var charge = 0;
 var d1, d2, oldD1, oldD2;
@@ -10,7 +9,7 @@ function popUp(id, statut){
     
     if(premierPlan == 0)//on ouvre un popup à la fois
     {
-        premierPlan = 1;
+    	premierPlan = 1;
         
             var popup = document.createElement('div');
             popup.className = 'popup';
@@ -74,18 +73,12 @@ function popUp(id, statut){
 
 function temporel(elemexame, table, date1, date2, indicateur){
 
-        
         // on récupere l'élément à examiner et la table dans l'url ainsi qu'un indicateur nous permettant de savoir quelle page a envoyé  
-
         var elem = elemexame;
-
         var tab = table;
-
         var indic = indicateur;
-
         d1 = date1;
         d2 = date2;
-
         var info = document.getElementById('info');
         info.innerHTML="Repartition dans le temps de " +elem;
         elem =encodeURIComponent(elem);
@@ -113,7 +106,6 @@ function temporel(elemexame, table, date1, date2, indicateur){
         initTranches(); //Initialisation du tableau de tranches horaires, nécessaire pour le svg en graphique 
                 
         var xhr = new XMLHttpRequest();//création de la requête
-        
         var popup = document.getElementById('popup');
         d1 =encodeURIComponent(d1);
         d2 = encodeURIComponent(d2);
@@ -131,17 +123,13 @@ function temporel(elemexame, table, date1, date2, indicateur){
                                                 graphTemp(); //Affichage du graphique
                                                 }
         }
-
 }
 // Affichage du graphique                       
 function graphTemp() {
-                       
-              
-                  
     var margin = {top: 50, right: 50, bottom: 30, left: 200},
                 width = 1200 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
-
+        
         var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
 
@@ -220,6 +208,7 @@ function graphTemp() {
 
 function initTranches()
 {
+
         tranches_horaires[0] = '00-01';
         tranches_horaires[1] = '01-02';
         tranches_horaires[2] = '02-03';
@@ -245,14 +234,11 @@ function initTranches()
         tranches_horaires[22] = '22-23';
         tranches_horaires[23] = '23-00';
 }
-        
+
 //Cette Fonction permet de répartir les accès répertoriés dans un tableau de tranches horaires
 function parse_tab()
 {
-        
-        var comp;
-
-        
+     var comp;        
         for(var i = 0; i < 24; i++)
         {
                 acces[i] = 0;
@@ -263,8 +249,8 @@ function parse_tab()
         for(var i in data)//on update les nouvelles
         {
                 comp = parse_date(data[i].ltime)
-
                 var hour = comp.getHours()
                 acces[hour] += 1; 
         }
+
 }
