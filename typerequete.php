@@ -22,7 +22,7 @@
 	<section class="page">
 		<h1>Récupération des Requêtes</h1>
 			<form>
-				<p>Rentrez la date sous la forme YYYY-MM-DD</p>
+				<p>Rentrez la date sous la forme YYYY-MM-DD HH:MM:SS</p>
 				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text />
 				</br>
 				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text />

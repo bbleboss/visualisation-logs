@@ -9,6 +9,7 @@
 	$trie = $_GET['trie'];
 	$table = $_GET['table'];
 	$expressionServeur = $_GET['expressionServeur'];
+	$trouve=0;
 	$message = "[";
     mysql_connect($host, $user, $password) or die('Erreur de connexion avec la base de données');
     mysql_select_db($base) or die('Base de données inexistante');
@@ -27,6 +28,7 @@
   	{
   		if(preg_match($expressionServeur, $a->host) || strlen($expressionServeur) < 2)
   		{
+  		$trouve = 1;
   		$host=$a->host;
   		$host=preg_replace('#\"#', ' ', $host);
   		$host= str_replace("\\", " ", $host);
@@ -36,6 +38,11 @@
   		}
   	}
   	$message=preg_replace('#,$#', ']', $message);
+  	
+  	if($trouve==0)
+  	{
+  		$message += ']';
+  	}
   	 echo $message;
   	
 ?>

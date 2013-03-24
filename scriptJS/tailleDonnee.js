@@ -83,13 +83,21 @@ function update()//fonction appelée lors du click sur valider
 		xhr.onreadystatechange = function() {
 		                               			if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
-		                                        	graph(source, type);
-		                                        	//On supprime l'animation de chargement
-		                                        	document.getElementById('chargement').innerHTML = "";
-		                                        	
-		                                		if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        	if(dataj == 0)
 		                                        	{
-		                                        		affiche();
+		                                        		alert("Aucun élément n'a été trouvé.");
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        	}
+		                                        	else
+		                                        	{
+		                                        		graph(source, type);
+		                                        		//On supprime l'animation de chargement
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        	
+		                                				if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        		{
+		                                        			affiche();
+		                                        		}
 		                                        	}
 		                                        }
 		                                	};

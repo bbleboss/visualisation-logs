@@ -90,7 +90,7 @@ function update()//fonction appelée lors du click sur valider
 		                                        	dataj= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
 		                                        	if(dataj == 0)
 		                                        	{
-		                                        		alert("Aucun élément n'a été trouvé avec l'expression régulière entrée.");
+		                                        		alert("Aucun élément n'a été trouvé.");
 		                                        		document.getElementById('chargement').innerHTML = "";
 		                                        	}
 		                                        	else{
