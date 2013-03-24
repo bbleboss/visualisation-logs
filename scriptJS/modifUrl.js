@@ -58,4 +58,4 @@ function updateDate(date)
 	document.getElementById(date).value = date1;
 }
 
-//updateUrl(date1, date2);
+updateUrl(date1, date2);
