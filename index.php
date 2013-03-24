@@ -25,7 +25,9 @@
 				pour but de visionner de manière simplifiée les données des fichier logs du laboratoire LIRIS grace à des visualisations explicites. Pour réaliser l'ensemble de
 				celles-ci, nous nous sommes appuyé sur une bibliothèque javascript open source spécialisée dans la visualisation nommée <a href="http://d3js.org">D3.js</a> qui a été créée en 2010 et qui est encore en 
 				développement aujourd'hui (dernière release le 21 mars 2013). </p>
+				
 			<h2 class="vert">II. Guide d'Utilisation</h2>
+				<p class="index"><em> Attention: Le visualisateur ne fonctionne que sous les navigateurs ayant pour moteur de rendu Webkit (ex: Google Chrome ou Safari).</em><p> 
 				<p class="index">Chaque visualisation possède 2 champs pour choisir l'interval de dates (au format YYYY-MM-DD HH:MM:SS) sur laquelle la visualisation doit s'effectuer. Une fois la visualisation lancée, un curseur apparait (barre grise) qui permet
 				de réduire l'interval afin d'avoir une visualisation plus fine. Vous pouvez aussi selectionner la table à interroger en cliquant sur les boutons radio "Apache" ou "Zope". 
 				Si vous souhaitez récupérer les dates du curseur dans le formulaire, cliquez sur le bouton "Mettre à jour le formulaire" situé juste au dessus du curseur à droite.</p>
