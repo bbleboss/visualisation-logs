@@ -25,8 +25,23 @@
 				pour but de visionner de manière simplifiée les données des fichier logs du laboratoire LIRIS grace à des visualisations explicites. Pour réaliser l'ensemble de
 				celles-ci, nous nous sommes appuyé sur une bibliothèque javascript open source spécialisée dans la visualisation nommée <a href="http://d3js.org">D3.js </a> qui a été créée en 2010 et qui est encore en 
 				développement aujourd'hui(dernière release le 21 mars 2013). </p>
-			<h2>II. Le Guide d'Utilisation</h2>
-			
+			<h2>II. Guide d'Utilisation</h2>
+				<p>Chaque visualisation possède 2 champs pour choisir l'interval de dates (au format YYYY-MM-DD HH:MM:SS) sur laquelle la visualisation doit s'effectuer. Une fois la visualisation lancée, un curseur apparait (barre grise) qui permet
+				de réduire l'interval afin d'avoir une visualisation plus fine. Vous pouvez aussi selectionner la table à interroger en cliquant sur les boutons radio "Apache" ou "Zope". 
+				Si vous souhaitez récupérer les dates du curseur dans le formulaire, cliquez sur le bouton "Mettre à jour le formulaire" situé juste au dessus du curseur à droite.</p>
+				
+				<h3> Les Cercles </h3>
+					<p>Chaque cercle represente le nombre d'occurrence d'un évenement de manière proportionnelle par rapport aux autres cercles. Pour avoir plus de détail sur l'évenement, il suffit de cliquer 
+					sur un cercle et vous serez renvoyé vers une visualisation camembert plus précise. </p>
+				<h3> Les Camemberts </h3>
+					<p>Les diagrammes camemberts permettent un trie par expressions régulières (non obligatoire), celles-ci sont en php, c'est pour cela qu'il faut mettre sa règle entre 2 "#". On peut aussi
+					choisir le nombre minimum d'occurrence d'un évenement grace au champ juste en dessous de celui des dates.</p> 
+					<p>Au survol d'une part du diagramme vous trouverez les informations liées à celle-ci juste en dessous du curseur. Vous retrouvez aussi celles-ci dans la légende située en dessous du diagrammes.
+					Le diagramme est construit dans le sens des aiguilles d'une montre, la première légende correspond donc à la première part à droite de l'axe des ordonnées. Vous pouvez aussi cliquer sur chaque part
+					ou sur chaque légende pour voir un histogramme de l'évenement sélectionné en fonction du temps (journée de 24h).</p>
+				<h3> L'Histogramme </h3>
+					<p>L'histogramme permet de voir le pourcentage d'une requête par tranches horaires (journée de 24h). Il est donc fortement conseillé de n'utiliser que sur des jours entiers (YYYY-MM-DD). Quand vous changez
+					de dates sur ce diagramme, celui garde en historique la précédente visualisation qui apparait en bleu clair.</p>
 		<script src="scriptJS/modifUrl.js"></script>
 	</section>
 	<!--[if lt IE 9]>
