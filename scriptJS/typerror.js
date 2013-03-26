@@ -415,7 +415,7 @@ function info(id)
 	var info = document.getElementById('information');
 	if (table == "apache_error_log")
 	{
-	info.innerHTML="Erreur: " +dataj[nb].description + "<br> Nombre de visite: "+ dataj[nb].value; 
+	info.innerHTML="Erreur: " +dataj[nb].description + "<br> Nombre d'apparition: "+ dataj[nb].value; 
 	}
 	else
 	{
