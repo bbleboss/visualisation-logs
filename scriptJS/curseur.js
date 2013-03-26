@@ -124,9 +124,12 @@ function affiche(){ //affichage du curseur
                         						d2.value = document.getElementById('curDate2').value;
                         						update();
                         					  }
-    	document.getElementById('clear').onclick = function(){
-        				
-                        						update();
+                        					  
+        if(currentLocation == "acces.php"){
+                       					  
+    		document.getElementById('clear').onclick = function(){		
+            	update();
+        	}
         }
         
         }
