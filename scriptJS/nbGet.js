@@ -103,20 +103,28 @@ function update()//fonction appelée lors du click sur valider
 		xhr.onreadystatechange = function() {
 		                                		if (xhr.readyState == 4 && xhr.status == 200) { //si requete terminée et ok
 		                                        	
-		                                        	data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
+		                                        	if(JSON.parse(xhr.responseText)!=null){
 		                                        	
-		                                        	parse_tab();
+		                                        		data= JSON.parse(xhr.responseText);//transformation de la chaine en JSON
+		                                        	
+		                                        	
+		                                        		parse_tab();
 
-		                                        	percentage();
+		                                        		percentage();
 		                                        	
-		                                        	graph(source, type); //Affichage du graphique
+		                                        		graph(source, type); //Affichage du graphique
 													
 														//On supprime l'animation de chargement
-		                                        	document.getElementById('chargement').innerHTML = "";
+		                                        		document.getElementById('chargement').innerHTML = "";
 		                                        	
-		                                        	if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
-		                                        	{
-		                                        		affiche(); //Affichage du curseur
+		                                        		if(((source == "valider"|| source == "updateForm") && type == "click" )|| autoLoad == "[object HTMLDocument]")// on appel affiche que quand on a détruit le curseur
+		                                        		{
+		                                        			affiche(); //Affichage du curseur
+		                                        		}
+		                                        	}
+		                                        	else{
+		                                        		document.getElementById('chargement').innerHTML = "";
+		                                        		alert("Aucun élément trouvé.");
 		                                        	}
 		                                		}
 		                                	};
@@ -131,7 +139,7 @@ function graph(source, type) {
 	{
         d3.selectAll("svg").remove();
    	 }
-	else //sinon que les cercles
+	else 
     	{
     		
 		d3.select('#barre').remove();
