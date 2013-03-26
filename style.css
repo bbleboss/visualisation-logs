@@ -404,6 +404,11 @@ input[type=text]
 	float:right;
 }
 
+#clear
+{
+	float :right;
+}
+
 #resultat
 {
 	margin:auto;

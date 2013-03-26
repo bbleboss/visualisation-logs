@@ -37,7 +37,7 @@ function affiche(){ //affichage du curseur
         }
         else if(currentLocation == "acces.php")
         {
-        	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"get\" name=\"serveur\" onclick=\"update()\" checked>Get (Accès externe)  <input type=\"radio\" id=\"post\" name=\"serveur\" onclick=\"update()\">Post <input type=\"radio\" id=\"head\" name=\"serveur\" onclick=\"update()\">Head  <input type=\"radio\" id=\"options\" name=\"serveur\" onclick=\"update()\">Options<br><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
+        	document.getElementById('curseur').innerHTML = "<input type=\"radio\" id=\"get\" name=\"serveur\" onclick=\"update()\" checked>Get (Accès externe)  <input type=\"radio\" id=\"post\" name=\"serveur\" onclick=\"update()\">Post <input type=\"radio\" id=\"head\" name=\"serveur\" onclick=\"update()\">Head  <input type=\"radio\" id=\"options\" name=\"serveur\" onclick=\"update()\">Options<br/><button id=\"clear\">Effacer graphe</button><br/><br/><button id=\"updateForm\">Mettre à jour le formulaire</button>Période du <input id= curDate1 name=cursDate1 type=text readonly/> au <input id= curDate2 name=cursDate2 type=text readonly/>";
         }
         else if(currentLocation == "requete.php")
         {
@@ -128,6 +128,11 @@ function affiche(){ //affichage du curseur
                         						d2.value = document.getElementById('curDate2').value;
                         						update();
                         					  }
+    	document.getElementById('clear').onclick = function(){
+        				
+                        						update();
+        }
+        
         }
         var curseur= d3.select("#curseur").append("svg")
                                           .attr("class", "chart")

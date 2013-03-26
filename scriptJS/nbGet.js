@@ -132,6 +132,8 @@ function update()//fonction appelée lors du click sur valider
 }
 
 
+
+
 // Affichage du graphique                       
 function graph(source, type) {
                   
@@ -228,7 +230,7 @@ function graph(source, type) {
    						}
    					})
      	     .attr("x", function(d, i) {if(i == 1){ return x.rangeBand()/2; }else{return 0;} })
-      	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 15, 193)"; }else{ return "rgb(51, 153, 193)";}})
+     	     .attr("fill", function(d, i){ if(i== 0){return "rgb(51, 15, 193)"; }else{ return "rgb(51, 153, 193)";}})
      	     .transition()
     	     .delay(100)
    	     .duration(1000)
@@ -249,7 +251,7 @@ function graph(source, type) {
            .attr("y",-35) 
            .text("Du "+parse_date(date1, true)+" au "+parse_date(date2, true));
            
-       if(charge == 1 && source != "get" && source != "post" && source != "options" && source != "head")//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
+       if(charge == 1 && source != "get" && source != "post" && source != "options" && source != "head" && source != "clear")//si on a mis à jour au moins une fois, alors il y a un historique donc on met la deuxième legende
        {
 	       svg.append("rect")
 		   .attr("x",0)
@@ -303,7 +305,7 @@ function parse_tab()
 	
 	var comp;
 
-	if(acces.length == 0 || source == "get" || source == "post" || source == "options" || source == "head" )//On initialise le tableau à deux dimensions
+	if(acces.length == 0 || source == "get" || source == "post" || source == "options" || source == "head" || source == "clear" )//On initialise le tableau à deux dimensions
 	{
 		for(var i = 0; i < 24; i++)
 		{
