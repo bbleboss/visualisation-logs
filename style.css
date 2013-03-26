@@ -345,7 +345,7 @@ h2.bleufonce
 	margin-top:3%;
 	width:73%;
 	color: rgb(91, 161, 218);
-	border-bottom: solid 9px rgb(91, 161, 218);
+	border-bottom: solid 6px rgb(91, 161, 218);
 }
 
 h2.vert
@@ -354,7 +354,7 @@ h2.vert
 	margin-top:3%;
 	width:73%;
 	color: rgb(120, 169, 60);
-	border-bottom: solid 9px rgb(120, 169, 60);
+	border-bottom: solid 6px rgb(120, 169, 60);
 }
 h3
 {
@@ -368,6 +368,7 @@ p.index
 	margin-top:1%;
 	margin-bottom:2%;
 	width:73%;
+	font-size: 0.9em;
 }
 /*------------------------------------------------*/
 form
