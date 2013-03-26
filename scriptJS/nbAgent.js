@@ -179,7 +179,6 @@ function graph( source, type) {
 // -------------creation de la legende---------//
 
 			var svglegende = d3.select("#legende").append("svg") //création du svg
-    		.attr("width", 1200) //largeur du svg
     		.attr("id", "svglegende")
     		
     		var nomColonne = svglegende.append("g")
