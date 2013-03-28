@@ -34,11 +34,11 @@ function update()//fonction appelée lors du click sur valider
 		{
 			scriptPhp = "nbPost.php";
 		}
-		else if(source = "options" )
+		else if(source == "options" )
 		{
 			scriptPhp = "nbOptions.php";
 		}
-		else if(source = "head" )
+		else if(source == "head" )
 		{
 			scriptPhp = "nbHead.php";
 		}
