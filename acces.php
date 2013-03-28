@@ -22,9 +22,9 @@
 		<h1>Pourcentage de requêtes par tranches horaires</h1>
 			<form>
 				<p>Rentrez la date sous la forme YYYY-MM-DD</p>
-				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text />
+				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text placeholder="2012-09-16" />
 				</br>
-				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text />
+				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text placeholder="2012-09-17" />
 				</br>
 		 		<input id= valider type=button value=Valider onclick="update()" />
 		 	</form>
