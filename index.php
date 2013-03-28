@@ -34,9 +34,9 @@
 				
 				<h3> Les Cercles </h3>
 					<p class="index">Chaque cercle represente le nombre d'occurrence d'un évenement de manière proportionnelle par rapport aux autres cercles. Pour avoir plus de détail sur l'évenement, il suffit de cliquer 
-					sur un cercle et vous serez renvoyé vers une visualisation camembert plus précise. </p>
-				<h3> Les Camemberts </h3>
-					<p class="index">Les diagrammes camemberts permettent un trie par expressions régulières (non obligatoire), celles-ci sont en php, c'est pour cela qu'il faut mettre sa règle entre 2 "#". On peut aussi
+					sur un cercle et vous serez renvoyé vers une visualisation d'un diagramme circulaire, plus précise. </p>
+				<h3> Les Diagrammes Circulaires </h3>
+					<p class="index">Les diagrammes circulaires permettent un trie par expressions régulières (non obligatoire), celles-ci sont en php, c'est pour cela qu'il faut mettre sa règle entre 2 "#". On peut aussi
 					choisir le nombre minimum d'occurrence d'un évenement grace au champ juste en dessous de celui des dates.</p> 
 					<p class="index">Au survol d'une part du diagramme vous trouverez les informations liées à celle-ci juste en dessous du curseur. Vous retrouvez aussi celles-ci dans la légende située en dessous du diagrammes.
 					Le diagramme est construit dans le sens des aiguilles d'une montre, la première légende correspond donc à la première part à droite de l'axe des ordonnées. Vous pouvez aussi cliquer sur chaque part
