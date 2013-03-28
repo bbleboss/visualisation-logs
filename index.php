@@ -23,7 +23,7 @@
 			<h2 class="bleufonce">I. Présentation du Projet</h2>
 				<p class="index">Le visualisateur interactif de fichiers log est le projet tuteuré de fin d'étude de 3 étudiants en informatique de l'IUT Lyon 1. Il a 
 				pour but de visionner de manière simplifiée les données des fichier logs du laboratoire LIRIS grace à des visualisations explicites. Pour réaliser l'ensemble de
-				celles-ci, nous nous sommes appuyé sur une bibliothèque javascript open source spécialisée dans la visualisation nommée <a href="http://d3js.org">D3.js</a> qui a été créée en 2010 et qui est encore en 
+				celles-ci, nous nous sommes appuyé sur une bibliothèque javascript, open source, spécialisée dans la visualisation nommée <a href="http://d3js.org">D3.js</a> qui a été créée en 2010 et qui est encore en 
 				développement aujourd'hui (dernière release le 21 mars 2013). </p>
 				
 			<h2 class="vert">II. Guide d'Utilisation</h2>
