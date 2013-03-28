@@ -418,7 +418,7 @@ function info(id)
 	}
 	else
 	{
-		info.innerHTML="Module:" +dataj[nb].module+"<br>Erreur: " +dataj[nb].description + "<br> Nombre de visite: "+ dataj[nb].value; 
+		info.innerHTML="Module:" +dataj[nb].module+"<br>Erreur: " +dataj[nb].description + "<br> Nombre d'apparation: "+ dataj[nb].value; 
 	}     
 	id = id.toString();
 	var part = document.getElementById(id);
