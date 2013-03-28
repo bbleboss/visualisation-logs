@@ -23,9 +23,9 @@
 		<h1>Tailles des données par serveur</h1>
 			<form>
 				<p>Rentrez la date sous la forme YYYY-MM-DD HH:MM:SS</p>
-				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text />
+				<label for="date1">Date1</label>: <input id= date1 name=date1 type=text placeholder="2012-09-16 06:58:47"/>
 				</br>
-				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text />
+				<label for="date2">Date2</label>: <input id= date2 name=date2 type=text placeholder="2012-09-16 08:58:47"/>
 				</br>
 				<label for="nberror">Minimum du total de la taille des données </label>: <input id= taillesum name=taillesum type=text value="1" />
 				</br>
